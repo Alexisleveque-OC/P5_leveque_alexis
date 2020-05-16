@@ -1,11 +1,11 @@
-<?php $title = 'page d\'erreur';
+<?php $title = 'Page d\'erreur';
 
 ob_start();
 ?>
-    <h1>Il y a un problème</h1>
+    <h4>Il y a un problème</h4>
     <p><?= $errorMessage ?></p>
-    <a href="index.php">Retour à l'acceuil</a>
+    <a href="../../index.php">Retour à l'acceuil</a>
 <?php
 $content = ob_get_clean();
 
-require_once ('../Template/Template.php');
+require ('../Template/Template.php');

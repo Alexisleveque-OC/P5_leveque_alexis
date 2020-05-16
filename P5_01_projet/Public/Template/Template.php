@@ -24,7 +24,7 @@
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Le blog de moi !!!</a>
+        <a class="navbar-brand" href="../../index.php">Le blog de moi !!!</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,13 +47,7 @@
     </div>
 </nav>
 
-<header class="masthead">
-        <img src="../Image/banner.jpg" alt="banner" class="banner">
-        <div class="site-heading">
-            <h1>Alexis LEVEQUE</h1>
-            <span class="subheading">May the force be with you</span>
-        </div>
-</header>
+
 
 <main role="main" class="container">
 
