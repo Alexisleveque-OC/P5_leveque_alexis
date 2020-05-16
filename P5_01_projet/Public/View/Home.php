@@ -7,6 +7,7 @@ ob_start();
 
 
 ?>
+
 <h1>ET coucou !!!</h1>
 
 
@@ -14,4 +15,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once ('Public/Template/Template.php');
+require_once ('../Template/Template.php');

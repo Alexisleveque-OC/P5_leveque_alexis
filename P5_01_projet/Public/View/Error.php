@@ -4,8 +4,8 @@ ob_start();
 ?>
     <h1>Il y a un problème</h1>
     <p><?= $errorMessage ?></p>
-    <a href="../index.php">Retour à l'acceuil</a>
+    <a href="index.php">Retour à l'acceuil</a>
 <?php
 $content = ob_get_clean();
 
-require 'view/template.php';
+require_once ('../Template/Template.php');
