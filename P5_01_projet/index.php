@@ -1,5 +1,8 @@
 <?php
 
+use View;
+use App\Entity;
+
 
 
 try
