@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -13,9 +13,6 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../Css/style.css">
-
-    <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
 
 </head>
 
@@ -31,16 +28,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Public/View/Home.php">Accueil</a>
+                    <a class="nav-link" href="Home.php">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Public/View/Post.php">Les articles</a>
+                    <a class="nav-link" href="Post.php">Les articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Public/View/Connection.php">Connexion</a>
+                    <a class="nav-link" href="Connection.php">Connexion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Public/View/Subscribe.php">Inscription</a>
+                    <a class="nav-link" href="Subscribe.php">Inscription</a>
                 </li>
             </ul>
         </div>
@@ -49,12 +46,12 @@
 
 
 
-<main role="main" class="container">
+
 
     <div class="starter-template" style="padding-top: 100px">
         <?= $content; ?>
     </div>
 
-</main>
+
 
 </body>

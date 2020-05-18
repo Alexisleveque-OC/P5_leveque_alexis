@@ -14,11 +14,11 @@ ob_start();
             <span class="subheading">May the force be with you</span>
         </div>
     </header>
-<h1>ET coucou !!!</h1>
+
 
 
 
 
 <?php
 $content = ob_get_clean();
-require_once (__DIR__ .'../Template/Template.php');
+require ('../Template/Template.php');
