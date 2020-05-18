@@ -20,7 +20,7 @@ try
                     htmlspecialchars($_POST['password']));
             }
             else{
-                throw new Exception('Les mots de passes ne sont pas identiques');
+                throw new Exception('Les mots de passes ne sont pas identiques.');
             }
         }
     }

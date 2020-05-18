@@ -21,4 +21,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once ('../Template/Template.php');
+require_once (__DIR__ .'../Template/Template.php');

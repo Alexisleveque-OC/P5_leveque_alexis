@@ -8,4 +8,4 @@ ob_start();
 <?php
 $content = ob_get_clean();
 
-require ('../Template/Template.php');
+require ('Public/Template/Template.php');

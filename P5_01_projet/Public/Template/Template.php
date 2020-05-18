@@ -31,16 +31,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Home.php">Accueil</a>
+                    <a class="nav-link" href="Public/View/Home.php">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Post.php">Les articles</a>
+                    <a class="nav-link" href="Public/View/Post.php">Les articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Connection.php">Connexion</a>
+                    <a class="nav-link" href="Public/View/Connection.php">Connexion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Subscribe.php">Inscription</a>
+                    <a class="nav-link" href="Public/View/Subscribe.php">Inscription</a>
                 </li>
             </ul>
         </div>
