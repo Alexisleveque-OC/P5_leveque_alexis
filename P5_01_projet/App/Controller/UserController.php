@@ -12,8 +12,18 @@ class UserController
     {
         $user = new UserManager();
         $user->AddUser($name,$password,$email,$user_type_id);
+        $_SESSION['user_name'] = $name;
 
         header ('Location: index.php' );
+
+    }
+
+    public function searchUser($name){
+        $user = new UserManager($name);
+        $user->searchUser($name);
+        var_dump($user);
+        return $user;
+
 
     }
 

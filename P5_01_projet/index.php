@@ -2,7 +2,7 @@
 
 //use View;
 use App\Entity;
-use App\Controller;
+use App\Controller\UserController;
 
 require ('App/Autoloader.php');
 
@@ -14,10 +14,20 @@ try
     if (isset($_GET['action'])) {
         if (($_GET['action']) == 'addUser'){
             if ($_POST['password'] === $_POST['password_confirmation']){
-                $user = new App\Controller\UserController();
-                $user->addUser(htmlspecialchars($_POST['user_name']),
-                    htmlspecialchars($_POST['email']),
-                    htmlspecialchars($_POST['password']));
+//                vérifier que le nom n'est pas déjà utiliser'
+
+                $user = new UserController();
+                $user->searchUser($_POST['user_name']);
+                var_dump($user);
+                if ( $user == null){
+                    $user = new UserController();
+                    $user->addUser(htmlspecialchars($_POST['user_name']),
+                        htmlspecialchars($_POST['email']),
+                        htmlspecialchars(password_hash($_POST['password'], PASSWORD_DEFAULT)));
+                }
+                else {
+                    throw new Exception('Le nom que vous souhaitez existe déjà.');
+                }
             }
             else{
                 throw new Exception('Les mots de passes ne sont pas identiques.');
