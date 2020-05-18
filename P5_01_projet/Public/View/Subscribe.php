@@ -7,6 +7,7 @@ ob_start();
 
 
 ?>
+
     <div class="row">
         <div class="col-lg-8 mb-4">
             <h3>Inscription</h3>
@@ -42,7 +43,6 @@ ob_start();
             </form>
         </div>
     </div>
-
 <?php
 $content = ob_get_clean();
 require_once ('../Template/Template.php');
