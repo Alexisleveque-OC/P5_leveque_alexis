@@ -25,7 +25,7 @@ try
         }
     }
     else{
-        require_once('Public/View/Home.php');
+        header ('Location: Public/View/Home.php');
     }
 
 }

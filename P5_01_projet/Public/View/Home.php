@@ -15,10 +15,6 @@ ob_start();
         </div>
     </header>
 
-
-
-
-
 <?php
 $content = ob_get_clean();
-require ('../Template/Template.php');
+require ('Template.php');

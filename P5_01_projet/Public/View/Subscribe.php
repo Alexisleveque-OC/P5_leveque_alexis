@@ -46,4 +46,4 @@ ob_start();
 </main>
 <?php
 $content = ob_get_clean();
-require_once ('../Template/Template.php');
+require_once('Template.php');
