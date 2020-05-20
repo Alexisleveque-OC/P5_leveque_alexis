@@ -18,13 +18,10 @@ class UserController
 
     }
 
-    public function searchUser($name){
+    public function verifUser($name){
         $user = new UserManager();
-        $user->searchUser($name);
-        var_dump($user);
-        return $user;
-
-
+        $verif = $user->verifUser($name);
+        return false;
     }
 
 

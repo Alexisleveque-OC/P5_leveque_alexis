@@ -16,16 +16,13 @@ class UserManager extends Manager
         $req->execute(array($name,$password,$email,$user_type_id));
     }
 
-    public function searchUser($name){
-        var_dump($name);
-        echo('coucou');
+    public function verifUser($name){
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM user WHERE user_name = ? ') or die(print_r($db->errorInfo()));
         $req->execute(array($name));
         $data = $req->fetch( PDO::FETCH_ASSOC);
-        var_dump($data);
         if ($data === false){
-            return ($data);
+            return false;
         }
         else{
             throw new Exception('Le nom que vous avez choisis existe déjà.');

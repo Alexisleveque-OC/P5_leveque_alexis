@@ -17,9 +17,8 @@ try
 //                vérifier que le nom n'est pas déjà utiliser'
 
                 $user = new UserController();
-                $user->searchUser($_POST['user_name']);
-                var_dump($user);
-                if ( $user == null){
+                $verif = $user->verifUser($_POST['user_name']);
+                if ( $verif === false){
                     $user = new UserController();
                     $user->addUser(htmlspecialchars($_POST['user_name']),
                         htmlspecialchars($_POST['email']),
