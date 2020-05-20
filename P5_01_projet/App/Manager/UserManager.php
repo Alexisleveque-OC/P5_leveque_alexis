@@ -3,6 +3,9 @@
 
 namespace App\Manager;
 
+use \PDO;
+use \Exception;
+
 
 class UserManager extends Manager
 {
@@ -14,13 +17,19 @@ class UserManager extends Manager
     }
 
     public function searchUser($name){
+        var_dump($name);
         echo('coucou');
         $db = $this->dbConnect();
-        $req = $db->query("SELECT user_name FROM user WHERE user_name ='".$name."'");
-        $data = $req->fetch();
+        $req = $db->prepare('SELECT * FROM user WHERE user_name = ? ') or die(print_r($db->errorInfo()));
+        $req->execute(array($name));
+        $data = $req->fetch( PDO::FETCH_ASSOC);
         var_dump($data);
-        if ($data == false)
-        return $data;
+        if ($data === false){
+            return ($data);
+        }
+        else{
+            throw new Exception('Le nom que vous avez choisis existe déjà.');
+        }
     }
 
 }

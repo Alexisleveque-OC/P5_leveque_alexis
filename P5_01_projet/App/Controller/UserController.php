@@ -19,7 +19,7 @@ class UserController
     }
 
     public function searchUser($name){
-        $user = new UserManager($name);
+        $user = new UserManager();
         $user->searchUser($name);
         var_dump($user);
         return $user;
