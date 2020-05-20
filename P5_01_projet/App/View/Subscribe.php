@@ -11,7 +11,7 @@ ob_start();
     <div class="row">
         <div class="col-lg-8 mb-4">
             <h3>Inscription</h3>
-            <form name="addUser" id="userForm" method="POST" action="../../index.php?action=addUser" >
+            <form name="addUser" id="userForm" method="POST">
                 <div class="control-group form-group">
                     <div class="controls">
                         <label >Nom d'utilisateur:</label>

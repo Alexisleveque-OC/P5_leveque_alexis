@@ -8,7 +8,7 @@ ob_start();
 
 ?>
     <header class="masthead">
-        <img src="../Image/banner.jpg" alt="banner" class="banner">
+        <img src="/Image/banner.jpg" alt="banner" class="banner">
         <div class="site-heading">
             <h1>Alexis LEVEQUE</h1>
             <span class="subheading">May the force be with you</span>
@@ -17,4 +17,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require ('Template.php');
+require('Template.php');
