@@ -23,7 +23,7 @@ class UserController
                 );
                 $_SESSION['user_name'] = $_POST['user_name'];
                 var_dump($_SESSION['user_name']);
-                require ('../../Public/index.php');
+                require_once ('../Public/index.php');
             } else {
                 throw new \Exception('Les mots de passes ne sont pas identiques.');
             }

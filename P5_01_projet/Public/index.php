@@ -1,6 +1,5 @@
 <?php
-
-//use View;
+session_start();
 use App\Controller\HomeController;
 use App\Controller\UserController;
 use App\Controller\PostController;
@@ -9,7 +8,7 @@ use App\Controller\ErrorController;
 use App\Controller\DestroyController;
 
 
-require('../App/Autoloader.php');
+require_once ('../App/Autoloader.php');
 
 App\Autoloader::register();
 
