@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Manager\UserManager;
 
-class UserController
+class SubscribeController
 {
     public function subscribe()
     {
@@ -22,7 +22,6 @@ class UserController
                     1
                 );
                 $_SESSION['user_name'] = $_POST['user_name'];
-                var_dump($_SESSION['user_name']);
                 require_once ('../Public/index.php');
             } else {
                 throw new \Exception('Les mots de passes ne sont pas identiques.');

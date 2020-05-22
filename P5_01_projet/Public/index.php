@@ -1,7 +1,7 @@
 <?php
 session_start();
 use App\Controller\HomeController;
-use App\Controller\UserController;
+use App\Controller\SubscribeController;
 use App\Controller\PostController;
 use App\Controller\ConnectionController;
 use App\Controller\ErrorController;
@@ -25,7 +25,8 @@ try {
             (new PostController())();
             break;
         case 'connection':
-            (new ConnectionController())();
+            $controller = new ConnectionController();
+            $controller->connection();
             break;
         case 'logout':
             $destroy = new DestroyController();
@@ -41,7 +42,7 @@ try {
         //$controller->show($_GET['id']);
 
         case 'subscribe':
-            $controller = new UserController();
+            $controller = new SubscribeController();
             $controller->subscribe();
             break;
     }

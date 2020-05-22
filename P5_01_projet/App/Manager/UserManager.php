@@ -40,6 +40,19 @@ class UserManager extends Manager
         }
     }
 
+    public function verifPass($name,$password)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM user WHERE user_name = :name ') or die(print_r($db->errorInfo()));
+        $req->execute(['name' => $name]);
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $verif = password_verify($password,$data['password']);
+
+        if($verif === false){
+            throw new \Exception('Le mot de passe entré n\'est pas valide');
+        }
+    }
+
     /**
      * @param $password
      * @return false|string|null
