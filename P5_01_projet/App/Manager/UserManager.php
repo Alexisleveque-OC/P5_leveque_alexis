@@ -36,7 +36,7 @@ class UserManager extends Manager
 
 
         if ($data !== false) {
-            throw new Exception('Le nom que vous avez choisis existe déjà.');
+            throw new \Exception('Le nom que vous avez choisis existe déjà.');
         }
     }
 
