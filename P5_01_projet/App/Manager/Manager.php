@@ -3,7 +3,7 @@
 
 namespace App\Manager;
 
-use PDO;
+use \PDO;
 
 
 class Manager

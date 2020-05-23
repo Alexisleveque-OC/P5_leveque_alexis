@@ -4,7 +4,7 @@
 namespace App\Controller;
 
 
-class PostController
+class PostsController
 {
     public function __invoke()
     {
