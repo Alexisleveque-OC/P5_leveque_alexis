@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 
+
 class Post extends Entity
 {
     protected $id_post;
@@ -12,13 +13,13 @@ class Post extends Entity
     protected $content;
     protected $date_creation;
     protected $date_last_update;
-    protected $is_published;
     protected $user_id;
 
-    protected function __construct(array $data)
+    public function __construct(array $data)
     {
         $this->hydrate($data);
     }
+
 
     /**
      * @return mixed
@@ -68,13 +69,6 @@ class Post extends Entity
         return $this->date_last_update;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsPublished()
-    {
-        return $this->is_published;
-    }
 
     /**
      * @return mixed
@@ -121,7 +115,8 @@ class Post extends Entity
      */
     public function setDateCreation($date_creation)
     {
-        $this->date_creation = $date_creation;
+        $this->$date_creation = date('d.m.Y H:i' ,$date_creation);
+
     }
 
     /**
@@ -130,14 +125,6 @@ class Post extends Entity
     public function setDateLastUpdate($date_last_update)
     {
         $this->date_last_update = $date_last_update;
-    }
-
-    /**
-     * @param mixed $is_published
-     */
-    public function setIsPublished($is_published)
-    {
-        $this->is_published = $is_published;
     }
 
     /**

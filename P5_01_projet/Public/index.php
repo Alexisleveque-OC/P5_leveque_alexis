@@ -3,10 +3,12 @@ session_start();
 use App\Controller\HomeController;
 use App\Controller\SubscribeController;
 use App\Controller\PostsController;
+use App\Controller\PostController;
 use App\Controller\ConnectionController;
 use App\Controller\ErrorController;
 use App\Controller\DestroyController;
 use App\Controller\CreatePostController;
+
 
 
 
@@ -42,6 +44,8 @@ try {
             if (!isset($_GET['id'])) {
                 throw  new \Exception('Erreur 404 ');
             }
+            $controller = new PostController();
+            $controller->listOnce($_GET['id']);
             break;
 
         //$controller = new PostsController();
