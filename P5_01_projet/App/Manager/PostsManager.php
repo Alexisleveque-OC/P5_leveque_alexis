@@ -39,17 +39,20 @@ class PostsManager extends Manager
         $req->execute(['id' => $id]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $post = $this->arrayDataToPost($data);
-        var_dump($post);
     }
 
 
     public function arrayDataToPost($data)
     {
         $post = new Post();
+        $post->setIdPost($data['id_post'] ?? "");
         $post->setTitle($data['title'] ?? "");
-        $post->setDateCreation(new \DateTime($data['date_creation'] ?? ''));
+        $post->setChapo($data['chapo'] ?? "");
         $post->setContent($data['content'] ?? "");
-        // TODO à completer
+        $post->setDateCreation(new \DateTime($data['date_creation'] ?? ''));
+        $post->setDateLastUpdate(new \DateTime($data['date_last_update'] ?? ''));
+        $post->setUserId($data['user_id'] ?? "");
+
         return $post;
     }
 
@@ -63,7 +66,6 @@ class PostsManager extends Manager
             $posts[] = $this->arrayDataToPost($row);
         }
 
-        dd($posts);
         return $posts;
 
     }

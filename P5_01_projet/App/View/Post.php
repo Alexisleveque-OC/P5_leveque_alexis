@@ -8,21 +8,31 @@ ob_start();
 
 ?>
 
-    <h1>la il y aura un article</h1>
-    <h2> avec un chapeau</h2>
-    <p>un Lorem ipsum</p>
+    <main class="container">
 
 
-    <h4>
-        <ul>
-            <li>et quelques commentaires</li>
-            <li>et quelques commentaires</li>
-            <li>et quelques commentaires</li>
-            <li>et quelques commentaires</li>
-        </ul>
-    </h4>
+        <h2>
+            <?= $post->getTitle(); ?>
+        </h2>
+        <h4>
+            <?= $post->getChapo(); ?>
+        </h4>
+        <p>
+            <?php
+            echo(substr($post->getContent(), 0, 250));
+            ?>
+            ...<br>
+            <a href="/index.php?action=post&id=<?= $post->getIdPost() ?>">Voir la suite </a>
 
+        </p>
+        <p>
+            <?= $post->getUserId(); ?> ça c'est le nom de l'utilisateur normalement
+        </p>
+        <?php
+        //TODO : à voir pour afficher le nom de l'utilisateur plutot que l'id user + format date
 
+        ?>
+    </main>
 
 <?php
 $content = ob_get_clean();

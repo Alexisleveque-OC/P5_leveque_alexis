@@ -7,22 +7,37 @@ ob_start();
 
 
 ?>
-    <button class="btn btn-info" onclick="window.location.href='index.php?action=createPost'"> Créer un article</button>
+    <main class="container">
+        <button class="btn btn-info" onclick="window.location.href='index.php?action=createPost'"> Créer un article
+        </button>
 
+        <?php
 
-<!--    <h3 class="col-lg-12" >Là il y aura un articles</h3>-->
-<!--    <button class="btn btn-primary">update</button>-->
-<!--    <button class="btn btn-danger">delete</button>-->
-<!--    <h3 class="col-lg-12" >Là il y aura un articles</h3>-->
-<!--    <button class="btn btn-primary">update</button>-->
-<!--    <button class="btn btn-danger">delete</button>-->
-<!--    <h3 class="col-lg-12" >Là il y aura un articles</h3>-->
-<!--    <button class="btn btn-primary">update</button>-->
-<!--    <button class="btn btn-danger">delete</button>-->
-<!--    <h3  class="col-lg-12" >Là il y aura un articles</h3>-->
-<!--    <button class="btn btn-primary">update</button>-->
-<!--    <button class="btn btn-danger">delete</button>-->
+        foreach ($posts as $post) {
+            ?>
 
+            <h2>
+                <?= $post->getTitle(); ?>
+            </h2>
+            <h4>
+                <?= $post->getChapo(); ?>
+            </h4>
+            <p>
+                <?php
+                echo(substr($post->getContent(), 0, 250));
+                ?>
+                ...<br>
+                <a href="/index.php?action=post&id=<?= $post->getIdPost() ?>">Voir la suite </a>
+
+            </p>
+            <p>
+                <?= $post->getUserId(); ?> ça c'est le nom de l'utilisateur normalement
+            </p>
+            <?php
+            //TODO : à voir pour afficher le nom de l'utilisateur plutot que l'id user + format date
+        }
+        ?>
+    </main>
 <?php
 
 $content = ob_get_clean();
