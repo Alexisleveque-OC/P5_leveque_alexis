@@ -18,12 +18,7 @@ ob_start();
             <?= $post->getChapo(); ?>
         </h4>
         <p>
-            <?php
-            echo(substr($post->getContent(), 0, 250));
-            ?>
-            ...<br>
-            <a href="/index.php?action=post&id=<?= $post->getIdPost() ?>">Voir la suite </a>
-
+            <?= $post->getContent(); ?>
         </p>
         <p>
             <?= $post->getUserId(); ?> ça c'est le nom de l'utilisateur normalement

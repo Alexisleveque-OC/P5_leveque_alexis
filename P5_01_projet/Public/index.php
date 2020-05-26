@@ -44,10 +44,6 @@ try {
             $controller = new PostController();
             $controller->listOnce($_GET['id']);
             break;
-
-        //$controller = new PostsController();
-        //$controller->show($_GET['id']);
-
         case 'subscribe':
             $controller = new SubscribeController();
             $controller->subscribe();

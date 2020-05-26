@@ -11,7 +11,8 @@ class PostController extends Controller
     public function listOnce($id)
     {
         $manager = new PostsManager();
-        $manager->listOnce($id);
+        $post = $manager->listOnce($id);
+        require __DIR__ . '/../View/Post.php';
 
     }
 }

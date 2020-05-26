@@ -10,15 +10,9 @@ use \PDO;
 
 class PostsManager extends Manager
 {
-    // TODO cette methode devrait recevoir l'userId en parametre
     public function addPost($title, $chapo, $content,  $user_id)
     {
         $db = $this->dbConnect();
-
-//        $reqUser = $db->prepare('SELECT * FROM user WHERE user_name = :user_name');
-//        $db->execute(['user_name' => $_SESSION['user_name']]);
-//        $data = $reqUser->fetch(PDO::FETCH_ASSOC);
-
 
         $req = $db->prepare('INSERT INTO post(title,chapo,content,date_creation,date_last_update,user_id) 
                                       VALUE (:title,:chapo,:content,NOW(),:date_last_update,:user_id)');
@@ -39,6 +33,7 @@ class PostsManager extends Manager
         $req->execute(['id' => $id]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $post = $this->arrayDataToPost($data);
+        return $post;
     }
 
 
