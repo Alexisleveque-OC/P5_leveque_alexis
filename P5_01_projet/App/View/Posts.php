@@ -33,6 +33,10 @@ ob_start();
             <p>
                 <?= $post->getUserId(); ?> ça c'est le nom de l'utilisateur normalement
             </p>
+            <button class="btn btn-primary"
+                    onclick="window.location.href='index.php?action=updatePost&id=<?=$post->getIdPost() ?>'" >
+                Modifier
+            </button>
             <?php
             //TODO : à voir pour afficher le nom de l'utilisateur plutot que l'id user + format date
         }

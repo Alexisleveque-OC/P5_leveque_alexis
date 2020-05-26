@@ -36,7 +36,19 @@ class PostsManager extends Manager
         return $post;
     }
 
+    public function listAllPosts()
+    {
+        $posts = [];
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM post');
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        foreach($data as $row) {
+            $posts[] = $this->arrayDataToPost($row);
+        }
 
+        return $posts;
+
+    }
     public function arrayDataToPost($data)
     {
         $post = new Post();
@@ -51,17 +63,5 @@ class PostsManager extends Manager
         return $post;
     }
 
-    public function listAllPosts()
-    {
-        $posts = [];
-        $db = $this->dbConnect();
-        $req = $db->query('SELECT * FROM post');
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-        foreach($data as $row) {
-            $posts[] = $this->arrayDataToPost($row);
-        }
 
-        return $posts;
-
-    }
 }
