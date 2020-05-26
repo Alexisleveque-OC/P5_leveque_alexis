@@ -4,10 +4,10 @@
 namespace App\Controller;
 
 
-class DestroyController
+class DestroyController extends Controller
 {
     public function destroy(){
         session_destroy();
-        header ('Location: /index.php');
+        $this->redirect('home');
     }
 }

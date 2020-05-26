@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Manager\UserManager;
 
-class HomeController
+class HomeController extends Controller
 {
     public function __invoke()
     {

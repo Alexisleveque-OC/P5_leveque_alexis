@@ -15,9 +15,9 @@ class Post extends Entity
     protected $date_last_update;
     protected $user_id;
 
-    public function __construct(array $data)
+    public function __construct()
     {
-        $this->hydrate($data);
+
     }
 
 
@@ -53,18 +53,19 @@ class Post extends Entity
         return $this->content;
     }
 
+
     /**
-     * @return mixed
+     * @return \DateTime|null
      */
-    public function getDateCreation()
+    public function getDateCreation(): ?\DateTime
     {
         return $this->date_creation;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime|null
      */
-    public function getDateLastUpdate()
+    public function getDateLastUpdate(): ?\DateTime
     {
         return $this->date_last_update;
     }
@@ -111,18 +112,17 @@ class Post extends Entity
     }
 
     /**
-     * @param mixed $date_creation
      */
-    public function setDateCreation($date_creation)
+    public function setDateCreation( \DateTime $date_creation)
     {
-        $this->$date_creation = date('d.m.Y H:i' ,$date_creation);
+        $this->date_creation = $date_creation;
 
     }
 
     /**
      * @param mixed $date_last_update
      */
-    public function setDateLastUpdate($date_last_update)
+    public function setDateLastUpdate(\DateTime $date_last_update)
     {
         $this->date_last_update = $date_last_update;
     }

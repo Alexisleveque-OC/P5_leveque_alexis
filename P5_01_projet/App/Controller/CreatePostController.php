@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\Manager\PostsManager;
 
-class CreatePostController
+class CreatePostController extends Controller
 {
     public function addPost()
     {
@@ -14,9 +14,10 @@ class CreatePostController
             $manager->addPost(
                 $_POST['title'],
                 $_POST['chapo'],
-                $_POST['content']
+                $_POST['content'],
+                $_SESSION['id_user']
             );
-            Header ('Location: index.php?action=posts');
+            $this->redirect('posts');
         }
         require __DIR__ . '/../View/PostCreation.php';
     }

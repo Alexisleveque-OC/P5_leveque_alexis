@@ -5,17 +5,23 @@ namespace App\Controller;
 
 use App\Manager\UserManager;
 
-class ConnectionController
+class ConnectionController extends Controller
 {
 
+    /**
+     * @throws \Exception
+     *
+     *
+     */
     public function connection()
     {
         if (count($_POST) !== 0) {
             $manager = new UserManager();
-            $manager->verifPass($_POST['user_name'],$_POST['password']);
+            $data = $manager->verifPass($_POST['user_name'],$_POST['password']);
+            $_SESSION['user_name'] = $data['user_name'];
+            $_SESSION['id_user'] = $data['id_user'];
 
-            $_SESSION['user_name'] = $_POST['user_name'];
-                require_once ('../Public/index.php');
+            $this->redirect('home');
             }
 
         require __DIR__ . '/../View/Connection.php';

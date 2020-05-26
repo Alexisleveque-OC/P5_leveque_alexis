@@ -4,7 +4,7 @@
 namespace App\Controller;
 
 
-class ErrorController
+class ErrorController extends Controller
 {
     public function __invoke()
     {

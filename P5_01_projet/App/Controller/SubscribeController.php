@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Manager\UserManager;
 
-class SubscribeController
+class SubscribeController extends  Controller
 {
     public function subscribe()
     {
@@ -15,14 +15,15 @@ class SubscribeController
             if ($_POST['password'] === $_POST['password_confirmation']) {
                 $manager->verifUser($_POST['user_name']);
 
-                $manager->addUser(
+                $data = $manager->addUser(
                     $_POST['user_name'],
                     $_POST['password'],
                     $_POST['email'],
                     1
                 );
-                $_SESSION['user_name'] = $_POST['user_name'];
-                require_once ('../Public/index.php');
+                $_SESSION['user_name'] = $data['user_name'];
+                $_SESSION['id_user'] = $data['id_user'];
+                $this->redirect('home');
             } else {
                 throw new \Exception('Les mots de passes ne sont pas identiques.');
             }

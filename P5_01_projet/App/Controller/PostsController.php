@@ -14,7 +14,6 @@ class PostsController
         $manager = new PostsManager();
         $posts = $manager->listAllPosts();
         require __DIR__ . '/../View/Posts.php';
-
     }
 
 }

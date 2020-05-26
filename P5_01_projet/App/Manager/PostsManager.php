@@ -10,12 +10,14 @@ use \PDO;
 
 class PostsManager extends Manager
 {
-    public function addPost($title, $chapo, $content)
+    // TODO cette methode devrait recevoir l'userId en parametre
+    public function addPost($title, $chapo, $content,  $user_id)
     {
         $db = $this->dbConnect();
 
-        $reqUser = $db->query('SELECT * FROM user WHERE user_name = "' . $_SESSION['user_name'] . '"');
-        $data = $reqUser->fetch(PDO::FETCH_ASSOC);
+//        $reqUser = $db->prepare('SELECT * FROM user WHERE user_name = :user_name');
+//        $db->execute(['user_name' => $_SESSION['user_name']]);
+//        $data = $reqUser->fetch(PDO::FETCH_ASSOC);
 
 
         $req = $db->prepare('INSERT INTO post(title,chapo,content,date_creation,date_last_update,user_id) 
@@ -25,7 +27,7 @@ class PostsManager extends Manager
             'chapo' => $chapo,
             'content' => $content,
             'date_last_update' => null,
-            'user_id' => $data['id_user']
+            'user_id' => $user_id
         ]);
     }
 
@@ -33,30 +35,36 @@ class PostsManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $req = $db->query('SELECT * FROM post WHERE id_post = "'.$id .'"');
-        $post = $req->fetch(PDO::FETCH_ASSOC);
+        $req = $db->prepare('SELECT * FROM post WHERE id_post = :id');
+        $req->execute(['id' => $id]);
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $post = $this->arrayDataToPost($data);
         var_dump($post);
-        $post = new Post($post);
-        var_dump($post);
-        die();
     }
 
-//    public function listAllPosts()
-//    {
-//        $db = $this->dbConnect();
-//        $posts = $db->query('SELECT * FROM post');
-//        $data = $posts->fetchAll(PDO::FETCH_ASSOC);
-//        var_dump($data);
-//        for ($i = 0; $i <= count($data); $i++) {
-//            $data[$i] = new Post($data[$i]);
-//            var_dump($data);
-//        }
-//
-//
-////            var_dump($post);
-//
-//        die();
-//        return $req;
-//
-//    }
+
+    public function arrayDataToPost($data)
+    {
+        $post = new Post();
+        $post->setTitle($data['title'] ?? "");
+        $post->setDateCreation(new \DateTime($data['date_creation'] ?? ''));
+        $post->setContent($data['content'] ?? "");
+        // TODO à completer
+        return $post;
+    }
+
+    public function listAllPosts()
+    {
+        $posts = [];
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM post');
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        foreach($data as $row) {
+            $posts[] = $this->arrayDataToPost($row);
+        }
+
+        dd($posts);
+        return $posts;
+
+    }
 }

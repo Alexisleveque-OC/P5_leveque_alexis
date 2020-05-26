@@ -1,4 +1,6 @@
 <?php
+require_once ('../vendor/autoload.php');
+
 session_start();
 use App\Controller\HomeController;
 use App\Controller\SubscribeController;
@@ -10,11 +12,6 @@ use App\Controller\DestroyController;
 use App\Controller\CreatePostController;
 
 
-
-
-require_once ('../App/Autoloader.php');
-
-App\Autoloader::register();
 
 
 $action = $_GET['action'] ?? 'home';
@@ -42,7 +39,7 @@ try {
             break;
         case 'post':
             if (!isset($_GET['id'])) {
-                throw  new \Exception('Erreur 404 ');
+                throw  new Exception('Erreur 404 ');
             }
             $controller = new PostController();
             $controller->listOnce($_GET['id']);

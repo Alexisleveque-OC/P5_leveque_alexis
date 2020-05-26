@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Manager\PostsManager;
 
-class PostController
+class PostController extends Controller
 {
     public function listOnce($id)
     {
