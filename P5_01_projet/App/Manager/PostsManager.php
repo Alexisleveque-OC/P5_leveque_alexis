@@ -40,13 +40,30 @@ class PostsManager extends Manager
     {
         $posts = [];
         $db = $this->dbConnect();
-        $req = $db->query('SELECT * FROM post');
+        $req = $db->query('SELECT * FROM post ORDER BY id_post DESC ');
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach($data as $row) {
             $posts[] = $this->arrayDataToPost($row);
         }
 
         return $posts;
+
+    }
+
+    public function updatePost($id,$title,$chapo,$content,$user_id)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare('UPDATE post 
+                                    SET title = :title ,chapo = :chapo , content = :content , date_last_update = NOW(),user_id = :user_id 
+                                    WHERE id_post = :id') or die(print_r($db->errorInfo()));
+        $req->execute([
+            'id' => $id,
+            'title' => $title,
+            'chapo' => $chapo,
+            'content' => $content,
+            'user_id' => $user_id
+        ]);
 
     }
     public function arrayDataToPost($data)
