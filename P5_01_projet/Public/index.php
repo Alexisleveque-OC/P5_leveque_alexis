@@ -2,6 +2,8 @@
 require_once ('../vendor/autoload.php');
 
 session_start();
+
+use App\Controller\DeleteController;
 use App\Controller\HomeController;
 use App\Controller\SubscribeController;
 use App\Controller\PostsController;
@@ -23,9 +25,6 @@ try {
         case 'home':
             (new HomeController())();
             break;
-        case 'posts':
-            (new PostsController())();
-            break;
         case 'connection':
             $controller = new ConnectionController();
             $controller->connection();
@@ -34,12 +33,22 @@ try {
             $controller = new DestroyController();
             $controller->destroy();
             break;
+        case 'posts':
+            (new PostsController())();
+            break;
         case 'post':
             if (!isset($_GET['id'])) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new PostController();
             $controller->listOnce($_GET['id']);
+            break;
+        case 'deletePost':
+            if (!isset($_GET['id'])) {
+                throw  new Exception('Erreur 404 ');
+            }
+            $controller = new DeleteController();
+            $controller->deletePost($_GET['id']);
             break;
         case 'createPost':
             $controller = new CreatePostController ();

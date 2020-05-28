@@ -56,7 +56,7 @@ class PostsManager extends Manager
 
         $req = $db->prepare('UPDATE post 
                                     SET title = :title ,chapo = :chapo , content = :content , date_last_update = NOW(),user_id = :user_id 
-                                    WHERE id_post = :id') or die(print_r($db->errorInfo()));
+                                    WHERE id_post = :id');
         $req->execute([
             'id' => $id,
             'title' => $title,
@@ -64,7 +64,14 @@ class PostsManager extends Manager
             'content' => $content,
             'user_id' => $user_id
         ]);
+    }
 
+    public function deletePost($id)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare('DELETE FROM post WHERE id_post = :id');
+        $req->execute(['id' => $id]);
     }
     public function arrayDataToPost($data)
     {

@@ -37,6 +37,10 @@ ob_start();
                     onclick="window.location.href='index.php?action=updatePost&id=<?=$post->getIdPost() ?>'" >
                 Modifier
             </button>
+            <button class="btn btn-danger"
+                    onclick="window.location.href='index.php?action=deletePost&id=<?=$post->getIdPost() ?>'" >
+                Supprimer
+            </button>
             <?php
             //TODO : à voir pour afficher le nom de l'utilisateur plutot que l'id user + format date
         }
