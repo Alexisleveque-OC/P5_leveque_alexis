@@ -13,6 +13,7 @@ use App\Controller\ErrorController;
 use App\Controller\DestroyController;
 use App\Controller\CreatePostController;
 use App\Controller\UpdatePostController;
+use App\Controller\UserController;
 
 
 
@@ -20,6 +21,11 @@ use App\Controller\UpdatePostController;
 $action = $_GET['action'] ?? 'home';
 
 try {
+    if (isset($_SESSION['user_name']))
+    {
+        $controller = new UserController();
+        $user = $controller->listInfoUser($_SESSION['user_name']);
+    }
 
     switch ($action) {
         case 'home':
@@ -68,7 +74,8 @@ try {
     }
 
 
-} catch (Exception $e) {
+}
+catch (Exception $e) {
     (new ErrorController())();
     die($errorMessage = $e->getMessage());
 }

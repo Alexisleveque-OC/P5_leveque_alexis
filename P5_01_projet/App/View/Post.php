@@ -21,7 +21,7 @@ ob_start();
             <?= $post->getContent(); ?>
         </p>
         <p>
-            <?= $post->getUserId(); ?> ça c'est le nom de l'utilisateur normalement
+            <?= $user->getUserName(); ?>
         </p>
         <?php
         //TODO : à voir pour afficher le nom de l'utilisateur plutot que l'id user + format date

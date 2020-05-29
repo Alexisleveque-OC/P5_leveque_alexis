@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Manager\PostsManager;
+use App\Manager\UserManager;
 
 class PostController extends Controller
 {
@@ -12,6 +13,8 @@ class PostController extends Controller
     {
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
+        $userManager = new UserManager();
+        $user = $userManager->listInfoUser($post->getUserId());
         require __DIR__ . '/../View/Post.php';
 
     }

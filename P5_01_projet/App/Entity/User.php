@@ -14,9 +14,9 @@ class User extends Entity
     protected $user_type;
     protected $date_creation;
 
-    protected function __construct(array $data)
+    public function __construct()
     {
-        $this->hydrate($data);
+
     }
 
     /**

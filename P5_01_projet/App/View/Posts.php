@@ -12,8 +12,9 @@ ob_start();
         </button>
 
         <?php
-
+        $i = 0;
         foreach ($posts as $post) {
+
             ?>
 
             <h2>
@@ -31,7 +32,7 @@ ob_start();
 
             </p>
             <p>
-                <?= $post->getUserId(); ?> ça c'est le nom de l'utilisateur normalement
+                <?= $users[$i]->getUserName(); ?>
             </p>
             <button class="btn btn-primary"
                     onclick="window.location.href='index.php?action=updatePost&id=<?=$post->getIdPost() ?>'" >
@@ -42,6 +43,7 @@ ob_start();
                 Supprimer
             </button>
             <?php
+            $i++;
             //TODO : à voir pour afficher le nom de l'utilisateur plutot que l'id user + format date
         }
         ?>

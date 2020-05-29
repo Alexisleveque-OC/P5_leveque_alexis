@@ -3,6 +3,7 @@
 
 namespace App\Manager;
 
+use App\Entity\User;
 use \PDO;
 use \Exception;
 
@@ -61,6 +62,28 @@ class UserManager extends Manager
         return $data;
     }
 
+    public  function listInfoUser($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM user WHERE id_user = :id_user ') ;
+        $req->execute(['id_user' => $id]);
+        $data = $req->fetch( PDO::FETCH_ASSOC);
+        $user = $this->arrayDataToUser($data);
+        return $user;
+    }
+
+    public function arrayDataToUser($data)
+    {
+        $user = new User();
+        $user->setIdUser($data['id_user'] ?? "");
+        $user->setUserName($data['user_name'] ?? "");
+        $user->setEmail($data['email'] ?? "");
+        $user->setPassword($data['password'] ?? "");
+        $user->setUserType($data['user_type'] ?? '');
+        $user->setDateCreation(new \DateTime($data['date_creation'] ?? ''));
+
+        return $user;
+    }
     /**
      * @param $password
      * @return false|string|null
@@ -70,5 +93,7 @@ class UserManager extends Manager
         $password = password_hash($password, PASSWORD_DEFAULT);
         return $password;
     }
+
+
 
 }
