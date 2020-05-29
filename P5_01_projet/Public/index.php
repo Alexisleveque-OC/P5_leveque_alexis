@@ -73,6 +73,9 @@ try {
             $controller->updatePost($_GET['id']);
             break;
         case 'addComment':
+            if (!isset($_GET['id'])) {
+                throw  new Exception('Erreur 404 ');
+            }
             $controller = new AddCommentcontroller();
             $controller->addComment($_GET['id']);
 
