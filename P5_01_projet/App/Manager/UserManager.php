@@ -11,7 +11,6 @@ use \Exception;
 class UserManager extends Manager
 {
 
-   // TODO à modifier pour crée une entity de user et accéder au info via des get
     public function addUser($name, $plainPassword, $email, $user_type_id)
     {
 

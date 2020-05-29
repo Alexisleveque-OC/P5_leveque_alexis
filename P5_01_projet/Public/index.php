@@ -3,6 +3,7 @@ require_once ('../vendor/autoload.php');
 
 session_start();
 
+use App\Controller\AddCommentController;
 use App\Controller\DeleteController;
 use App\Controller\HomeController;
 use App\Controller\SubscribeController;
@@ -39,6 +40,10 @@ try {
             $controller = new DestroyController();
             $controller->destroy();
             break;
+        case 'subscribe':
+            $controller = new SubscribeController();
+            $controller->subscribe();
+            break;
         case 'posts':
             (new PostsController())();
             break;
@@ -67,10 +72,10 @@ try {
             $controller = new UpdatePostController();
             $controller->updatePost($_GET['id']);
             break;
-        case 'subscribe':
-            $controller = new SubscribeController();
-            $controller->subscribe();
-            break;
+        case 'addComment':
+            $controller = new AddCommentcontroller();
+            $controller->addComment($_GET['id']);
+
     }
 
 

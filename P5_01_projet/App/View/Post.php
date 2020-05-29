@@ -22,12 +22,25 @@ ob_start();
         </p>
         <p>
             <?= $user->getUserName(); ?>
+            <?= $post->getDateCreation()->format('d-m-Y H:m:s') ?>
         </p>
-        <?php
-        //TODO : à voir pour afficher le nom de l'utilisateur plutot que l'id user + format date
 
-        ?>
-    </main>
+<!--        <h2>Commentaires</h2>-->
+<!---->
+<!--        <form action="\index.php?action=addComment&amp;id=--><?//= $post->getIdPost()?><!--" method="post">-->
+<!--            <div>-->
+<!--                <label for="author">Auteur</label><br />-->
+<!--                <input type="text" id="author" name="author" />-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="comment">Commentaire</label><br />-->
+<!--                <textarea id="comment" name="comment"></textarea>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input type="submit" />-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </main>-->
 
 <?php
 $content = ob_get_clean();
