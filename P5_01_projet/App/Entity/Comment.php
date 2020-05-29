@@ -8,14 +8,14 @@ class Comment extends Entity
 {
     protected $id_comment;
     protected $content;
-    protected $date;
+    protected $date_creation;
     protected $validation;
     protected $user_id;
     protected $post_id;
 
-    protected function __construct(array $data)
+    public function __construct()
     {
-        $this->hydrate($data);
+        
     }
 
     /**
@@ -37,9 +37,9 @@ class Comment extends Entity
     /**
      * @return mixed
      */
-    public function getDate()
+    public function getDateCreation(): ?\DateTime
     {
-        return $this->date;
+        return $this->date_creation;
     }
 
     /**
@@ -85,9 +85,9 @@ class Comment extends Entity
     /**
      * @param mixed $date
      */
-    public function setDate($date)
+    public function setDateCreation( \DateTime $date_creation)
     {
-        $this->date = $date;
+        $this->date_creation = $date_creation;
     }
 
     /**

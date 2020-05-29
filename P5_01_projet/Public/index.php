@@ -84,6 +84,8 @@ try {
 
 }
 catch (Exception $e) {
-    (new ErrorController())();
-    die($errorMessage = $e->getMessage());
+    $errorMessage = $e ->getMessage();
+    require('../App/View/Error.php');
+//    (new ErrorController())();
+
 }

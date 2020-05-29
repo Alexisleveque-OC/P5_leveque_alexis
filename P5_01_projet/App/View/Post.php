@@ -22,7 +22,9 @@ ob_start();
         </p>
         <p>
             <?= $user->getUserName(); ?>
-            <?= $post->getDateCreation()->format('d-m-Y H:m:s') ?>
+            Ecrit le <strong class="col-2"><?= $post->getDateCreation()->format('d-m-Y') ?></strong>
+            à <strong class="col-2"><?= $post->getDateCreation()->format('H:m:s') ?></strong>
+            par <strong class="col-2"><?= $user->getUserName(); ?></strong>
         </p>
 
         <h2>Commentaires</h2>
@@ -35,6 +37,32 @@ ob_start();
             <input type="submit"/>
 
         </form>
+        <?php
+        $i = 0;
+        foreach ($comments as $comment) {
+            ?>
+            <div class="row comment">
+                <h2 class="col-12">
+                    <?= $user->getUserName(); ?>
+                </h2>
+                <p class="col-12">
+                    <?= $comment->getContent(); ?>
+                </p>
+                <p class="col-12">
+                </p>
+                <p class="col-12">
+                    Ecrit le <strong class="col-2"><?= $comment->getDateCreation()->format('d-m-Y') ?></strong>
+                    à <strong class="col-2"><?= $comment->getDateCreation()->format('H:m:s') ?></strong>
+                </p>
+            </div>
+            <hr>
+            <?php
+
+            $i++;
+
+        }
+
+        ?>
     </main>
 
 <?php
