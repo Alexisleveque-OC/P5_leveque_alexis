@@ -4,6 +4,7 @@ require_once ('../vendor/autoload.php');
 session_start();
 
 use App\Controller\AddCommentController;
+use App\Controller\DeleteCommentController;
 use App\Controller\DeleteController;
 use App\Controller\HomeController;
 use App\Controller\SubscribeController;
@@ -78,6 +79,12 @@ try {
             }
             $controller = new AddCommentcontroller();
             $controller->addComment($_GET['id']);
+        case 'deleteComment':
+            if (!isset($_GET['id'])) {
+                throw  new Exception('Erreur 404 ');
+            }
+            $controller = new DeleteCommentController();
+            $controller->deleteComment($_GET['id']);
 
     }
 
