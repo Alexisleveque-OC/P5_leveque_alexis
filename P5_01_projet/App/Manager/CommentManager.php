@@ -44,6 +44,7 @@ class CommentManager extends Manager
         $comment->setValidation($data['validation'] ?? "");
         $comment->setUserId($data['user_id'] ?? "");
         $comment->setPostId($data['post_id'] ?? "");
+        $comment->setUserName($data['user_id'] ?? "");
 
         return $comment;
     }

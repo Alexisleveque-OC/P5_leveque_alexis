@@ -32,7 +32,7 @@ ob_start();
         <form action="\index.php?action=addComment&amp;id=<?= $post->getIdPost() ?>" method="post">
 
             <label for="comment">Ajouter un commentaire</label><br/>
-            <textarea col="100" rows="10" id="comment" name="content"></textarea>
+            <textarea class="form-control" rows="10" id="comment" name="content"></textarea>
 
             <input type="submit"/>
 
@@ -43,7 +43,7 @@ ob_start();
             ?>
             <div class="row comment">
                 <h2 class="col-12">
-                    <?= $user->getUserName(); ?>
+                    <?= $comment->getUserName(); //TODO ressort pas le user name du comment mais celui du post?>
                 </h2>
                 <p class="col-12">
                     <?= $comment->getContent(); ?>

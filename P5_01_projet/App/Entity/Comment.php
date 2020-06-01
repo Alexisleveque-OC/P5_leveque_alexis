@@ -4,6 +4,8 @@
 namespace App\Entity;
 
 
+use App\Manager\UserManager;
+
 class Comment extends Entity
 {
     protected $id_comment;
@@ -12,6 +14,7 @@ class Comment extends Entity
     protected $validation;
     protected $user_id;
     protected $post_id;
+    protected $user_name;
 
     public function __construct()
     {
@@ -64,6 +67,24 @@ class Comment extends Entity
     public function getPostId()
     {
         return $this->post_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserName()
+    {
+        return $this->user_name;
+    }
+
+    /**
+     * @param mixed $user_name
+     */
+    public function setUserName($user_id)
+    {
+        $manager = new UserManager();
+        $user = $manager->listInfoUser($user_id);
+        $this->user_name = $user->getUserName();
     }
 
     /**
