@@ -3,7 +3,7 @@
 ob_start();
 ?>
     <h4>Il y a un problème</h4>
-    <p><?= $errorMessage ?></p>
+    <p><?= htmlspecialchars( $errorMessage )?></p>
     <a href="/index.php">Retour à l'acceuil</a>
 <?php
 $content = ob_get_clean();

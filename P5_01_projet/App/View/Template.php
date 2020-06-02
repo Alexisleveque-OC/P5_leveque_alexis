@@ -40,7 +40,7 @@
                 if (isset($_SESSION['user_name'])) {
                     ?>
                     <li class="nav-item">
-                        <h4>Bonjour <?= ($_SESSION['user_name']) ?></h4>
+                        <h4>Bonjour <?= htmlspecialchars($_SESSION['user_name']) ?></h4>
                     </li>
                     <li class="nav-item">
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>

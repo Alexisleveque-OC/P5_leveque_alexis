@@ -42,17 +42,17 @@ ob_start();
         foreach ($comments as $comment) {
             ?>
             <div class="row comment">
-                <h2 class="col-10">
-                    <?= $comment->getUserName(); ?>
-                </h2>
+                <h5 class="col-10">
+                    <?=htmlspecialchars( $comment->getUserName()); ?>
+                </h5>
                 <p class="col-12">
-                    <?= $comment->getContent(); ?>
+                    <?= htmlspecialchars($comment->getContent()); ?>
                 </p>
                 <p class="col-12">
                 </p>
                 <p class="col-12">
-                    Ecrit le <strong class="col-2"><?= $comment->getDateCreation()->format('d-m-Y') ?></strong>
-                    à <strong class="col-2"><?= $comment->getDateCreation()->format('H:m:s') ?></strong>
+                    Ecrit le <strong class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('d-m-Y')) ?></strong>
+                    à <strong class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('H:m:s')) ?></strong>
                 </p>
             </div>
             <hr>

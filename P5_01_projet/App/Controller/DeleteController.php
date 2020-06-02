@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Manager\PostsManager;
+use App\Manager\UserManager;
 
 class DeleteController extends Controller
 {
@@ -12,6 +13,7 @@ class DeleteController extends Controller
     {
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
+//        $userManager = new UserManager()
         require __DIR__ . '/../View/Delete.php';
         if (isset($_POST['yes']))
         {

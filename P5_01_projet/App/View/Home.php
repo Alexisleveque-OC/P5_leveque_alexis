@@ -32,23 +32,22 @@ ob_start();
             ?>
             <div class="row article">
                 <h2 class="col-12">
-                    <?= $post->getTitle(); ?>
+                    <?=htmlspecialchars( $post->getTitle()); ?>
                 </h2>
                 <h4 class="col-12">
-                    <?= $post->getChapo(); ?>
+                    <?= htmlspecialchars($post->getChapo()); ?>
                 </h4>
                 <p class="col-12">
-                    <?php
-                    echo(substr($post->getContent(), 0, 250));
+                    <?= htmlspecialchars((substr($post->getContent(), 0, 250)));
                     ?>
                     ...<br>
-                    <a href="/index.php?action=post&id=<?= $post->getIdPost() ?>">Voir la suite </a>
+                    <a href="/index.php?action=post&id=<?= htmlspecialchars($post->getIdPost()) ?>">Voir la suite </a>
 
                 </p>
                 <p class="col-12">
-                    Ecrit le <strong class="col-2"><?= $post->getDateCreation()->format('d-m-Y') ?></strong>
-                    à <strong class="col-2"><?= $post->getDateCreation()->format('H:m:s') ?></strong>
-                    par <strong class="col-2"><?= $users[$i]->getUserName(); ?></strong>
+                    Ecrit le <strong class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
+                    à <strong class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
+                    par <strong class="col-2"><?= htmlspecialchars($users[$i]->getUserName()); ?></strong>
                 </p>
             </div>
             <hr>

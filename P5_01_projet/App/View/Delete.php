@@ -11,16 +11,16 @@ ob_start();
 
 
         <h2>
-            <?= $post->getTitle(); ?>
+            <?=htmlspecialchars( $post->getTitle()); ?>
         </h2>
         <h4>
-            <?= $post->getChapo(); ?>
+            <?= htmlspecialchars($post->getChapo()); ?>
         </h4>
         <p>
-            <?= $post->getContent(); ?>
+            <?=htmlspecialchars( $post->getContent()); ?>
         </p>
         <p>
-            <?= $post->getUserId(); ?> ça c'est le nom de l'utilisateur normalement
+            <?= htmlspecialchars($post->getUserId()); ?> ça c'est le nom de l'utilisateur normalement
         </p>
         <p>Êtes vous sur de vouloir supprimer cette article ?</p>
         <form method="POST">

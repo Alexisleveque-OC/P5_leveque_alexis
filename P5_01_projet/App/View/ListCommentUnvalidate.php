@@ -11,23 +11,23 @@ ob_start();
 
         <div class="row comment">
             <h2 class="col-10">
-                <?= $comment->getUserName(); ?>
+                <?= htmlspecialchars($comment->getUserName()); ?>
             </h2>
             <p class="col-12">
-                <?= $comment->getContent(); ?>
+                <?=htmlspecialchars( $comment->getContent()); ?>
             </p>
             <p class="col-12">
             </p>
             <p class="col-12">
-                Ecrit le <strong class="col-2"><?= $comment->getDateCreation()->format('d-m-Y') ?></strong>
-                à <strong class="col-2"><?= $comment->getDateCreation()->format('H:m:s') ?></strong>
+                Ecrit le <strong class="col-2"><?=htmlspecialchars( $comment->getDateCreation()->format('d-m-Y')) ?></strong>
+                à <strong class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('H:m:s')) ?></strong>
             </p>
             <button class="btn btn-danger col-2"
-                    onclick="window.location.href='index.php?action=deleteComment&id=<?= $comment->getIdComment() ?>'">
+                    onclick="window.location.href='index.php?action=deleteComment&id=<?= htmlspecialchars($comment->getIdComment() )?>'">
                 Supprimer
             </button>
             <button class="btn btn-primary col-2"
-                    onclick="window.location.href='index.php?action=validateComment&id=<?= $comment->getIdComment() ?>'">
+                    onclick="window.location.href='index.php?action=validateComment&id=<?= htmlspecialchars($comment->getIdComment()) ?>'">
                 valider
             </button>
         </div>
