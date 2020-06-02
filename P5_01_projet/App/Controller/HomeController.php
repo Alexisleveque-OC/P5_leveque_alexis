@@ -12,13 +12,13 @@ class HomeController extends Controller
     public function __invoke()
     {
         $manager = new PostsManager();
-        $posts= $manager->listAllPosts();
+        $posts= $manager->listAllPosts(3,1);
         $users = [];
         foreach ($posts as $post)
         {
             $userManager = new UserManager();
             $users[] = $userManager->listInfoUser($post->getUserId());
         }
-        require __DIR__.'/../View/Home.php';
+        $this->needLoad('Home');
     }
 }

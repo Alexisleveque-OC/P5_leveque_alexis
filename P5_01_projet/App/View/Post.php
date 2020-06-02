@@ -29,7 +29,7 @@ ob_start();
 
         <h2>Commentaires</h2>
 
-        <form action="\index.php?action=addComment&amp;id=<?= $post->getIdPost() ?>" method="post">
+        <form action="/index.php?action=addComment&id=<?= $post->getIdPost() ?>" method="post">
 
             <label for="comment">Ajouter un commentaire</label><br/>
             <textarea class="form-control" rows="10" id="comment" name="content"></textarea>

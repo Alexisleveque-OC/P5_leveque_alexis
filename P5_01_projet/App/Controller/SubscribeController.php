@@ -29,6 +29,6 @@ class SubscribeController extends  Controller
             }
         }
 
-        require __DIR__ . '/../View/Subscribe.php';
+        $this->needLoad('Subscribe');
     }
 }

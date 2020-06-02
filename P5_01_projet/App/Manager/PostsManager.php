@@ -6,10 +6,19 @@ namespace App\Manager;
 
 use App\Entity\Entity;
 use App\Entity\Post;
+use App\Entity\User;
 use \PDO;
 
 class PostsManager extends Manager
 {
+    public function countPost()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT count(*)  FROM post');
+        $data = $req->fetch();
+
+        return $data;
+    }
     public function addPost($title, $chapo, $content,  $user_id)
     {
         $db = $this->dbConnect();
@@ -32,18 +41,25 @@ class PostsManager extends Manager
         $req = $db->prepare('SELECT * FROM post WHERE id_post = :id');
         $req->execute(['id' => $id]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
-        $post = $this->arrayDataToPost($data);
+        $post = PostsManager::arrayDataToPost($data);
         return $post;
     }
 
-    public function listAllPosts()
+    public function listAllPosts($limit = 10, $pageNb = 1)
     {
         $posts = [];
         $db = $this->dbConnect();
-        $req = $db->query('SELECT * FROM post ORDER BY id_post DESC ');
+
+
+        $req = $db->query('
+SELECT * FROM post as p
+INNER JOIN user as u ON p.user_id = u.id_user
+ORDER BY id_post DESC ');
+
+        // TODO jaouter limit et offset à la requete
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach($data as $row) {
-            $posts[] = $this->arrayDataToPost($row);
+            $posts[] = PostsManager::arrayDataToPost($row);
         }
 
         return $posts;
@@ -73,7 +89,7 @@ class PostsManager extends Manager
         $req = $db->prepare('DELETE FROM post WHERE id_post = :id');
         $req->execute(['id' => $id]);
     }
-    public function arrayDataToPost($data)
+    public static function arrayDataToPost($data)
     {
         $post = new Post();
         $post->setIdPost($data['id_post'] ?? "");
@@ -83,6 +99,11 @@ class PostsManager extends Manager
         $post->setDateCreation(new \DateTime($data['date_creation'] ?? ''));
         $post->setDateLastUpdate(new \DateTime($data['date_last_update'] ?? ''));
         $post->setUserId($data['user_id'] ?? "");
+
+        if($data['user_name'] ?? false){
+            $user = UserManager::arrayDataToUser($data);
+            $post->setUser($user);
+        }
 
         return $post;
     }

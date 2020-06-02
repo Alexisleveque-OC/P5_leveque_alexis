@@ -8,13 +8,10 @@ ob_start();
 
 ?>
     <main class="container">
-        <button class="btn btn-info" onclick="window.location.href='index.php?action=createPost'"> Créer un article
-        </button><hr>
+        <a class="btn btn-info" href='/index.php?action=createPost'"> Créer un article
+        </a><hr>
 
-        <?php
-        $i = 0;
-        foreach ($posts as $post) {
-            ?>
+        <?php foreach ($posts as $post):  ?>
             <div class="row article">
                 <h2 class="col-12">
                     <?= htmlspecialchars( $post->getTitle()); ?>
@@ -32,25 +29,19 @@ ob_start();
                 <p class="col-12">
                     Ecrit le <strong class="col-2"><?=htmlspecialchars( $post->getDateCreation()->format('d-m-Y')) ?></strong>
                     à <strong class="col-2"><?=htmlspecialchars( $post->getDateCreation()->format('H:m:s') )?></strong>
-                    par <strong class="col-2"><?=htmlspecialchars( $users[$i]->getUserName()); ?></strong>
+                    par <strong class="col-2"><?=htmlspecialchars( $post->getUser()->getUserName()); ?></strong>
                 </p>
-                <button class="btn btn-primary"
-                        onclick="window.location.href='index.php?action=updatePost&id=<?= htmlspecialchars( $post->getIdPost()) ?>'">
+                <a class="btn btn-primary"
+                        href="index.php?action=updatePost&id=<?= htmlspecialchars( $post->getIdPost()) ?>">
                     Modifier
-                </button>
-                <button class="btn btn-danger"
-                        onclick="window.location.href='index.php?action=deletePost&id=<?= htmlspecialchars( $post->getIdPost()) ?>'">
+                </a>
+                <a class="btn btn-danger"
+                   href="index.php?action=deletePost&id=<?= htmlspecialchars( $post->getIdPost()) ?>">
                     Supprimer
-                </button>
+                </a>
             </div>
             <hr>
-            <?php
-
-            $i++;
-
-        }
-
-        ?>
+            <?php endforeach; ?>
     </main>
 <?php
 

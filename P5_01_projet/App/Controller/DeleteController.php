@@ -14,7 +14,7 @@ class DeleteController extends Controller
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
 //        $userManager = new UserManager()
-        require __DIR__ . '/../View/Delete.php';
+        $this->needLoad('Delete');
         if (isset($_POST['yes']))
         {
             $manager = new PostsManager();

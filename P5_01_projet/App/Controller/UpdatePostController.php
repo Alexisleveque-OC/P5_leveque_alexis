@@ -23,6 +23,6 @@ class UpdatePostController extends Controller
             );
             $this->redirect('post&id='.$_GET['id']);
         }
-        require __DIR__ . '/../View/PostUpdate.php';
+        $this->needLoad('PostUpdate');
     }
 }

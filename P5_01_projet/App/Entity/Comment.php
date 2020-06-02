@@ -6,7 +6,7 @@ namespace App\Entity;
 
 use App\Manager\UserManager;
 
-class Comment extends Entity
+class Comment extends Entity implements CheckValidityInterface
 {
     protected $id_comment;
     protected $content;
@@ -132,7 +132,25 @@ class Comment extends Entity
      */
     public function setPostId($post_id)
     {
+
         $this->post_id = $post_id;
+    }
+
+    public function getErrors() : array
+    {
+        $errors = [];
+
+        if(strlen($this->content) < 3){
+            $errors[] = "Un commentaire doit faire plus de 3 caractères";
+        }
+        //todo : juste pour l'exemple
+        if(strlen($this->user_id) !== 4){
+            $errors[] = "non c'est mort";
+        }
+
+
+
+        return $errors;
     }
 
 

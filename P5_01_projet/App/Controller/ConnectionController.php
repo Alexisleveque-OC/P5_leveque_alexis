@@ -24,6 +24,6 @@ class ConnectionController extends Controller
             $this->redirect('home');
             }
 
-        require __DIR__ . '/../View/Connection.php';
+       $this->needLoad('Connection');
     }
 }

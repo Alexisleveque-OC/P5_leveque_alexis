@@ -7,19 +7,15 @@ namespace App\Controller;
 use App\Manager\PostsManager;
 use App\Manager\UserManager;
 
-class PostsController
+class PostsController extends Controller
 {
     public function __invoke()
     {
         $manager = new PostsManager();
-        $posts= $manager->listAllPosts();
-        $users = [];
-        foreach ($posts as $post)
-        {
-            $userManager = new UserManager();
-            $users[] = $userManager->listInfoUser($post->getUserId());
-        }
-        require __DIR__ . '/../View/Posts.php';
+        $manager->countPost();
+        $posts= $manager->listAllPosts(5, $_GET['page'] ?? 1);
+
+        $this->needLoad('Posts');
     }
 
 }

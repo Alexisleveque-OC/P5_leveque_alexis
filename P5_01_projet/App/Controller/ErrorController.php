@@ -8,7 +8,6 @@ class ErrorController extends Controller
 {
     public function __invoke()
     {
-
-        require __DIR__ . '/../View/Error.php';
+        $this->needLoad('Error');
     }
 }

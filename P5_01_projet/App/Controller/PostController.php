@@ -18,7 +18,6 @@ class PostController extends Controller
         $user = $userManager->listInfoUser($post->getUserId());
         $commentManager = new CommentManager();
         $comments = $commentManager->listComments($id);
-        require __DIR__ . '/../View/Post.php';
-
+        $this->needLoad('Post');
     }
 }

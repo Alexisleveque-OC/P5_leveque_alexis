@@ -71,7 +71,7 @@ class UserManager extends Manager
         return $user;
     }
 
-    public function arrayDataToUser($data)
+    public static function arrayDataToUser($data)
     {
         $user = new User();
         $user->setIdUser($data['id_user'] ?? "");

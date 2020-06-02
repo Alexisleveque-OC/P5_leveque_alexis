@@ -19,6 +19,6 @@ class CreatePostController extends Controller
             );
             $this->redirect('posts');
         }
-        require __DIR__ . '/../View/PostCreation.php';
+        $this->needLoad('PostCreation');
     }
 }

@@ -12,6 +12,6 @@ class ListCommentController extends Controller
     {
         $manager = new CommentManager();
         $comments = $manager->listCommentsUnvalidate();
-        require __DIR__ . '/../View/listCommentUnvalidate.php';
+        $this->needLoad('listCommentUnvalidate');
     }
 }

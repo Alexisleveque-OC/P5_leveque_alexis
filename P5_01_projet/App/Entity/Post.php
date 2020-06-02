@@ -15,6 +15,9 @@ class Post extends Entity
     protected $date_last_update;
     protected $user_id;
 
+    /** @var User|null */
+    protected $user;
+
     public function __construct()
     {
 
@@ -133,6 +136,22 @@ class Post extends Entity
     public function setUserId($user_id)
     {
         $this->user_id = $user_id;
+    }
+
+    /**
+     * @return ?User
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param ?User $user
+     */
+    public function setUser(?User $user): void
+    {
+        $this->user = $user;
     }
 
 }
