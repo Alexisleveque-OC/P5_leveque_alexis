@@ -7,6 +7,7 @@ use App\Controller\AddCommentController;
 use App\Controller\DeleteCommentController;
 use App\Controller\DeleteController;
 use App\Controller\HomeController;
+use App\Controller\ListCommentController;
 use App\Controller\SubscribeController;
 use App\Controller\PostsController;
 use App\Controller\PostController;
@@ -16,8 +17,7 @@ use App\Controller\DestroyController;
 use App\Controller\CreatePostController;
 use App\Controller\UpdatePostController;
 use App\Controller\UserController;
-
-
+use App\Controller\ValidateComment;
 
 
 $action = $_GET['action'] ?? 'home';
@@ -79,12 +79,25 @@ try {
             }
             $controller = new AddCommentcontroller();
             $controller->addComment($_GET['id']);
+            break;
         case 'deleteComment':
             if (!isset($_GET['id'])) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeleteCommentController();
             $controller->deleteComment($_GET['id']);
+            break;
+        case 'listComment':
+            $controller= new ListCommentController();
+            $controller->listCommentsUnvalidate();
+            break;
+        case 'validateComment':
+            if (!isset($_GET['id'])) {
+                throw  new Exception('Erreur 404 ');
+            }
+            $controller = new ValidateComment();
+            $controller->validateComment($_GET['id']);
+            break;
 
     }
 

@@ -26,8 +26,11 @@ class CommentManager extends Manager
     {
         $comments = [];
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM comment WHERE post_id = :post_id ORDER BY id_comment DESC ');
-        $req->execute(['post_id' => $id]);
+        $req = $db->prepare('SELECT * FROM comment WHERE post_id = :post_id AND validation = :validation ORDER BY id_comment DESC ');
+        $req->execute([
+            'post_id' => $id,
+            'validation' => 1
+            ]);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
             $comments[] = $this->arrayDataToComment($row);
@@ -44,6 +47,32 @@ class CommentManager extends Manager
         $req = $db->prepare('DELETE FROM comment WHERE id_comment = :id');
         $req->execute(['id' => $id]);
 
+    }
+
+    public function listCommentsUnvalidate()
+    {
+        $comments = [];
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM comment WHERE validation = :validation ORDER BY id_comment DESC ');
+        $req->execute(['validation' => 0]);
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $row) {
+            $comments[] = $this->arrayDataToComment($row);
+        }
+
+        return $comments;
+    }
+
+    public function validateComment($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE comment 
+                                      SET validation = :validation  
+                                    WHERE id_comment = :id_comment');
+        $req->execute([
+            'validation' => 1,
+            'id_comment' => $id
+            ]);
     }
 
     public function arrayDataToComment($data)

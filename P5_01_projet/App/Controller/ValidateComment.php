@@ -6,13 +6,12 @@ namespace App\Controller;
 
 use App\Manager\CommentManager;
 
-class DeleteCommentController extends Controller
+class ValidateComment extends Controller
 {
-    public function deleteComment($id)
+    public function validateComment($id)
     {
         $manager = new CommentManager();
-        $manager->deleteComment($id);
+        $manager->validateComment($id);
         $this->redirect('listComment');
     }
-
 }

@@ -54,10 +54,6 @@ ob_start();
                     Ecrit le <strong class="col-2"><?= $comment->getDateCreation()->format('d-m-Y') ?></strong>
                     à <strong class="col-2"><?= $comment->getDateCreation()->format('H:m:s') ?></strong>
                 </p>
-                <button class="btn btn-danger col-2"
-                        onclick="window.location.href='index.php?action=deleteComment&id=<?= $comment->getIdComment() ?>'">
-                    Supprimer
-                </button>
             </div>
             <hr>
             <?php

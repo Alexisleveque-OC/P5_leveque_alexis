@@ -45,6 +45,9 @@
                     <li class="nav-item">
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.php?action=listComment">Commentaires</a>
+                    </li>
                     <?php
                 } else {
                     ?>
