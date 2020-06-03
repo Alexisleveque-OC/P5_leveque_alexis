@@ -4,6 +4,7 @@ require_once ('../vendor/autoload.php');
 session_start();
 
 use App\Controller\AddCommentController;
+use App\Controller\CountCommentController;
 use App\Controller\DeleteCommentController;
 use App\Controller\DeleteController;
 use App\Controller\HomeController;
@@ -28,6 +29,10 @@ try {
         $controller = new UserController();
         $user = $controller->listInfoUser($_SESSION['user_name']);
     }
+
+    $controller = new CountCommentcontroller();
+    $commentCount = $controller->countComment();
+
 
     switch ($action) {
         case 'home':

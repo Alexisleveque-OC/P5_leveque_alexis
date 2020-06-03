@@ -30,7 +30,7 @@ ob_start();
         $i = 0;
         foreach ($posts as $post) {
             ?>
-            <div class="row article">
+            <div class="row jumbotron">
                 <h2 class="col-12">
                     <?=htmlspecialchars( $post->getTitle()); ?>
                 </h2>

@@ -22,6 +22,15 @@ class CommentManager extends Manager
         ]);
     }
 
+    public function countComment()
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = 0');
+        $req->execute(['validation' => 0]);
+        $result = $req->fetch();
+        return $result;
+    }
+
     public function listComments($id)
     {
         $comments = [];
