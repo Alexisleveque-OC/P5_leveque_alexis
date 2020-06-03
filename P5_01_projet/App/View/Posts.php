@@ -59,7 +59,7 @@ ob_start();
             </div>
             <hr>
         <?php endforeach; ;?>
-        <ul class="pagination">
+        <ul class="pagination">page :
             <?php
             for ($i = 0; $i <= $count[0]; $i += 5) {
                 $numberPage = ($i / 5) +1; ?>

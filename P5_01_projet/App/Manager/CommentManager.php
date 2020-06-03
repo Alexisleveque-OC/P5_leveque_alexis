@@ -22,25 +22,39 @@ class CommentManager extends Manager
         ]);
     }
 
-    public function countComment()
+    public function countCommentUnvalidate()
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = 0');
+        $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = :validation');
         $req->execute(['validation' => 0]);
         $result = $req->fetch();
         return $result;
     }
 
-    public function listComments($id)
+    public function countCommentPost($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = :validation AND post_id = :post_id');
+        $req->execute([
+            'validation' => 1,
+            'post_id' => $id
+            ]);
+        $result = $req->fetch();
+        return $result;
+    }
+
+
+    public function listComments($id, $limit, $pageNb)
     {
         $comments = [];
         $db = $this->dbConnect();
+        $firstEntry = ($pageNb -1) * 10;
         $req = $db->prepare('SELECT 
        c.id_comment, c.content as comment_content, c.date_creation as comment_date, c.validation, c.user_id, post_id,
        u.id_user, u.user_name, u.email, u.password, u.user_type_id, u.date_creation AS user_date
 FROM comment c 
 INNER JOIN user u ON c.user_id = u.id_user
-        WHERE post_id = :post_id AND validation = :validation ORDER BY id_comment DESC ');
+        WHERE post_id = :post_id AND validation = :validation ORDER BY id_comment DESC LIMIT '.$firstEntry.','. $limit);
         $req->execute([
             'post_id' => $id,
             'validation' => 1

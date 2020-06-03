@@ -31,7 +31,7 @@ try {
     }
 
     $controller = new CountCommentcontroller();
-    $commentCount = $controller->countComment();
+    $commentCount = $controller->countCommentUnvalidate();
 
 
     switch ($action) {

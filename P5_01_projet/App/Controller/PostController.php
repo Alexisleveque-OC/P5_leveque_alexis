@@ -16,7 +16,8 @@ class PostController extends Controller
         $post = $manager->listOnce($id);
 
         $commentManager = new CommentManager();
-        $comments = $commentManager->listComments($id);
-        require __DIR__.'/../View/Post.php';
+        $count = $commentManager->countCommentPost($id) ;
+        $comments = $commentManager->listComments($id ,10 , $_GET['page'] ?? 1);
+        require $this->needLoad('Post');
     }
 }

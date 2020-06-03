@@ -11,13 +11,13 @@ ob_start();
 
 
         <h2>
-            <?= htmlspecialchars( $post->getTitle()); ?>
+            <?= htmlspecialchars($post->getTitle()); ?>
         </h2>
         <h4>
-            <?= htmlspecialchars( $post->getChapo()); ?>
+            <?= htmlspecialchars($post->getChapo()); ?>
         </h4>
         <p>
-            <?= htmlspecialchars( $post->getContent()); ?>
+            <?= htmlspecialchars($post->getContent()); ?>
         </p>
         <?php
         if ($post->getDateLastUpdate() === null) {
@@ -28,13 +28,12 @@ ob_start();
                     class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
             par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
             <?php
-        }
-        else
-        {?>
+        } else {
+            ?>
             Dernière modification : <strong
-                class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                    class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
             à <strong
-                class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                    class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
             par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
             <?php
         }
@@ -57,18 +56,29 @@ ob_start();
 
             <div class="row comment">
                 <h5 class="col-10">
-                    <?=htmlspecialchars( $comment->getUser()->getUsername()); ?>
+                    <?= htmlspecialchars($comment->getUser()->getUsername()); ?>
                 </h5>
                 <p class="col-12">
                     <?= htmlspecialchars($comment->getContent()); ?>
                 </p>
-                                <p class="col-12">
-                    Ecrit le <strong class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('d-m-Y')) ?></strong>
-                    à <strong class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('H:m:s')) ?></strong>
+                <p class="col-12">
+                    Ecrit le <strong
+                            class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('d-m-Y')) ?></strong>
+                    à <strong
+                            class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('H:m:s')) ?></strong>
                 </p>
             </div>
             <hr>
-            <?php    endforeach;    ?>
+        <?php endforeach; ?>
+        <ul class="pagination">page :
+            <?php
+            for ($i = 0; $i <= $count[0]; $i += 10) {
+                $numberPage = ($i / 10) + 1; ?>
+
+                <li><a class="btn btn-success "
+                       href="/index.php?action=post&id=<?= $post->getIdPost() ?>&page=<?= $numberPage ?>"><?= $numberPage ?></a></li>
+            <?php } ?>
+        </ul>
     </main>
 
 <?php

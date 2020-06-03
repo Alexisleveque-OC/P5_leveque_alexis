@@ -8,10 +8,10 @@ use App\Manager\CommentManager;
 
 class CountCommentController extends Controller
 {
-    public function countComment()
+    public function countCommentUnvalidate()
     {
         $manager = new CommentManager();
-        $commentCount = $manager->countComment();
+        $commentCount = $manager->countCommentUnvalidate();
         $_SESSION['commentCount'] = $commentCount;
         return $commentCount;
     }
