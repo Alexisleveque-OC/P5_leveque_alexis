@@ -11,19 +11,34 @@ ob_start();
 
 
         <h2>
-            <?= $post->getTitle(); ?>
+            <?= htmlspecialchars( $post->getTitle()); ?>
         </h2>
         <h4>
-            <?= $post->getChapo(); ?>
+            <?= htmlspecialchars( $post->getChapo()); ?>
         </h4>
         <p>
-            <?= $post->getContent(); ?>
+            <?= htmlspecialchars( $post->getContent()); ?>
         </p>
-        <p>
-            Ecrit le <strong class="col-2"><?= $post->getDateCreation()->format('d-m-Y') ?></strong>
-            à <strong class="col-2"><?= $post->getDateCreation()->format('H:m:s') ?></strong>
-            par <strong class="col-2"><?= $post->getUser()->getUserName(); ?></strong>
-        </p>
+        <?php
+        if ($post->getDateLastUpdate() === null) {
+            ?>
+            Ecrit le <strong
+                    class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
+            à <strong
+                    class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
+            par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+            <?php
+        }
+        else
+        {?>
+            Dernière modification : <strong
+                class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+            à <strong
+                class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+            par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+            <?php
+        }
+        ?>
 
         <h2>Commentaires</h2>
 
@@ -47,9 +62,7 @@ ob_start();
                 <p class="col-12">
                     <?= htmlspecialchars($comment->getContent()); ?>
                 </p>
-                <p class="col-12">
-                </p>
-                <p class="col-12">
+                                <p class="col-12">
                     Ecrit le <strong class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('d-m-Y')) ?></strong>
                     à <strong class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('H:m:s')) ?></strong>
                 </p>

@@ -28,10 +28,26 @@ ob_start();
 
                 </p>
                 <p class="col-12">
-                    Ecrit le <strong
-                            class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
-                    à <strong class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
-                    par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                    <?php
+                    if ($post->getDateLastUpdate() === null) {
+                        ?>
+                        Ecrit le <strong
+                                class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
+                        à <strong
+                                class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
+                        par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                        <?php
+                    }
+                    else
+                    {?>
+                        Dernière modification : <strong
+                            class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                        à <strong
+                            class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                        par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                     <?php
+                    }
+                    ?>
                 </p>
                 <a class="btn btn-primary"
                    href="index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">

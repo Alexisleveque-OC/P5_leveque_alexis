@@ -27,7 +27,7 @@ class CommentManager extends Manager
         $comments = [];
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT 
-       c.id_comment, c.content , c.date_creation as comment_date, c.validation, c.user_id, post_id,
+       c.id_comment, c.content as comment_content, c.date_creation as comment_date, c.validation, c.user_id, post_id,
        u.id_user, u.user_name, u.email, u.password, u.user_type_id, u.date_creation AS user_date
 FROM comment c 
 INNER JOIN user u ON c.user_id = u.id_user
@@ -59,7 +59,7 @@ INNER JOIN user u ON c.user_id = u.id_user
         $comments = [];
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT 
-       c.id_comment, c.content , c.date_creation as comment_date, c.validation, c.user_id, post_id,
+       c.id_comment, c.content as comment_conten, c.date_creation as comment_date, c.validation, c.user_id, post_id,
        u.id_user, u.user_name, u.email, u.password, u.user_type_id, u.date_creation AS user_date
 FROM comment c 
 INNER JOIN user u ON c.user_id = u.id_user
@@ -89,7 +89,7 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
     {
         $comment = new Comment();
         $comment->setIdComment($data['id_comment'] ?? "");
-        $comment->setContent($data['content'] ?? "");
+        $comment->setContent($data['comment_content'] ?? "");
         $comment->setDateCreation(new \DateTime($data['comment_date'] ?? ''));
         $comment->setValidation($data['validation'] ?? "");
         $comment->setUserId($data['user_id'] ?? "");

@@ -55,7 +55,7 @@ class UserManager extends Manager
     public  function searchInfoUser($name)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM user WHERE user_name = :name ') ;
+        $req = $db->prepare('SELECT *, date_creation as user_date FROM user WHERE user_name = :name ') ;
         $req->execute(['name' => $name]);
         $data = $req->fetch( PDO::FETCH_ASSOC);
         return $data;
@@ -64,7 +64,7 @@ class UserManager extends Manager
     public  function listInfoUser($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM user WHERE id_user = :id_user ') ;
+        $req = $db->prepare('SELECT * , date_creation as user_date FROM user WHERE id_user = :id_user ') ;
         $req->execute(['id_user' => $id]);
         $data = $req->fetch( PDO::FETCH_ASSOC);
         $user = $this->arrayDataToUser($data);
@@ -77,9 +77,8 @@ class UserManager extends Manager
         $user->setIdUser($data['id_user'] ?? "");
         $user->setUserName($data['user_name'] ?? "");
         $user->setEmail($data['email'] ?? "");
-        $user->setPassword($data['password'] ?? "");
         $user->setUserType($data['user_type'] ?? '');
-        $user->setDateCreation(new \DateTime($data['date_creation'] ?? ''));
+        $user->setDateCreation(new \DateTime($data['user_date'] ?? ''));
 
         return $user;
     }

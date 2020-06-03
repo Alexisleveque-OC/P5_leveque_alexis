@@ -19,7 +19,8 @@ class PostsManager extends Manager
 
         return $data;
     }
-    public function addPost($title, $chapo, $content,  $user_id)
+
+    public function addPost($title, $chapo, $content, $user_id)
     {
         $db = $this->dbConnect();
 
@@ -38,7 +39,10 @@ class PostsManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare('SELECT * FROM post AS p 
+        $req = $db->prepare('
+SELECT p.id_post,p.title,p.chapo,p.content as post_content, p.date_creation as post_date,p.date_last_update,p.user_id ,
+u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date
+FROM post AS p 
 INNER JOIN user AS u ON p.user_id = u.id_user
 WHERE id_post = :id');
         $req->execute(['id' => $id]);
@@ -53,15 +57,16 @@ WHERE id_post = :id');
         $db = $this->dbConnect();
 
 
-
         $req = $db->query('
-SELECT * FROM post as p
+SELECT p.id_post , p.title, p.chapo, p.content as post_content,p.date_creation as post_date, p.date_last_update,p.user_id,
+u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date
+FROM post  p
 INNER JOIN user as u ON p.user_id = u.id_user
-ORDER BY id_post DESC LIMIT '.$limit);
+ORDER BY id_post DESC LIMIT ' . $limit);
 
         // TODO jaouter limit et offset à la requete
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
-        foreach($data as $row) {
+        foreach ($data as $row) {
             $posts[] = self::arrayDataToPost($row);
         }
 
@@ -69,7 +74,7 @@ ORDER BY id_post DESC LIMIT '.$limit);
 
     }
 
-    public function updatePost($id,$title,$chapo,$content,$user_id)
+    public function updatePost($id, $title, $chapo, $content, $user_id)
     {
         $db = $this->dbConnect();
 
@@ -92,18 +97,21 @@ ORDER BY id_post DESC LIMIT '.$limit);
         $req = $db->prepare('DELETE FROM post WHERE id_post = :id');
         $req->execute(['id' => $id]);
     }
+
     public static function arrayDataToPost($data)
     {
         $post = new Post();
         $post->setIdPost($data['id_post'] ?? "");
         $post->setTitle($data['title'] ?? "");
         $post->setChapo($data['chapo'] ?? "");
-        $post->setContent($data['content'] ?? "");
-        $post->setDateCreation(new \DateTime($data['date_creation'] ?? ''));
-        $post->setDateLastUpdate(new \DateTime($data['date_last_update'] ?? ''));
+        $post->setContent($data['post_content'] ?? "");
+        $post->setDateCreation(new \DateTime($data['post_date'] ?? ''));
+        if ($data['date_last_update'] !== null) {
+            $post->setDateLastUpdate(new \DateTime($data['date_last_update'] ?? ''));
+        }
         $post->setUserId($data['user_id'] ?? "");
 
-        if($data['user_name'] ?? false){
+        if ($data['user_name'] ?? false) {
             $user = UserManager::arrayDataToUser($data);
             $post->setUser($user);
         }

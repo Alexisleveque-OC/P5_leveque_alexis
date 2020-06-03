@@ -15,7 +15,6 @@ class PostsController extends Controller
         $count = $manager->countPost();
         $posts = $manager->listAllPosts(5, $_GET['page'] ?? 1);
 
-
         require $this->needLoad('posts');
     }
 

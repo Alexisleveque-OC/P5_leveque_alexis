@@ -4,7 +4,6 @@
 namespace App\Entity;
 
 
-
 class Post extends Entity
 {
     protected $id_post;
@@ -116,7 +115,7 @@ class Post extends Entity
 
     /**
      */
-    public function setDateCreation( \DateTime $date_creation)
+    public function setDateCreation(\DateTime $date_creation)
     {
         $this->date_creation = $date_creation;
 
@@ -127,7 +126,9 @@ class Post extends Entity
      */
     public function setDateLastUpdate(\DateTime $date_last_update)
     {
+
         $this->date_last_update = $date_last_update;
+
     }
 
     /**
