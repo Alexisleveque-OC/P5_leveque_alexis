@@ -45,7 +45,7 @@ ob_start();
         <form action="/index.php?action=addComment&id=<?= $post->getIdPost() ?>" method="post">
 
             <label for="comment">Ajouter un commentaire</label><br/>
-            <textarea class="form-control" rows="10" id="comment" name="content"></textarea>
+            <textarea class="form-control col-4" rows="5" id="comment" name="content"></textarea>
 
             <input type="submit"/>
 
