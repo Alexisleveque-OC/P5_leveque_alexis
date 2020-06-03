@@ -71,24 +71,6 @@ class Comment extends Entity implements CheckValidityInterface
     }
 
     /**
-     * @return mixed
-     */
-//    public function getUserName()
-//    {
-//        return $this->user_name;
-//    }
-//
-//    /**
-//     * @param mixed $user_name
-//     */
-//    public function setUserName($user_id)
-//    {
-//        $manager = new UserManager();
-//        $user = $manager->listInfoUser($user_id);
-//        $this->user_name = $user->getUserName();
-//    }
-
-    /**
      * @param mixed $id_comment
      */
     public function setIdComment($id_comment)

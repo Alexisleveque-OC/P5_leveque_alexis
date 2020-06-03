@@ -37,8 +37,9 @@ ob_start();
         </form>
         <?php
         foreach ($comments as $comment) :
-        dd($comments);
+
             ?>
+
             <div class="row comment">
                 <h5 class="col-10">
                     <?=htmlspecialchars( $comment->getUser()->getUsername()); ?>
