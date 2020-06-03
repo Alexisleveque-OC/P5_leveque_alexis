@@ -23,6 +23,6 @@ class UpdatePostController extends Controller
             );
             $this->redirect('post&id='.$_GET['id']);
         }
-        $this->needLoad('PostUpdate');
+        require $this->needLoad('PostUpdate');
     }
 }

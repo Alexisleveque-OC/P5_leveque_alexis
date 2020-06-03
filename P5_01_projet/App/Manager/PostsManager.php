@@ -38,7 +38,9 @@ class PostsManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare('SELECT * FROM post WHERE id_post = :id');
+        $req = $db->prepare('SELECT * FROM post AS p 
+INNER JOIN user AS u ON p.user_id = u.id_user
+WHERE id_post = :id');
         $req->execute(['id' => $id]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $post = PostsManager::arrayDataToPost($data);
@@ -51,15 +53,16 @@ class PostsManager extends Manager
         $db = $this->dbConnect();
 
 
+
         $req = $db->query('
 SELECT * FROM post as p
 INNER JOIN user as u ON p.user_id = u.id_user
-ORDER BY id_post DESC ');
+ORDER BY id_post DESC LIMIT '.$limit);
 
         // TODO jaouter limit et offset à la requete
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach($data as $row) {
-            $posts[] = PostsManager::arrayDataToPost($row);
+            $posts[] = self::arrayDataToPost($row);
         }
 
         return $posts;

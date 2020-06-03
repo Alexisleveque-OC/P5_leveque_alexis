@@ -26,7 +26,9 @@ class CommentManager extends Manager
     {
         $comments = [];
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM comment WHERE post_id = :post_id AND validation = :validation ORDER BY id_comment DESC ');
+        $req = $db->prepare('SELECT * FROM comment c
+        INNER JOIN user u on c.user_id = u.id_user
+        WHERE post_id = :post_id AND validation = :validation ORDER BY id_comment DESC ');
         $req->execute([
             'post_id' => $id,
             'validation' => 1
@@ -84,7 +86,12 @@ class CommentManager extends Manager
         $comment->setValidation($data['validation'] ?? "");
         $comment->setUserId($data['user_id'] ?? "");
         $comment->setPostId($data['post_id'] ?? "");
-        $comment->setUserName($data['user_id'] ?? "");
+//        $comment->setUserName($data['user_id'] ?? "");
+
+        if($data['user_name'] ?? false){
+            $user = UserManager::arrayDataToUser($data);
+            $comment->setUser($user);
+        }
 
         return $comment;
     }

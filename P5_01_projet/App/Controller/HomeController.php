@@ -19,6 +19,7 @@ class HomeController extends Controller
             $userManager = new UserManager();
             $users[] = $userManager->listInfoUser($post->getUserId());
         }
-        $this->needLoad('Home');
+
+        require $this->needLoad('Home');
     }
 }

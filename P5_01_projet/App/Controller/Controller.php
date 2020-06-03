@@ -24,6 +24,6 @@ abstract class Controller
     public function needLoad($file)
     {
 
-        require __DIR__ . '/../View/'.$file.'.php';
+        return (__DIR__ . '/../View/'.$file.'.php');
     }
 }

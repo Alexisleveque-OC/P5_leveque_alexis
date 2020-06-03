@@ -8,6 +8,6 @@ class ErrorController extends Controller
 {
     public function __invoke()
     {
-        $this->needLoad('Error');
+        require $this->needLoad('Error');
     }
 }

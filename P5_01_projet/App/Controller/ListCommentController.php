@@ -12,6 +12,6 @@ class ListCommentController extends Controller
     {
         $manager = new CommentManager();
         $comments = $manager->listCommentsUnvalidate();
-        $this->needLoad('listCommentUnvalidate');
+        require $this->needLoad('ListCommentUnvalidate') ;
     }
 }

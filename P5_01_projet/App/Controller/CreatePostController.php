@@ -19,6 +19,6 @@ class CreatePostController extends Controller
             );
             $this->redirect('posts');
         }
-        $this->needLoad('PostCreation');
+        require $this->needLoad('PostCreation');
     }
 }

@@ -14,8 +14,9 @@ class Comment extends Entity implements CheckValidityInterface
     protected $validation;
     protected $user_id;
     protected $post_id;
-    protected $user_name;
 
+
+    protected $user;
     public function __construct()
     {
         
@@ -72,20 +73,20 @@ class Comment extends Entity implements CheckValidityInterface
     /**
      * @return mixed
      */
-    public function getUserName()
-    {
-        return $this->user_name;
-    }
-
-    /**
-     * @param mixed $user_name
-     */
-    public function setUserName($user_id)
-    {
-        $manager = new UserManager();
-        $user = $manager->listInfoUser($user_id);
-        $this->user_name = $user->getUserName();
-    }
+//    public function getUserName()
+//    {
+//        return $this->user_name;
+//    }
+//
+//    /**
+//     * @param mixed $user_name
+//     */
+//    public function setUserName($user_id)
+//    {
+//        $manager = new UserManager();
+//        $user = $manager->listInfoUser($user_id);
+//        $this->user_name = $user->getUserName();
+//    }
 
     /**
      * @param mixed $id_comment
@@ -136,6 +137,22 @@ class Comment extends Entity implements CheckValidityInterface
         $this->post_id = $post_id;
     }
 
+    /**
+     * @return ?User
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param ?User $user
+     */
+    public function setUser(?User $user): void
+    {
+        $this->user = $user;
+    }
+
     public function getErrors() : array
     {
         $errors = [];
@@ -143,12 +160,6 @@ class Comment extends Entity implements CheckValidityInterface
         if(strlen($this->content) < 3){
             $errors[] = "Un commentaire doit faire plus de 3 caractères";
         }
-        //todo : juste pour l'exemple
-        if(strlen($this->user_id) !== 4){
-            $errors[] = "non c'est mort";
-        }
-
-
 
         return $errors;
     }

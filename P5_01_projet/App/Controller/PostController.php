@@ -14,10 +14,10 @@ class PostController extends Controller
     {
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
-        $userManager = new UserManager();
-        $user = $userManager->listInfoUser($post->getUserId());
+//        $userManager = new UserManager();
+//        $user = $userManager->listInfoUser($post->getUserId());
         $commentManager = new CommentManager();
         $comments = $commentManager->listComments($id);
-        $this->needLoad('Post');
+        require __DIR__.'/../View/Post.php';
     }
 }

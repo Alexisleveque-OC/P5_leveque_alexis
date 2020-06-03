@@ -5,7 +5,6 @@ $title = 'PostView';
 
 ob_start();
 
-
 ?>
 
     <main class="container">
@@ -21,10 +20,9 @@ ob_start();
             <?= $post->getContent(); ?>
         </p>
         <p>
-            <?= $user->getUserName(); ?>
             Ecrit le <strong class="col-2"><?= $post->getDateCreation()->format('d-m-Y') ?></strong>
             à <strong class="col-2"><?= $post->getDateCreation()->format('H:m:s') ?></strong>
-            par <strong class="col-2"><?= $user->getUserName(); ?></strong>
+            par <strong class="col-2"><?= $post->getUser()->getUserName(); ?></strong>
         </p>
 
         <h2>Commentaires</h2>
@@ -38,12 +36,12 @@ ob_start();
 
         </form>
         <?php
-        $i = 0;
-        foreach ($comments as $comment) {
+        foreach ($comments as $comment) :
+        dd($comment);
             ?>
             <div class="row comment">
                 <h5 class="col-10">
-                    <?=htmlspecialchars( $comment->getUserName()); ?>
+                    <?=htmlspecialchars( $comment->getUser()->getUsername()); ?>
                 </h5>
                 <p class="col-12">
                     <?= htmlspecialchars($comment->getContent()); ?>
@@ -56,13 +54,7 @@ ob_start();
                 </p>
             </div>
             <hr>
-            <?php
-
-            $i++;
-
-        }
-
-        ?>
+            <?php    endforeach;    ?>
     </main>
 
 <?php

@@ -24,6 +24,6 @@ class ConnectionController extends Controller
             $this->redirect('home');
             }
 
-       $this->needLoad('Connection');
+       require $this->needLoad('Connection');
     }
 }

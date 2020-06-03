@@ -29,6 +29,6 @@ class SubscribeController extends  Controller
             }
         }
 
-        $this->needLoad('Subscribe');
+        require $this->needLoad('Subscribe');
     }
 }
