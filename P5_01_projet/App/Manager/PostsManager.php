@@ -51,18 +51,17 @@ WHERE id_post = :id');
         return $post;
     }
 
-    public function listAllPosts($limit = 10, $pageNb = 1)
+    public function listAllPosts($limit , $pageNb )
     {
         $posts = [];
         $db = $this->dbConnect();
-
-
+        $firstEntry = ($pageNb -1) * 5;
         $req = $db->query('
 SELECT p.id_post , p.title, p.chapo, p.content as post_content,p.date_creation as post_date, p.date_last_update,p.user_id,
 u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date
 FROM post  p
 INNER JOIN user as u ON p.user_id = u.id_user
-ORDER BY id_post DESC LIMIT ' . $limit);
+ORDER BY id_post DESC LIMIT ' .$firstEntry.','. $limit);
 
         // TODO jaouter limit et offset à la requete
         $data = $req->fetchAll(PDO::FETCH_ASSOC);

@@ -1,7 +1,7 @@
 <?php
 
 
-$title = 'PostManagement';
+$title = 'Les articles';
 
 ob_start();
 
@@ -37,15 +37,14 @@ ob_start();
                                 class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
                         par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
                         <?php
-                    }
-                    else
-                    {?>
+                    } else {
+                        ?>
                         Dernière modification : <strong
-                            class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                                class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                         à <strong
-                            class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                                class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
                         par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
-                     <?php
+                        <?php
                     }
                     ?>
                 </p>
@@ -59,7 +58,15 @@ ob_start();
                 </a>
             </div>
             <hr>
-        <?php endforeach; ?>
+        <?php endforeach; ;?>
+        <ul class="pagination">
+            <?php
+            for ($i = 0; $i <= $count[0]; $i += 5) {
+                $numberPage = ($i / 5) +1; ?>
+
+                <li><a class="btn btn-success " href="/index.php?action=posts&page=<?= $numberPage ?>"><?= $numberPage ?></a></li>
+            <?php } ?>
+        </ul>
     </main>
 <?php
 
