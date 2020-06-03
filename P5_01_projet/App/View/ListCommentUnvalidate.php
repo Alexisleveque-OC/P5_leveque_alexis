@@ -11,7 +11,7 @@ ob_start();
 
         <div class="row comment">
             <h2 class="col-10">
-                <?= htmlspecialchars($comment->getUserName()); ?>
+                <?= htmlspecialchars($comment->getUser()->getUserName()); ?>
             </h2>
             <p class="col-12">
                 <?=htmlspecialchars( $comment->getContent()); ?>

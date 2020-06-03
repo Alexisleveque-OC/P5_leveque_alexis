@@ -37,7 +37,7 @@ ob_start();
         </form>
         <?php
         foreach ($comments as $comment) :
-        dd($comment);
+        dd($comments);
             ?>
             <div class="row comment">
                 <h5 class="col-10">
