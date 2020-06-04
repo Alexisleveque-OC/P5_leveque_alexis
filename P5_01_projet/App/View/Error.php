@@ -2,9 +2,12 @@
 
 ob_start();
 ?>
-    <h4>Il y a un problème</h4>
-    <p><?= htmlspecialchars( $errorMessage )?></p>
-    <a href="/index.php">Retour à l'acceuil</a>
+    <main class="container">
+        <h4>Il y a un problème</h4>
+        <p><?= htmlspecialchars($errorMessage) ?></p>
+        <a href="/index.php">Retour à l'acceuil</a>
+    </main>
+
 <?php
 $content = ob_get_clean();
 
