@@ -69,16 +69,20 @@ ob_start();
                 </p>
             </div>
             <hr>
-        <?php endforeach; ?>
-        <ul class="pagination">page :
-            <?php
-            for ($i = 0; $i <= $count[0]; $i += 10) {
-                $numberPage = ($i / 10) + 1; ?>
+        <?php endforeach;
+        if ($count[0] >= 10) { ?>
+            <ul class="pagination">page :
+                <?php
 
-                <li><a class="btn btn-success "
-                       href="/index.php?action=post&id=<?= $post->getIdPost() ?>&page=<?= $numberPage ?>"><?= $numberPage ?></a></li>
-            <?php } ?>
-        </ul>
+                for ($i = 0; $i <= $count[0]; $i += 10) {
+                    $numberPage = ($i / 10) + 1; ?>
+
+                    <li><a class="btn btn-success "
+                           href="/index.php?action=post&id=<?= $post->getIdPost() ?>&page=<?= $numberPage ?>"><?= $numberPage ?></a>
+                    </li>
+                <?php } ?>
+            </ul>
+        <?php } ?>
     </main>
 
 <?php

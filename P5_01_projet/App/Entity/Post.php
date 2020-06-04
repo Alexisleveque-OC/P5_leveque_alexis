@@ -17,6 +17,8 @@ class Post extends Entity
     /** @var User|null */
     protected $user;
 
+    protected $counter;
+
     public function __construct()
     {
 
@@ -153,6 +155,22 @@ class Post extends Entity
     public function setUser(?User $user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCounter()
+    {
+        return $this->counter;
+    }
+
+    /**
+     * @param mixed $counter
+     */
+    public function setCounter($counter): void
+    {
+        $this->counter = $counter;
     }
 
 }

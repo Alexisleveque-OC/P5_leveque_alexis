@@ -48,25 +48,34 @@ ob_start();
                     }
                     ?>
                 </p>
+
                 <a class="btn btn-primary"
                    href="index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
                     Modifier
                 </a>
+
                 <a class="btn btn-danger"
                    href="index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
                     Supprimer
                 </a>
+                <p class="offset-8">Commentaires <span class="badge"></span><?= $post->getCounter() ?></p>
+
             </div>
             <hr>
-        <?php endforeach; ;?>
-        <ul class="pagination">page :
-            <?php
-            for ($i = 0; $i <= $count[0]; $i += 5) {
-                $numberPage = ($i / 5) +1; ?>
+        <?php endforeach;
+        if ($count[0] >= 5) {
+            ?>
+            <ul class="pagination">page :
+                <?php
+                for ($i = 0; $i <= $count[0]; $i += 5) {
+                    $numberPage = ($i / 5) + 1; ?>
 
-                <li><a class="btn btn-success " href="/index.php?action=posts&page=<?= $numberPage ?>"><?= $numberPage ?></a></li>
-            <?php } ?>
-        </ul>
+                    <li><a class="btn btn-success "
+                           href="/index.php?action=posts&page=<?= $numberPage ?>"><?= $numberPage ?></a></li>
+                <?php } ?>
+            </ul>
+        <?php } ?>
+
     </main>
 <?php
 
