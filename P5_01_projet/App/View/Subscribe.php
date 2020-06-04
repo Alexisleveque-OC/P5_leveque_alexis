@@ -37,8 +37,7 @@ ob_start();
                         <input name="password_confirmation" type="password" class="form-control" required data-validation-required-message="Entrez la confirmation du mot de passe." >
                     </div>
                 </div>
-                <div id="success"></div>
-                <!-- For success/fail messages -->
+
                 <button type="submit" class="btn btn-primary" >S'inscrire</button>
             </form>
         </div>

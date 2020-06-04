@@ -9,17 +9,23 @@ use App\Manager\UserManager;
 
 class HomeController extends Controller
 {
-    public function __invoke()
+    public function home()
     {
+
+        if (count($_POST) === 4) {
+            $controller = new \SendMailController();
+            $controller->sendMail($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['messsage']);
+            dd('toto');
+            $this->redirect('MailSend');
+        }
         $manager = new PostsManager();
-        $posts= $manager->listAllPosts(3,1);
+        $posts = $manager->listAllPosts(3, 1);
         $users = [];
-        foreach ($posts as $post)
-        {
+        foreach ($posts as $post) {
             $userManager = new UserManager();
             $users[] = $userManager->listInfoUser($post->getUserId());
         }
-
         require $this->needLoad('Home');
+
     }
 }

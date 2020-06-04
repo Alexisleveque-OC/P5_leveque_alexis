@@ -36,7 +36,8 @@ try {
 
     switch ($action) {
         case 'home':
-            (new HomeController())();
+            $controller = new HomeController();
+            $controller->home();
             break;
         case 'connection':
             $controller = new ConnectionController();

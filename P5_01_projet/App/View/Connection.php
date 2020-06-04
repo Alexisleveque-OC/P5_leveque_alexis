@@ -25,8 +25,6 @@ ob_start();
                             <input name="password" type="password" class="form-control" required data-validation-required-message="Entrez un mot de passe.">
                         </div>
                     </div>
-                    <div id="success"></div>
-                    <!-- For success/fail messages -->
                     <button type="submit" class="btn btn-primary" >Se connecter</button>
                 </form>
             </div>
