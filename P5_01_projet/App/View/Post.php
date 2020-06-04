@@ -70,7 +70,12 @@ ob_start();
             </div>
             <hr>
         <?php endforeach;
-        if ($count[0] >= 10) { ?>
+        if ($count[0] == 0){
+            ?>
+            <h5 class="jumbotron">Il n'y a pas encore de commentaires.</h5>
+
+        <?php }
+        elseif ($count[0] >= 10) { ?>
             <ul class="pagination">page :
                 <?php
 
