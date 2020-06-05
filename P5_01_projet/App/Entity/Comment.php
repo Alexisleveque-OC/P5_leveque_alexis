@@ -4,8 +4,6 @@
 namespace App\Entity;
 
 
-use App\Manager\UserManager;
-
 class Comment extends Entity implements CheckValidityInterface
 {
     protected $id_comment;
@@ -141,6 +139,9 @@ class Comment extends Entity implements CheckValidityInterface
 
         if(strlen($this->content) < 3){
             $errors[] = "Un commentaire doit faire plus de 3 caractères";
+        }
+        if (!isset($this->user)){
+            $errors[] = "Vous devez être connecté pour pouvoir laisser un commentaires";
         }
 
         return $errors;
