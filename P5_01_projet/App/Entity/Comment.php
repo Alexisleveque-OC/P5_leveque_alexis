@@ -17,9 +17,8 @@ class Comment extends Entity implements CheckValidityInterface
 
     protected $user;
 
-    public function __construct($data)
+    public function __construct()
     {
-        $this->hydrate($data);
     }
 
     /**
