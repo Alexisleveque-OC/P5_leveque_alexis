@@ -12,11 +12,12 @@ class HomeController extends Controller
     public function home()
     {
 
-//        if (count($_POST) !== 0) {
-//            dd($_POST);
-//            $controller = new \SendMailController();
-//            $controller->sendMail($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['messsage']);
-//        }
+        if (count($_POST) === 4) {
+            $controller = new \SendMailController();
+            $controller->sendMail($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['messsage']);
+            dd('toto');
+            $this->redirect('MailSend');
+        }
         $manager = new PostsManager();
         $posts = $manager->listAllPosts(3, 1);
         $users = [];

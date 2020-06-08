@@ -9,7 +9,6 @@ use App\Controller\DeleteCommentController;
 use App\Controller\DeleteController;
 use App\Controller\HomeController;
 use App\Controller\ListCommentController;
-use App\Controller\MailSendController;
 use App\Controller\SubscribeController;
 use App\Controller\PostsController;
 use App\Controller\PostController;
@@ -105,13 +104,6 @@ try {
             $controller = new ValidateComment();
             $controller->validateComment($_GET['id']);
             break;
-        case 'sendMail':
-            $controller = new SendMailController();
-            $controller->sendMail($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message']);
-            break;
-        case 'mailSend':
-            (new MailSendController())();
-            break;
 
     }
 
@@ -119,7 +111,7 @@ try {
 }
 catch (Exception $e) {
     $errorMessage = $e ->getMessage();
-    $controller =new ErrorController();
-    $controller->displayError($errorMessage);
+    require('../App/View/Error.php');
+//    (new ErrorController())();
 
 }

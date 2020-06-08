@@ -16,6 +16,7 @@ ob_start();
                     <div class="controls">
                         <label >Nom d'utilisateur:</label>
                         <input name="user_name" type="text" class="form-control" required data-validation-required-message="Entrez votre nom d'utilisateur.">
+                        <p class="help-block"></p>
                     </div>
                 </div>
                 <div class="control-group form-group">

@@ -6,9 +6,8 @@ namespace App\Controller;
 
 class ErrorController extends Controller
 {
-    public function displayError($errorMessage)
+    public function __invoke()
     {
-
         require $this->needLoad('Error');
     }
 }

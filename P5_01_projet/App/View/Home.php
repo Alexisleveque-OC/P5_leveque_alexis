@@ -32,7 +32,6 @@ ob_start();
         <?php
         foreach ($posts as $post) {
             ?>
-
             <div class="row jumbotron">
                 <h2 class="col-12">
                     <?= htmlspecialchars($post->getTitle()); ?>
@@ -59,14 +58,15 @@ ob_start();
         }
         ?>
         <div class="row">
-            <div class="col-10">
+            <div class="col-lg-8 mb-4">
                 <h3>Contact</h3>
-                <form action="/index.php&action=sendMail" name="sentMessage" id="contactForm" method="POST">
+                <form name="sentMessage" id="contactForm" method="POST">
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Nom :</label>
                             <input type="text" class="form-control" id="name" required
                                    data-validation-required-message="Veuillez entrez votre nom.">
+                            <p class="help-block"></p>
                         </div>
                     </div>
                     <div class="control-group form-group">
@@ -91,8 +91,7 @@ ob_start();
                                       style="resize:none"></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Envoyer un messsage</a></button>
-
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Envoyer un messsage</button>
                 </form>
             </div>
 
