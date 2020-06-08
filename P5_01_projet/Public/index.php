@@ -112,6 +112,5 @@ try {
 catch (Exception $e) {
     $errorMessage = $e ->getMessage();
     require('../App/View/Error.php');
-//    (new ErrorController())();
 
 }

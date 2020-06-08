@@ -14,7 +14,7 @@ class AddCommentController extends Controller
     {
         if (count($_POST) === 1) {
             $comment = new Comment();
-            $comment->hydrate($_POST);
+            $comment->setContent($_POST['content']);
 
             $comment->getErrors();
             $errors = $comment->getErrors();

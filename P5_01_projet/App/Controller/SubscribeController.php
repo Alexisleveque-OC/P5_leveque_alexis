@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
 use App\Manager\UserManager;
 
 class SubscribeController extends  Controller
@@ -11,6 +12,17 @@ class SubscribeController extends  Controller
     public function subscribe()
     {
         if (count($_POST) !== 0) {
+            $user = new User();
+            $user->setUserName($_POST['user_name']);
+            $user->setPassword($_POST['password']);
+            $user->setEmail($_POST['email']);
+
+            $user->getErrors();
+            $errors = $user->getErrors();
+            if (count($errors)) {
+                throw new \Exception(implode($errors, " "));
+            }
+
             $manager = new UserManager();
             if ($_POST['password'] === $_POST['password_confirmation']) {
                 $manager->verifUser($_POST['user_name']);

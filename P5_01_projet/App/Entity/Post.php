@@ -177,13 +177,13 @@ class Post extends Entity implements CheckValidityInterface
         $errors = [];
 
         if(strlen($this->content) < 3){
-            $errors[] = "Le contenu du post  doit faire plus de 3 caractères";
+            $errors[] = "Le contenu du post  doit faire plus de 3 caractères.";
         }
         if(strlen($this->title) < 3){
-            $errors[] = "Le titre du post  doit faire plus de 3 caractères";
+            $errors[] = "Le titre du post  doit faire plus de 3 caractères.";
         }
         if(strlen($this->chapo) < 3){
-            $errors[] = "Le chapô du post  doit faire plus de 3 caractères";
+            $errors[] = "Le chapô du post  doit faire plus de 3 caractères.";
         }
 
         return $errors;

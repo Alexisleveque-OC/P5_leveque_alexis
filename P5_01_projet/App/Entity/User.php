@@ -36,6 +36,14 @@ class User extends Entity implements CheckValidityInterface
     }
 
     /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
      * @param mixed $email
      */
     public function setEmail($email)
@@ -107,15 +115,18 @@ class User extends Entity implements CheckValidityInterface
         $errors = [];
 
         if (strlen($this->user_name) < 3) {
-            $errors[] = "Le nom d'utilisateur doit faire plus de 3 caractères";
+            $errors[] = "Le nom d'utilisateur doit faire plus de 3 caractères.";
         }
         if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $this->email)) {
-            $errors[] = "L'adresse e-mail saisie n'a pas un format valide";
+            $errors[] = "L'adresse e-mail saisie n'a pas un format valide.";
         }
-        if (strlen($this->password) < 3) {
-            $errors[] = "Le mot de passe doit faire plus de 3 caractères";
+        if (strlen($this->password) < 5) {
+            $errors[] = "Le mot de passe doit faire plus de 5 caractères.";
         }
+
+        return $errors;
     }
+
 
 
 }
