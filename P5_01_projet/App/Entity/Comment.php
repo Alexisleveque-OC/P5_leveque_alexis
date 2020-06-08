@@ -4,6 +4,8 @@
 namespace App\Entity;
 
 
+use App\Manager\UserManager;
+
 class Comment extends Entity implements CheckValidityInterface
 {
     protected $id_comment;

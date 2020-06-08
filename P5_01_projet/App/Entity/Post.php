@@ -4,7 +4,7 @@
 namespace App\Entity;
 
 
-class Post extends Entity implements CheckValidityInterface
+class Post extends Entity
 {
     protected $id_post;
     protected $title;
@@ -171,22 +171,6 @@ class Post extends Entity implements CheckValidityInterface
     public function setCounter($counter): void
     {
         $this->counter = $counter;
-    }
-    public function getErrors() : array
-    {
-        $errors = [];
-
-        if(strlen($this->content) < 3){
-            $errors[] = "Le contenu du post  doit faire plus de 3 caractères";
-        }
-        if(strlen($this->title) < 3){
-            $errors[] = "Le titre du post  doit faire plus de 3 caractères";
-        }
-        if(strlen($this->chapo) < 3){
-            $errors[] = "Le chapô du post  doit faire plus de 3 caractères";
-        }
-
-        return $errors;
     }
 
 }

@@ -5,7 +5,7 @@ namespace App\Entity;
 
 
 
-class User extends Entity implements CheckValidityInterface
+class User extends Entity
 {
     protected $id_user;
     protected $user_name;
@@ -103,18 +103,6 @@ class User extends Entity implements CheckValidityInterface
         return $this->date_creation;
     }
 
-    public function getErrors() : array
-    {
-        $errors = [];
 
-        if (strlen($this->user_name) < 3) {
-            $errors[] = "Le nom d'utilisateur doit faire plus de 3 caractères";
-        }
-        if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $this->email)) {
-            $errors[] = "L'adresse e-mail saisie n'a pas un format valide";
-        }
-        if (strlen($this->password) < 3) {
-            $errors[] = "Le mot de passe doit faire plus de 3 caractères";
-        }
-    }
+
 }
