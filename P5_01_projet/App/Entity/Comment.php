@@ -144,6 +144,4 @@ class Comment extends Entity implements CheckValidityInterface
         }
         return $errors;
     }
-
-
 }
