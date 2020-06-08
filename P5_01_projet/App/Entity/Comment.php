@@ -13,11 +13,11 @@ class Comment extends Entity implements CheckValidityInterface
     protected $user_id;
     protected $post_id;
 
-
     protected $user;
-    public function __construct()
+
+    public function __construct($data)
     {
-        
+        $this->hydrate($data);
     }
 
     /**
@@ -140,7 +140,7 @@ class Comment extends Entity implements CheckValidityInterface
         if(strlen($this->content) < 3){
             $errors[] = "Un commentaire doit faire plus de 3 caractères";
         }
-        if (!isset($this->user)){
+        if (isset($_SESSION['user'])){
             $errors[] = "Vous devez être connecté pour pouvoir laisser un commentaires";
         }
 

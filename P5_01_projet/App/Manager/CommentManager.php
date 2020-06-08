@@ -62,6 +62,7 @@ INNER JOIN user u ON c.user_id = u.id_user
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
             $comments[] = $this->arrayDataToComment($row);
+
         }
 
         return $comments;
@@ -82,7 +83,7 @@ INNER JOIN user u ON c.user_id = u.id_user
         $comments = [];
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT 
-       c.id_comment, c.content as comment_conten, c.date_creation as comment_date, c.validation, c.user_id, post_id,
+       c.id_comment, c.content as comment_content, c.date_creation as comment_date, c.validation, c.user_id, post_id,
        u.id_user, u.user_name, u.email, u.password, u.user_type_id, u.date_creation AS user_date
 FROM comment c 
 INNER JOIN user u ON c.user_id = u.id_user
@@ -90,9 +91,11 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
         $req->execute(['validation' => 0]);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
-            $comments[] = $this->arrayDataToComment($row);
+//            $comments[] = $this->arrayDataToComment($row);
+            $comments[] = new Comment($row);
+//            $comments[] = $comment->hydrate($row);
         }
-
+        dd($comments);
         return $comments;
     }
 
