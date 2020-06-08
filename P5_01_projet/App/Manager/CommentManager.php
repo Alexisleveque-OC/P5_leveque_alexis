@@ -91,11 +91,8 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
         $req->execute(['validation' => 0]);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
-//            $comments[] = $this->arrayDataToComment($row);
-            $comments[] = new Comment($row);
-//            $comments[] = $comment->hydrate($row);
+            $comments[] = $this->arrayDataToComment($row);
         }
-        dd($comments);
         return $comments;
     }
 

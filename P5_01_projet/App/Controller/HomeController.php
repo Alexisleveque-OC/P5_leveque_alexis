@@ -15,7 +15,6 @@ class HomeController extends Controller
         if (count($_POST) === 4) {
             $controller = new \SendMailController();
             $controller->sendMail($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['messsage']);
-            dd('toto');
             $this->redirect('MailSend');
         }
         $manager = new PostsManager();

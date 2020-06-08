@@ -23,7 +23,7 @@ class Entity
                 $method = $method . $key;
             }
             if (method_exists($this, $method)) {
-               dd( $this->$method($value));
+                $this->$method($value);
             }
         }
     }

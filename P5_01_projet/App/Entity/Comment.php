@@ -141,6 +141,9 @@ class Comment extends Entity implements CheckValidityInterface
         if(strlen($this->content) < 3){
             $errors[] = "Un commentaire doit faire plus de 3 caractères";
         }
+        if (!isset($_SESSION['user_name'])){
+            $errors[] = "Vous devez être connecté pour pouvoir laisser un commentaires";
+        }
 
         return $errors;
     }
