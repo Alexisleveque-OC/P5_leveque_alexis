@@ -16,7 +16,7 @@ class UserManager extends Manager
 
         $hash = $this->encodePassword($plainPassword);
 
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
 
 
         $req = $db->prepare('INSERT INTO user(user_name,email,password,user_type_id,date_creation) 
@@ -54,7 +54,7 @@ class UserManager extends Manager
 
     public  function searchInfoUser($name)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $req = $db->prepare('SELECT *, date_creation as user_date FROM user WHERE user_name = :name ') ;
         $req->execute(['name' => $name]);
         $data = $req->fetch( PDO::FETCH_ASSOC);
@@ -63,7 +63,7 @@ class UserManager extends Manager
 
     public  function listInfoUser($id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $req = $db->prepare('SELECT * , date_creation as user_date FROM user WHERE id_user = :id_user ') ;
         $req->execute(['id_user' => $id]);
         $data = $req->fetch( PDO::FETCH_ASSOC);

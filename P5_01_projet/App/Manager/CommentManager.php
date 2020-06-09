@@ -10,7 +10,7 @@ class CommentManager extends Manager
 {
     public function addComment($content, $user_id, $post_id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
 
         $req = $db->prepare('INSERT INTO comment(content,date_creation,validation,user_id,post_id) 
                                       VALUE (:content,NOW(),:validation,:user_id, :post_id)');
@@ -24,7 +24,7 @@ class CommentManager extends Manager
 
     public function countCommentUnvalidate()
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = :validation');
         $req->execute(['validation' => 0]);
         $result = $req->fetch();
@@ -33,7 +33,7 @@ class CommentManager extends Manager
 
     public function countCommentPost($id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = :validation AND post_id = :post_id');
         $req->execute([
             'validation' => 1,
@@ -47,7 +47,7 @@ class CommentManager extends Manager
     public function listComments($id, $limit, $pageNb)
     {
         $comments = [];
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $firstEntry = ($pageNb -1) * 10;
         $req = $db->prepare('SELECT 
        c.id_comment, c.content as comment_content, c.date_creation as comment_date, c.validation, c.user_id, post_id,
@@ -71,7 +71,7 @@ INNER JOIN user u ON c.user_id = u.id_user
     public function deleteComment($id)
     {
 
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
 
         $req = $db->prepare('DELETE FROM comment WHERE id_comment = :id');
         $req->execute(['id' => $id]);
@@ -81,7 +81,7 @@ INNER JOIN user u ON c.user_id = u.id_user
     public function listCommentsUnvalidate()
     {
         $comments = [];
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $req = $db->prepare('SELECT 
        c.id_comment, c.content as comment_content, c.date_creation as comment_date, c.validation, c.user_id, post_id,
        u.id_user, u.user_name, u.email, u.password, u.user_type_id, u.date_creation AS user_date
@@ -98,7 +98,7 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
 
     public function validateComment($id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $req = $db->prepare('UPDATE comment 
                                       SET validation = :validation 
                                     WHERE id_comment = :id_comment');

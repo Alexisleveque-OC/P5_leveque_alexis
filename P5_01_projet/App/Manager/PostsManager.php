@@ -11,7 +11,7 @@ class PostsManager extends Manager
 {
     public function countPost()
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $req = $db->query('SELECT count(*)  FROM post');
         $data = $req->fetch();
 
@@ -20,7 +20,7 @@ class PostsManager extends Manager
 
     public function addPost($title, $chapo, $content, $user_id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
 
         $req = $db->prepare('INSERT INTO post(title,chapo,content,date_creation,date_last_update,user_id) 
                                       VALUE (:title,:chapo,:content,NOW(),:date_last_update,:user_id)');
@@ -35,7 +35,7 @@ class PostsManager extends Manager
 
     public function listOnce($id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
 
         $req = $db->prepare('
 SELECT p.id_post,p.title,p.chapo,p.content as post_content, p.date_creation as post_date,p.date_last_update,p.user_id ,
@@ -52,7 +52,7 @@ WHERE id_post = :id');
     public function listAllPosts($limit, $pageNb = 1)
     {
         $posts = [];
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $firstEntry = ($pageNb - 1) * 5;
         $req = $db->query('
 SELECT p.id_post , p.title, p.chapo, p.content as post_content,p.date_creation as post_date, p.date_last_update,p.user_id,
@@ -62,24 +62,24 @@ INNER JOIN user as u ON p.user_id = u.id_user
 ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
-            $manager = new PostsManager();
-            $counter = $manager->countComment($row);
+            $counter = self::countComment($row);
             $posts[] = self::arrayDataToPost($row, $counter);
         }
         return $posts;
 
     }
 
-   public function countComment($row)
+   private static function countComment($row)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
         $reqComment = $db->prepare('SELECT count(*)
                                     FROM comment c 
                                     INNER JOIN post p ON c.post_id = p.id_post
-                                    WHERE  c.post_id = :post_id
+                                    WHERE  c.post_id = :post_id and validation = :validation
                                     ');
         $reqComment->execute([
-            'post_id' => $row['id_post']
+            'post_id' => $row['id_post'],
+            'validation' => 1
         ]);
         $countComment = $reqComment->fetch();
         return $countComment;
@@ -87,7 +87,7 @@ ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
 
     public function updatePost($id, $title, $chapo, $content, $user_id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
 
         $req = $db->prepare('UPDATE post 
                                     SET title = :title ,chapo = :chapo , content = :content , date_last_update = NOW(),user_id = :user_id 
@@ -103,7 +103,7 @@ ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
 
     public function deletePost($id)
     {
-        $db = $this->dbConnect();
+        $db = self::dbConnect();
 
         $req = $db->prepare('DELETE FROM post WHERE id_post = :id');
         $req->execute(['id' => $id]);
