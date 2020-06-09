@@ -36,8 +36,9 @@ try {
 
     switch ($action) {
         case 'home':
-            $controller = new HomeController();
-            $controller->home();
+//            $controller = new HomeController();
+//            $controller->home();
+            (new HomeController())();
             break;
         case 'connection':
             $controller = new ConnectionController();
@@ -104,9 +105,7 @@ try {
             $controller = new ValidateComment();
             $controller->validateComment($_GET['id']);
             break;
-
     }
-
 
 }
 catch (Exception $e) {

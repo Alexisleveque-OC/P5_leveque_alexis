@@ -46,12 +46,13 @@ ob_start();
                     <a href="/index.php?action=post&id=<?= htmlspecialchars($post->getIdPost()) ?>">Voir la suite </a>
 
                 </p>
-                <p class="col-12">
+                <p class="col-8">
                     Ecrit le <strong
                             class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
                     à <strong class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
                     par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
                 </p>
+                <p class="col-4">Commentaires <span class="badge"></span><?= $post->getCounter() ?></p>
             </div>
             <hr>
             <?php
@@ -60,7 +61,7 @@ ob_start();
         <div class="row">
             <div class="col-lg-8 mb-4">
                 <h3>Contact</h3>
-                <form name="sentMessage" id="contactForm" method="POST">
+                <form name="sendMail" id="contactForm" method="POST">
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Nom :</label>

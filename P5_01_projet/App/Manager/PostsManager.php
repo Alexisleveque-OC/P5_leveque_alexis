@@ -49,7 +49,7 @@ WHERE id_post = :id');
         return $post;
     }
 
-    public function listAllPosts($limit, $pageNb)
+    public function listAllPosts($limit, $pageNb = 1)
     {
         $posts = [];
         $db = $this->dbConnect();
