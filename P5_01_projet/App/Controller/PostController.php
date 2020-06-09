@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Manager\CommentManager;
 use App\Manager\PostsManager;
 use App\Manager\UserManager;
+use App\Service\ViewLoader;
 
 class PostController extends Controller
 {
@@ -18,6 +19,10 @@ class PostController extends Controller
         $commentManager = new CommentManager();
         $count = $commentManager->countCommentPost($id) ;
         $comments = $commentManager->listComments($id ,10 , $_GET['page'] ?? 1);
-        require $this->needLoad('Post');
+        ViewLoader::render("Post", [
+            'post' => $post,
+            'count' => $count,
+            'comments' => $comments
+        ]);
     }
 }

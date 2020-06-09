@@ -27,7 +27,7 @@ class CommentManager extends Manager
         $db = self::dbConnect();
         $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = :validation');
         $req->execute(['validation' => 0]);
-        $result = $req->fetch();
+        $result = $req->fetchColumn();
         return $result;
     }
 
@@ -40,6 +40,8 @@ class CommentManager extends Manager
             'post_id' => $id
             ]);
         $result = $req->fetch();
+
+        // TODO à revoir avec fetchColumnm
         return $result;
     }
 

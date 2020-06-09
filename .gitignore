@@ -1,3 +1,6 @@
 .idea
 
 P5_01_projet/vendor
+
+P5_01_projet/App/config.local.php
+

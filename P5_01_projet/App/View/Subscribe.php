@@ -1,11 +1,5 @@
 <?php
-
-
 $title = 'Subscribe';
-
-ob_start();
-
-
 ?>
 <main class="container">
     <div class="row">
@@ -43,6 +37,3 @@ ob_start();
         </div>
     </div>
 </main>
-<?php
-$content = ob_get_clean();
-require_once('Template.php');

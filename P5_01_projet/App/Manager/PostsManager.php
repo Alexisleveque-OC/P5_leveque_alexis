@@ -14,7 +14,7 @@ class PostsManager extends Manager
         $db = self::dbConnect();
         $req = $db->query('SELECT count(*)  FROM post');
         $data = $req->fetch();
-
+//TODO : voir pout un fetchcolumn
         return $data;
     }
 
@@ -56,33 +56,19 @@ WHERE id_post = :id');
         $firstEntry = ($pageNb - 1) * 5;
         $req = $db->query('
 SELECT p.id_post , p.title, p.chapo, p.content as post_content,p.date_creation as post_date, p.date_last_update,p.user_id,
-u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date
+u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date, COUNT(c.id_comment) as counter
 FROM post  p
 INNER JOIN user as u ON p.user_id = u.id_user
+LEFT JOIN comment c ON c.post_id = p.id_post
+WHERE c.validation = 1
+GROUP BY p.id_post
 ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
-            $counter = self::countComment($row);
-            $posts[] = self::arrayDataToPost($row, $counter);
+            $posts[] = self::arrayDataToPost($row);
         }
+
         return $posts;
-
-    }
-
-   private static function countComment($row)
-    {
-        $db = self::dbConnect();
-        $reqComment = $db->prepare('SELECT count(*)
-                                    FROM comment c 
-                                    INNER JOIN post p ON c.post_id = p.id_post
-                                    WHERE  c.post_id = :post_id and validation = :validation
-                                    ');
-        $reqComment->execute([
-            'post_id' => $row['id_post'],
-            'validation' => 1
-        ]);
-        $countComment = $reqComment->fetch();
-        return $countComment;
     }
 
     public function updatePost($id, $title, $chapo, $content, $user_id)
@@ -109,7 +95,7 @@ ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $req->execute(['id' => $id]);
     }
 
-    public static function arrayDataToPost($data, $counter = null )
+    public static function arrayDataToPost($data)
     {
         $post = new Post();
         $post->setIdPost($data['id_post'] ?? "");
@@ -117,9 +103,7 @@ ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $post->setChapo($data['chapo'] ?? "");
         $post->setContent($data['post_content'] ?? "");
         $post->setDateCreation(new \DateTime($data['post_date'] ?? ''));
-        if ($counter !== null){
-            $post->setCounter($counter[0]);
-        }
+        $post->setCounter($data['counter'] ?? 0);
 
         if ($data['date_last_update'] !== null) {
             $post->setDateLastUpdate(new \DateTime($data['date_last_update'] ?? ''));

@@ -4,11 +4,13 @@
 namespace App\Controller;
 
 
+use App\Service\ViewLoader;
+
 class MailSendController extends Controller
 {
 
     public function __invoke()
     {
-        require $this->needLoad('MailSend');
+        ViewLoader::render("MailSend");
     }
 }

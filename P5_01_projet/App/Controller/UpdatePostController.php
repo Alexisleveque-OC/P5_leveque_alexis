@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Manager\PostsManager;
+use App\Service\ViewLoader;
 
 class UpdatePostController extends Controller
 {
@@ -23,6 +24,6 @@ class UpdatePostController extends Controller
             );
             $this->redirect('post&id='.$_GET['id']);
         }
-        require $this->needLoad('PostUpdate');
+        ViewLoader::render("PostUpdate");
     }
 }

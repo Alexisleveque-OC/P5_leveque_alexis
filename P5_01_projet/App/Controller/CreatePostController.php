@@ -5,12 +5,12 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Manager\PostsManager;
+use App\Service\ViewLoader;
 
 class CreatePostController extends Controller
 {
     public function addPost()
     {
-
         if (count($_POST) !== 0) {
             $post = new Post();
             $post->setTitle($_POST['title']);
@@ -31,6 +31,6 @@ class CreatePostController extends Controller
             );
             $this->redirect('posts');
         }
-        require $this->needLoad('PostCreation');
+        ViewLoader::render("PostCreation");
     }
 }

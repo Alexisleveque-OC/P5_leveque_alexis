@@ -5,24 +5,22 @@ namespace App\Controller;
 
 
 use App\Manager\PostsManager;
-use App\Manager\UserManager;
+use App\Service\ViewLoader;
 
-class DeleteController extends Controller
+class DeletePostController extends Controller
 {
     public function deletePost($id)
     {
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
-//        $userManager = new UserManager()
-        require __DIR__.'/../View/Delete.php';
-        if (isset($_POST['yes']))
-        {
+        ViewLoader::render("Post", [
+            'post' => $post
+        ]);
+        if (isset($_POST['yes'])) {
             $manager = new PostsManager();
             $deletedPost = $manager->deletePost($id);
             $this->redirect('posts');
-        }
-        elseif (isset($_POST['no']))
-        {
+        } elseif (isset($_POST['no'])) {
             $this->redirect('posts');
         }
     }

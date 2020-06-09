@@ -4,8 +4,15 @@
 namespace App\Controller;
 
 
+use App\Manager\CommentManager;
+
 abstract class Controller
 {
+
+    public function __construct()
+    {
+        $this->commentManager = new CommentManager();
+    }
 
     public function redirect($action, array $params = null)
 
@@ -24,6 +31,7 @@ abstract class Controller
     public function needLoad($file)
     {
 
+        $commentCount = $this->commentManager->countCommentUnvalidate();
         return (__DIR__ . '/../View/'.$file.'.php');
     }
 }

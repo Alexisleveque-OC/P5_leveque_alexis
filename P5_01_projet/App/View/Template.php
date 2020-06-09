@@ -46,11 +46,11 @@
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
                     </li>
                     <?php
-                    if ($_SESSION['commentCount'][0] >= 1) {
+                    if ($commentCount >= 1) {
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.php?action=listComment">
-                                Commentaires <span class="badge badge-danger"><?= $_SESSION['commentCount'][0] ?></span>
+                            <a class="nav-link" href="/index.php?action=listCommentUnvalidate">
+                                Commentaires <span class="badge badge-danger"><?= $commentCount ?></span>
                             </a>
                         </li>
                         <?php

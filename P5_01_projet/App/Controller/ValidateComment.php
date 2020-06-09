@@ -12,6 +12,6 @@ class ValidateComment extends Controller
     {
         $manager = new CommentManager();
         $manager->validateComment($id);
-        $this->redirect('listComment');
+        $this->redirect('listCommentUnvalidate');
     }
 }

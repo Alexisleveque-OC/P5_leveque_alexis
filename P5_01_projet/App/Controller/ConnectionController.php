@@ -4,15 +4,10 @@
 namespace App\Controller;
 
 use App\Manager\UserManager;
+use App\Service\ViewLoader;
 
 class ConnectionController extends Controller
 {
-
-    /**
-     * @throws \Exception
-     *
-     *
-     */
     public function connection()
     {
         if (count($_POST) !== 0) {
@@ -23,7 +18,6 @@ class ConnectionController extends Controller
 
             $this->redirect('home');
             }
-
-       require $this->needLoad('Connection');
+        ViewLoader::render("Connection");
     }
 }

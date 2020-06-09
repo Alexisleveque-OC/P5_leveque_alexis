@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Manager\UserManager;
+use App\Service\ViewLoader;
 
 class SubscribeController extends  Controller
 {
@@ -41,6 +42,6 @@ class SubscribeController extends  Controller
             }
         }
 
-        require $this->needLoad('Subscribe');
+        ViewLoader::render("Subscribe");
     }
 }

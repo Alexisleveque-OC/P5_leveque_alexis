@@ -1,21 +1,21 @@
 <?php
-require_once ('../vendor/autoload.php');
+require_once('../vendor/autoload.php');
+require_once('../App/config.local.php');
 
 session_start();
 
 use App\Controller\AddCommentController;
+use App\Controller\ConnectionController;
 use App\Controller\CountCommentController;
+use App\Controller\CreatePostController;
 use App\Controller\DeleteCommentController;
-use App\Controller\DeleteController;
+use App\Controller\DeletePostController;
+use App\Controller\DestroyController;
 use App\Controller\HomeController;
 use App\Controller\ListCommentController;
-use App\Controller\SubscribeController;
-use App\Controller\PostsController;
 use App\Controller\PostController;
-use App\Controller\ConnectionController;
-use App\Controller\ErrorController;
-use App\Controller\DestroyController;
-use App\Controller\CreatePostController;
+use App\Controller\PostsController;
+use App\Controller\SubscribeController;
 use App\Controller\UpdatePostController;
 use App\Controller\UserController;
 use App\Controller\ValidateComment;
@@ -24,20 +24,8 @@ use App\Controller\ValidateComment;
 $action = $_GET['action'] ?? 'home';
 
 try {
-    if (isset($_SESSION['user_name']))
-    {
-        $controller = new UserController();
-        $user = $controller->listInfoUser($_SESSION['user_name']);
-    }
-
-    $controller = new CountCommentcontroller();
-    $commentCount = $controller->countCommentUnvalidate();
-
-
     switch ($action) {
         case 'home':
-//            $controller = new HomeController();
-//            $controller->home();
             (new HomeController())();
             break;
         case 'connection':
@@ -66,7 +54,7 @@ try {
             if (!isset($_GET['id'])) {
                 throw  new Exception('Erreur 404 ');
             }
-            $controller = new DeleteController();
+            $controller = new DeletePostController();
             $controller->deletePost($_GET['id']);
             break;
         case 'createPost':
@@ -94,8 +82,8 @@ try {
             $controller = new DeleteCommentController();
             $controller->deleteComment($_GET['id']);
             break;
-        case 'listComment':
-            $controller= new ListCommentController();
+        case 'listCommentUnvalidate':
+            $controller = new ListCommentController();
             $controller->listCommentsUnvalidate();
             break;
         case 'validateComment':
@@ -107,9 +95,8 @@ try {
             break;
     }
 
-}
-catch (Exception $e) {
-    $errorMessage = $e ->getMessage();
+} catch (Exception $e) {
+    $errorMessage = $e->getMessage();
     require('../App/View/Error.php');
 
 }

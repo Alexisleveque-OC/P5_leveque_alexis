@@ -7,3 +7,9 @@ This is  README.md file of my repository fot Ptoject 5 of the application develo
 - Include all UML diagrams. (check)
 - Create all issues. (In progress)
 - Develope applications.
+
+
+
+# How to install ?
+
+TODO

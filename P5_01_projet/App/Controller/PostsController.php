@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Manager\PostsManager;
 use App\Manager\UserManager;
+use App\Service\ViewLoader;
 
 class PostsController extends Controller
 {
@@ -15,7 +16,10 @@ class PostsController extends Controller
         $count = $manager->countPost();
         $posts = $manager->listAllPosts(5, $_GET['page'] ?? 1);
 
-        require $this->needLoad('posts');
+        ViewLoader::render("Posts", [
+            'count' => $manager->countPost(),
+            'posts' => $posts
+        ]);
     }
 
 }
