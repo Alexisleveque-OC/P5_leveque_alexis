@@ -2,11 +2,13 @@
 $title = 'Les articles';
 ?>
 <main class="container">
-    <a class="btn btn-info" href='/index.php?action=createPost'"> Créer un article
-    </a>
-    <hr>
+    <?php if (isset($userType) && $userType == 2) { ?>
+        <a class="btn btn-info" href='/index.php?action=createPost'"> Créer un article
+        </a>
+        <hr>
 
-    <?php foreach ($posts as $post): ?>
+    <?php }
+    foreach ($posts as $post): ?>
         <div class="row jumbotron">
             <h2 class="col-12">
                 <?= htmlspecialchars($post->getTitle()); ?>
@@ -42,18 +44,18 @@ $title = 'Les articles';
                 }
                 ?>
             </p>
+            <?php if (isset($userType) && $userType == 2) { ?>
+                <a class="btn btn-primary"
+                   href="/index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+                    Modifier
+                </a>
 
-            <a class="btn btn-primary"
-               href="/index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
-                Modifier
-            </a>
-
-            <a class="btn btn-danger"
-               href="/index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
-                Supprimer
-            </a>
-            <p class="offset-8">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
-
+                <a class="btn btn-danger"
+                   href="/index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+                    Supprimer
+                </a>
+                <p class="offset-8">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
+            <?php } ?>
         </div>
         <hr>
     <?php endforeach;

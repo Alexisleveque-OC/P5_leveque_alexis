@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use App\Manager\CommentManager;
+use App\Manager\UserManager;
+
 
 class ViewLoader
 {
@@ -16,6 +18,9 @@ class ViewLoader
         }
 
         $nbCommentUnvalidate = (new CommentManager())->countCommentUnvalidate();
+        if (isset ($_SESSION['user_name'])) {
+            $userType = (new UserManager())->searchUserType($_SESSION['user_name']);
+        }
         ob_start();
         require __DIR__ . "/../View/" . $path . ".php";
 

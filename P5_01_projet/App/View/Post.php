@@ -35,16 +35,17 @@ $title = 'PostView';
     ?>
 
     <h2>Commentaires</h2>
+    <?php if (isset($userType) && $userType >= 1) { ?>
+        <form action="/index.php?action=addComment&id=<?= $post->getIdPost() ?>" method="post">
 
-    <form action="/index.php?action=addComment&id=<?= $post->getIdPost() ?>" method="post">
+            <label for="comment">Ajouter un commentaire</label><br/>
+            <textarea class="form-control col-4" rows="5" id="comment" name="content"></textarea>
 
-        <label for="comment">Ajouter un commentaire</label><br/>
-        <textarea class="form-control col-4" rows="5" id="comment" name="content"></textarea>
+            <input type="submit"/>
 
-        <input type="submit"/>
-
-    </form>
-    <?php
+        </form>
+        <?php
+    }
     foreach ($comments as $comment) :
 
         ?>

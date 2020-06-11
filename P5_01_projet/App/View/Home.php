@@ -23,35 +23,48 @@ $title = 'Accueil';
         </p>
         <hr>
     </div>
-    <?php
-    foreach ($posts as $post) {
-        ?>
-        <div class="row jumbotron">
-            <h2 class="col-12">
-                <?= htmlspecialchars($post->getTitle()); ?>
-            </h2>
-            <h4 class="col-12">
-                <?= htmlspecialchars($post->getChapo()); ?>
-            </h4>
-            <p class="col-12">
-                <?= htmlspecialchars((substr($post->getContent(), 0, 250)));
-                ?>
-                ...<br>
-                <a href="/index.php?action=post&id=<?= htmlspecialchars($post->getIdPost()) ?>">Voir la suite </a>
+    <?php foreach ($posts as $post):?>
 
-            </p>
-            <p class="col-8">
+    <div class="row jumbotron">
+        <h2 class="col-12">
+            <?= htmlspecialchars($post->getTitle()); ?>
+        </h2>
+        <h4 class="col-12">
+            <?= $post->getChapo(); ?>
+        </h4>
+        <p class="col-12">
+            <?= htmlspecialchars(substr($post->getContent(), 0, 250));
+            ?>
+            ...<br>
+            <a href="/index.php?action=post&id=<?= htmlspecialchars($post->getIdPost()) ?>">Voir la suite </a>
+
+        </p>
+        <p class="col-12">
+            <?php
+            if ($post->getDateLastUpdate() === null) {
+                ?>
                 Ecrit le <strong
                         class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
-                à <strong class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
+                à <strong
+                        class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
                 par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
-            </p>
-            <p class="col-4">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
-        </div>
-        <hr>
-        <?php
-    }
-    ?>
+                <?php
+            } else {
+                ?>
+                Dernière modification : <strong
+                        class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                à <strong
+                        class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                <?php
+            }
+            ?>
+        </p>
+        <p class="offset-8">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
+
+    </div>
+    <hr>
+    <?php endforeach;    ?>
     <div class="row">
         <div class="col-lg-8 mb-4">
             <h3>Contact</h3>

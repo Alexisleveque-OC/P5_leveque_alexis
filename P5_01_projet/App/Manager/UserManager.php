@@ -42,14 +42,13 @@ class UserManager extends Manager
 
     public function verifPass($name,$password)
     {
-        $data = $this->searchInfoUser($name);
-
-        $verif = password_verify($password,$data['password']);
+        $user = $this->searchInfoUser($name);
+        $verif = password_verify($password, $user->getPassword());
 
         if($verif === false){
             throw new \Exception('Le mot de passe entré n\'est pas valide');
         }
-        return $data;
+        return $user;
     }
 
     public  function searchInfoUser($name)
@@ -58,7 +57,16 @@ class UserManager extends Manager
         $req = $db->prepare('SELECT *, date_creation as user_date FROM user WHERE user_name = :name ') ;
         $req->execute(['name' => $name]);
         $data = $req->fetch( PDO::FETCH_ASSOC);
-        return $data;
+        $infoUser = $this->arrayDataToUser($data);
+        return $infoUser;
+    }
+    public  function searchUserType($name)
+    {
+        $db = self::dbConnect();
+        $req = $db->prepare('SELECT user_type_id FROM user WHERE user_name = :name ') ;
+        $req->execute(['name' => $name]);
+        $userType = $req->fetchColumn();
+        return $userType;
     }
 
     public  function listInfoUser($id)
@@ -77,6 +85,7 @@ class UserManager extends Manager
         $user->setIdUser($data['id_user'] ?? "");
         $user->setUserName($data['user_name'] ?? "");
         $user->setEmail($data['email'] ?? "");
+        $user->setPassword($data['password'] ?? "");
         $user->setUserType($data['user_type'] ?? '');
         $user->setDateCreation(new \DateTime($data['user_date'] ?? ''));
 

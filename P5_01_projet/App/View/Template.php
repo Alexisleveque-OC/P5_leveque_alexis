@@ -46,7 +46,7 @@
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
                     </li>
                     <?php
-                    if ($nbCommentUnvalidate >= 1) {
+                    if ($nbCommentUnvalidate >= 1 && $userType == 2) {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/index.php?action=listCommentUnvalidate">

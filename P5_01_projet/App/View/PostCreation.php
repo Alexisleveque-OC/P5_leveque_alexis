@@ -1,5 +1,8 @@
 <?php
 $title = 'Création de Post';
+
+if (isset($userType) && $userType == 2){
+
 ?>
 <main class="container">
     <div class="row">
@@ -31,3 +34,7 @@ $title = 'Création de Post';
         </div>
     </div>
 </main>
+<?php } else { ?>
+    <h4>Vous ne devriez pas être sur cette page !!!</h4>
+    <?php
+}

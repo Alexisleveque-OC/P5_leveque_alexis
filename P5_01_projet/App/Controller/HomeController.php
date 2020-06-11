@@ -18,14 +18,9 @@ class HomeController extends Controller
         }
         $manager = new PostsManager();
         $posts = $manager->listAllPosts(3);
-        $users = [];
-        foreach ($posts as $post) {
-            $userManager = new UserManager();
-            $users[] = $userManager->listInfoUser($post->getUserId());
-        }
+
         ViewLoader::render("Home", [
             'posts' => $posts,
-            'users' => $users
         ]);
 
     }

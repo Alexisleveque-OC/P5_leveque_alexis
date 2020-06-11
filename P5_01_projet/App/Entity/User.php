@@ -127,6 +127,13 @@ class User extends Entity implements CheckValidityInterface
         return $errors;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
 
 }

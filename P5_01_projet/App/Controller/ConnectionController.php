@@ -12,12 +12,12 @@ class ConnectionController extends Controller
     {
         if (count($_POST) !== 0) {
             $manager = new UserManager();
-            $data = $manager->verifPass($_POST['user_name'],$_POST['password']);
-            $_SESSION['user_name'] = $data['user_name'];
-            $_SESSION['id_user'] = $data['id_user'];
+            $user = $manager->verifPass($_POST['user_name'], $_POST['password']);
+            $_SESSION['user_name'] = $user->getUserName();
+            $_SESSION['id_user'] = $user->getIdUser();
 
             $this->redirect('home');
-            }
+        }
         ViewLoader::render("Connection");
     }
 }

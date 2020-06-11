@@ -20,20 +20,21 @@ header.masthead .site-heading .subheading {
     display: block;
     margin: 10px 0 0;
 }
-.banner{
+
+.banner {
     width: 100%;
     position: absolute;
-    top : 2%;
+    top: 2%;
 }
 
 hr {
     box-shadow: #218BC3 5px 5px 20px;
 }
-.home
-{
+
+.home {
     margin-top: 45%;
 }
-.who
-{
+
+.who {
     padding-bottom: 5%;
 }
