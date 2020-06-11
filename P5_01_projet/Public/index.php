@@ -14,6 +14,7 @@ use App\Controller\DestroyController;
 use App\Controller\ErrorController;
 use App\Controller\HomeController;
 use App\Controller\ListCommentController;
+use App\Controller\MailSendController;
 use App\Controller\PostController;
 use App\Controller\PostsController;
 use App\Controller\SubscribeController;
@@ -94,6 +95,10 @@ try {
             $controller = new ValidateComment();
             $controller->validateComment($_GET['id']);
             break;
+        case 'mailSend':{
+            (new MailSendController())();
+            break;
+        }
     }
 
 } catch (Exception $e) {
