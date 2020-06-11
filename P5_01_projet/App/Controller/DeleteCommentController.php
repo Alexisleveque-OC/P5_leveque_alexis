@@ -12,7 +12,7 @@ class DeleteCommentController extends Controller
     {
         $manager = new CommentManager();
         $manager->deleteComment($id);
-        $this->redirect('listComment');
+        $this->redirect('listCommentUnvalidate');
     }
 
 }

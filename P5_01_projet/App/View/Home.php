@@ -46,7 +46,7 @@ $title = 'Accueil';
                 à <strong class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
                 par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
             </p>
-            <p class="col-4">Commentaires <span class="badge"></span><?= $post->getCounter() ?></p>
+            <p class="col-4">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
         </div>
         <hr>
         <?php

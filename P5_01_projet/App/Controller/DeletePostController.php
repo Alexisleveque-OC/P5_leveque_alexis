@@ -13,7 +13,7 @@ class DeletePostController extends Controller
     {
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
-        ViewLoader::render("Post", [
+        ViewLoader::render("Delete", [
             'post' => $post
         ]);
         if (isset($_POST['yes'])) {

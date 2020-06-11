@@ -8,8 +8,10 @@ use App\Service\ViewLoader;
 
 class ErrorController extends Controller
 {
-    public function __invoke()
+    public function displayError($errorMessage)
     {
-        ViewLoader::render("Error");
+        ViewLoader::render("Error" ,[
+            'errorMessage' => $errorMessage
+        ]);
     }
 }

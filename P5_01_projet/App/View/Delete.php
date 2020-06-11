@@ -15,7 +15,7 @@ $title = 'Confirmation Suppretion';
         <?= htmlspecialchars($post->getContent()); ?>
     </p>
     <p>
-        <?= htmlspecialchars($post->getUserId()); ?> ça c'est le nom de l'utilisateur normalement
+        <?= htmlspecialchars($post->getUser()->getUserName()); ?>
     </p>
     <p>Êtes vous sur de vouloir supprimer cette article ?</p>
     <form method="POST">

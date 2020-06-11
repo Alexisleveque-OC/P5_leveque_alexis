@@ -18,20 +18,20 @@ abstract class Controller
 
     {
 
-        $baseUrl = "/index.php?action=".$action;
-
-        $queryParams ="";
-        foreach ($params as $key => $value){
-            $queryParams .= "&".$key."=".$value;
+        $baseUrl = "/index.php?action=" . $action;
+        $queryParams = "";
+        if ($params !== null) {
+            foreach ($params as $key => $value) {
+                $queryParams .= "&" . $key . "=" . $value;
+            }
         }
-
-        header('Location: '. $baseUrl.$queryParams);
+        header('Location: ' . $baseUrl . $queryParams);
     }
 
     public function needLoad($file)
     {
 
         $commentCount = $this->commentManager->countCommentUnvalidate();
-        return (__DIR__ . '/../View/'.$file.'.php');
+        return (__DIR__ . '/../View/' . $file . '.php');
     }
 }

@@ -17,7 +17,7 @@ class Post extends Entity implements CheckValidityInterface
     /** @var User|null */
     protected $user;
 
-    protected $counter;
+    protected $counterCommentComment;
 
     public function __construct()
     {
@@ -160,17 +160,17 @@ class Post extends Entity implements CheckValidityInterface
     /**
      * @return mixed
      */
-    public function getCounter()
+    public function getcounterComment()
     {
-        return $this->counter;
+        return $this->counterComment;
     }
 
     /**
-     * @param mixed $counter
+     * @param mixed $counterComment
      */
-    public function setCounter($counter): void
+    public function setCounterComment($counterComment): void
     {
-        $this->counter = $counter;
+        $this->counterComment = $counterComment;
     }
     public function getErrors() : array
     {

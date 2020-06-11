@@ -39,9 +39,8 @@ class CommentManager extends Manager
             'validation' => 1,
             'post_id' => $id
             ]);
-        $result = $req->fetch();
+        $result = $req->fetchColumn();
 
-        // TODO à revoir avec fetchColumnm
         return $result;
     }
 

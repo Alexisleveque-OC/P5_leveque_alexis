@@ -11,6 +11,7 @@ use App\Controller\CreatePostController;
 use App\Controller\DeleteCommentController;
 use App\Controller\DeletePostController;
 use App\Controller\DestroyController;
+use App\Controller\ErrorController;
 use App\Controller\HomeController;
 use App\Controller\ListCommentController;
 use App\Controller\PostController;
@@ -97,6 +98,8 @@ try {
 
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
-    require('../App/View/Error.php');
+    $controller = new ErrorController();
+    $controller->displayError($errorMessage);
+//    require('../App/View/Error.php');
 
 }

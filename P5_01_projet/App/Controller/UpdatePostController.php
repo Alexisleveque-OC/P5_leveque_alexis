@@ -24,6 +24,8 @@ class UpdatePostController extends Controller
             );
             $this->redirect('post&id='.$_GET['id']);
         }
-        ViewLoader::render("PostUpdate");
+        ViewLoader::render("PostUpdate", [
+                'post' => $post
+            ]);
     }
 }

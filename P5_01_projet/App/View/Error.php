@@ -1,5 +1,5 @@
-<?php $title = 'Page d\'erreur';
-
+<?php
+$title = 'Page d\'erreur';
 ?>
 <main class="container">
     <h4>Il y a un problème</h4>

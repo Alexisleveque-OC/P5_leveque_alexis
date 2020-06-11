@@ -44,24 +44,24 @@ $title = 'Les articles';
             </p>
 
             <a class="btn btn-primary"
-               href="index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+               href="/index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
                 Modifier
             </a>
 
             <a class="btn btn-danger"
-               href="index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+               href="/index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
                 Supprimer
             </a>
-            <p class="offset-8">Commentaires <span class="badge"></span><?= $post->getCounter() ?></p>
+            <p class="offset-8">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
 
         </div>
         <hr>
     <?php endforeach;
-    if ($count[0] >= 5) {
+    if ($countPost >= 5) {
         ?>
         <ul class="pagination">page :
             <?php
-            for ($i = 0; $i <= $count[0]; $i += 5) {
+            for ($i = 0; $i <= $countPost; $i += 5) {
                 $numberPage = ($i / 5) + 1; ?>
 
                 <li><a class="btn btn-success "

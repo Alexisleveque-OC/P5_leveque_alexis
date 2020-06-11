@@ -13,8 +13,7 @@ class PostsManager extends Manager
     {
         $db = self::dbConnect();
         $req = $db->query('SELECT count(*)  FROM post');
-        $data = $req->fetch();
-//TODO : voir pout un fetchcolumn
+        $data = $req->fetchColumn();
         return $data;
     }
 
@@ -56,18 +55,17 @@ WHERE id_post = :id');
         $firstEntry = ($pageNb - 1) * 5;
         $req = $db->query('
 SELECT p.id_post , p.title, p.chapo, p.content as post_content,p.date_creation as post_date, p.date_last_update,p.user_id,
-u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date, COUNT(c.id_comment) as counter
+u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date, COUNT(c.id_comment) as counterComment
 FROM post  p
 INNER JOIN user as u ON p.user_id = u.id_user
 LEFT JOIN comment c ON c.post_id = p.id_post
 WHERE c.validation = 1
 GROUP BY p.id_post
-ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
+ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
             $posts[] = self::arrayDataToPost($row);
         }
-
         return $posts;
     }
 
@@ -91,6 +89,8 @@ ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
     {
         $db = self::dbConnect();
 
+        $req = $db->prepare('DELETE FROM comment WHERE post_id = :id');
+        $req->execute(['id' => $id]);
         $req = $db->prepare('DELETE FROM post WHERE id_post = :id');
         $req->execute(['id' => $id]);
     }
@@ -103,7 +103,7 @@ ORDER BY id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $post->setChapo($data['chapo'] ?? "");
         $post->setContent($data['post_content'] ?? "");
         $post->setDateCreation(new \DateTime($data['post_date'] ?? ''));
-        $post->setCounter($data['counter'] ?? 0);
+        $post->setcounterComment($data['counterComment'] ?? 0);
 
         if ($data['date_last_update'] !== null) {
             $post->setDateLastUpdate(new \DateTime($data['date_last_update'] ?? ''));

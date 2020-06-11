@@ -15,7 +15,7 @@ class ViewLoader
             extract($params);
         }
 
-        $commentCount = (new CommentManager())->countCommentUnvalidate();
+        $nbCommentUnvalidate = (new CommentManager())->countCommentUnvalidate();
         ob_start();
         require __DIR__ . "/../View/" . $path . ".php";
 

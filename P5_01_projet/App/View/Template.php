@@ -46,11 +46,11 @@
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
                     </li>
                     <?php
-                    if ($commentCount >= 1) {
+                    if ($nbCommentUnvalidate >= 1) {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/index.php?action=listCommentUnvalidate">
-                                Commentaires <span class="badge badge-danger"><?= $commentCount ?></span>
+                                Commentaires <span class="badge badge-danger"><?= $nbCommentUnvalidate ?></span>
                             </a>
                         </li>
                         <?php
