@@ -38,3 +38,16 @@ hr {
 .who {
     padding-bottom: 5%;
 }
+
+footer
+{
+    padding: 3%;
+    padding-bottom: 2%;
+    background-color: #222222;
+    color: aliceblue;
+}
+.social_network
+{
+    width : 50px;
+    height: 50px;
+}

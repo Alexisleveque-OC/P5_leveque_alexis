@@ -13,6 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrap/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -78,6 +79,59 @@
 <div class="starter-template" style="padding-top: 100px">
     <?= $content; ?>
 </div>
+<footer class="row">
+    <div class="col-12">
+        <div class="row">
+            <h5 class="col-1">Moi</h5>
+            <div class="col-3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="/CV/CV_Alexis_Leveque.pdf">Mon CV</a>
 
+            </div>
+            <h5 class="col-1">Contact</h5>
+            <ul class="col-3 list list-unstyled">
+                <li>E-mail : alexisblog@blog-p5.alexis-leveque.fr</li>
+                <li>La Jarrie 17220</li>
+                <ul>
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/alexis.leveque.585">
+                            <img class="social_network" src="/Image/facebook_logo.jpg" alt="Facebook logo">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/Alexisleveque-OC" class="btn btn-github">
+                            <img class="social_network" src="/Image/github_logo.png" alt="github logo">
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+            <h5 class="col-1">Plan du site</h5>
+            <ul class=" col-2 list list-unstyled">
+                <li class="col-12">
+                    <a href="index.html">
+                        Accueil
+                    </a>
+                </li>
+                <li class="col-12">
+                    <a href="films.html">
+                        Liste des films
+                    </a>
+                </li>
+                <li class="col-12">
+                    <a href="actualites.html">
+                        Actualités
+                    </a>
+                </li>
+                <li class="col-12">
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
 
 </body>
