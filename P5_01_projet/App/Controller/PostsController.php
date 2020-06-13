@@ -12,7 +12,6 @@ class PostsController extends Controller
     public function __invoke()
     {
         $manager = new PostsManager();
-//        $countPost = $manager->countPost();
         $posts = $manager->listAllPosts(5, $_GET['page'] ?? 1);
 
         ViewLoader::render("Posts", [

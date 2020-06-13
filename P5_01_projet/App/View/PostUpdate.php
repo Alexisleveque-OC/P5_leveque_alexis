@@ -11,21 +11,21 @@ if (isset($userType) && $userType == 2) {
                         <div class="controls">
                             <label>Titre :</label>
                             <input name="title" type="text" class="form-control"
-                                   value="<?= htmlspecialchars($post->getTitle()) ?>">
+                                   value="<?= strip_tags(htmlspecialchars($post->getTitle())) ?>">
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Chapô :</label>
                             <input name="chapo" type="text" class="form-control"
-                                   value="<?= htmlspecialchars($post->getChapo()) ?>">
+                                   value="<?= strip_tags(htmlspecialchars($post->getChapo())) ?>">
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Contenu : </label>
                             <textarea name="content" rows="10" cols="100" class="form-control"
-                                      style="resize:none"><?= htmlspecialchars($post->getContent()) ?>
+                                      style="resize:none"><?= strip_tags(htmlspecialchars($post->getContent())) ?>
                             </textarea>
                         </div>
                     </div>

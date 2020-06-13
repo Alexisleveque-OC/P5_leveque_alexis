@@ -12,10 +12,11 @@ class CreatePostController extends Controller
     public function addPost()
     {
         if (count($_POST) !== 0) {
+            $infos = self::refactorSupervariable($_POST);
             $post = new Post();
-            $post->setTitle($_POST['title']);
-            $post->setChapo($_POST['chapo']);
-            $post->setContent($_POST['content']);
+            $post->setTitle($infos['title']);
+            $post->setChapo($infos['chapo']);
+            $post->setContent($infos['content']);
 
             $post->getErrors();
             $errors = $post->getErrors();

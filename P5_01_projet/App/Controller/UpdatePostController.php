@@ -11,15 +11,16 @@ class UpdatePostController extends Controller
 {
     public function updatePost($id)
     {
+        $infos = self::refactorSupervariable($_POST);
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
-        if (count($_POST) !== 0) {
+        if (count($_POST) !== 0 && is_int($_GET['id'])) {
             $manager = new PostsManager();
             $manager->updatePost(
                 $_GET['id'],
-                $_POST['title'],
-                $_POST['chapo'],
-                $_POST['content'],
+                $infos['title'],
+                $infos['chapo'],
+                $infos['content'],
                 $_SESSION['id_user']
             );
             $this->redirect('post&id='.$_GET['id']);

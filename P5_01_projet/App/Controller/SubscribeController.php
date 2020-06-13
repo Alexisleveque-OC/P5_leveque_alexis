@@ -13,10 +13,11 @@ class SubscribeController extends  Controller
     public function subscribe()
     {
         if (count($_POST) !== 0) {
+            $infos = self::refactorSupervariable($_POST);
             $user = new User();
-            $user->setUserName($_POST['user_name']);
-            $user->setPassword($_POST['password']);
-            $user->setEmail($_POST['email']);
+            $user->setUserName($infos['user_name']);
+            $user->setPassword($infos['password']);
+            $user->setEmail($infos['email']);
 
             $user->getErrors();
             $errors = $user->getErrors();

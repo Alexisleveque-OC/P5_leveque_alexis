@@ -7,16 +7,16 @@ $title = 'Confirmation Suppression';
     <?php if ($userType == 2) { ?>
         <div class="one_post card">
             <h2 class="card-title">
-                <?= htmlspecialchars($post->getTitle()); ?>
+                <?= strip_tags(htmlspecialchars($post->getTitle())); ?>
             </h2>
             <h4 class="card-title">
-                <?= htmlspecialchars($post->getChapo()); ?>
+                <?= strip_tags(htmlspecialchars($post->getChapo())); ?>
             </h4>
             <p class="card-text">
-                <?= htmlspecialchars($post->getContent()); ?>
+                <?= strip_tags(htmlspecialchars($post->getContent())); ?>
             </p>
             <p class="card-footer">
-                <strong>Ecrit par :</strong><?= htmlspecialchars($post->getUser()->getUserName()); ?>
+                <strong>Ecrit par :</strong><?= strip_tags(htmlspecialchars($post->getUser()->getUserName())); ?>
             </p>
         </div>
         <p>Êtes vous sur de vouloir supprimer cette article ?</p>
@@ -30,3 +30,4 @@ $title = 'Confirmation Suppression';
     }
     ?>
 </main>
+)

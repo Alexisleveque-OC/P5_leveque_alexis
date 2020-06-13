@@ -11,16 +11,17 @@ class DeletePostController extends Controller
 {
     public function deletePost($id)
     {
+        $infos = self::refactorSupervariable($_POST);
         $manager = new PostsManager();
         $post = $manager->listOnce($id);
         ViewLoader::render("Delete", [
             'post' => $post
         ]);
-        if (isset($_POST['yes'])) {
+        if (isset($infos['yes'])) {
             $manager = new PostsManager();
             $deletedPost = $manager->deletePost($id);
             $this->redirect('posts');
-        } elseif (isset($_POST['no'])) {
+        } elseif (isset($infos['no'])) {
             $this->redirect('posts');
         }
     }

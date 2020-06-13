@@ -13,7 +13,8 @@ class HomeController extends Controller
     public function __invoke()
     {
         if (count($_POST) !== 0) {
-            self::sendMail($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message']);
+            $infos = self::refactorSupervariable($_POST);
+            self::sendMail($infos['name'], $infos['email'], $infos['phone'], $infos['message']);
             $this->redirect('mailSend');
         }
         $manager = new PostsManager();

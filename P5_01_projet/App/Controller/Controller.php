@@ -17,10 +17,16 @@ abstract class Controller
         $this->userManager = new UserManager();
     }
 
-    public function redirect($action, array $params = null)
-
+    protected static function refactorSupervariable($infos)
     {
+        foreach ($infos as $key => $value) {
+            $value = $_POST[$key];
+        }
+        return $infos;
+    }
 
+    public function redirect($action, array $params = null)
+    {
         $baseUrl = "/index.php?action=" . $action;
         $queryParams = "";
         if ($params !== null) {

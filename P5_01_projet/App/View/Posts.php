@@ -12,17 +12,17 @@ $title = 'Les articles';
         <div class="row card">
             <div class="card-body">
                 <h2 class="col-12 card-title">
-                    <?= htmlspecialchars($post->getTitle()); ?>
+                    <?= strip_tags(htmlspecialchars($post->getTitle())); ?>
                 </h2>
                 <h4 class="col-12 card-title">
                     <?= $post->getChapo(); ?>
                 </h4>
                 <p class="col-12 card-text">
-                    <?= htmlspecialchars(substr($post->getContent(), 0, 250));
+                    <?= strip_tags(htmlspecialchars(substr($post->getContent(), 0, 250)));
                     ?>
                     ...<br>
                     <a class="btn btn-articles"
-                       href="/index.php?action=post&id=<?= htmlspecialchars($post->getIdPost()) ?>">Voir la suite </a>
+                       href="/index.php?action=post&id=<?= strip_tags(htmlspecialchars($post->getIdPost())) ?>">Voir la suite </a>
 
                 </p>
             </div>
@@ -31,18 +31,18 @@ $title = 'Les articles';
                 if ($post->getDateLastUpdate() === null) {
                     ?>
                     Ecrit le <strong
-                            class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
+                            class="col-2"><?= strip_tags(htmlspecialchars($post->getDateCreation()->format('d-m-Y'))) ?></strong>
                     à <strong
-                            class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
-                    par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                            class="col-2"><?= strip_tags(htmlspecialchars($post->getDateCreation()->format('H:m:s'))) ?></strong>
+                    par <strong class="col-2"><?= strip_tags(htmlspecialchars($post->getUser()->getUserName())); ?></strong>
                     <?php
                 } else {
                     ?>
                     Dernière modification : <strong
-                            class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                            class="col-2"><?= strip_tags(htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y'))) ?></strong>
                     à <strong
-                            class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
-                    par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                            class="col-2"><?= strip_tags(htmlspecialchars($post->getDateLastUpdate()->format('H:m:s'))) ?></strong>
+                    par <strong class="col-2"><?= strip_tags(htmlspecialchars($post->getUser()->getUserName())); ?></strong>
                     <?php
                 }
                 ?>
@@ -52,12 +52,12 @@ $title = 'Les articles';
             <div class="row">
                 <?php if (isset($userType) && $userType == 2) { ?>
                     <a class="btn btn-primary btn_comment offset-3 col-2"
-                       href="/index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+                       href="/index.php?action=updatePost&id=<?= strip_tags(htmlspecialchars($post->getIdPost())) ?>">
                         Modifier
                     </a>
 
                     <a class="btn btn-danger btn_comment offset-2 col-2"
-                       href="/index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+                       href="/index.php?action=deletePost&id=<?= strip_tags(htmlspecialchars($post->getIdPost())) ?>">
                         Supprimer
                     </a>
                 <?php } ?>

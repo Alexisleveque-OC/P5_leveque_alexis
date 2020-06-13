@@ -12,8 +12,9 @@ class AddCommentController extends Controller
     public function addComment($id)
     {
         if (count($_POST) === 1) {
+            $infos = self::refactorSupervariable($_POST);
             $comment = new Comment();
-            $comment->setContent($_POST['content']);
+            $comment->setContent($infos['content']);
 
             $comment->getErrors();
             $errors = $comment->getErrors();
