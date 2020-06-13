@@ -9,21 +9,24 @@ $title = 'Les articles';
 
     <?php }
     foreach ($posts as $post): ?>
-        <div class="row jumbotron">
-            <h2 class="col-12">
-                <?= htmlspecialchars($post->getTitle()); ?>
-            </h2>
-            <h4 class="col-12">
-                <?= $post->getChapo(); ?>
-            </h4>
-            <p class="col-12">
-                <?= htmlspecialchars(substr($post->getContent(), 0, 250));
-                ?>
-                ...<br>
-                <a href="/index.php?action=post&id=<?= htmlspecialchars($post->getIdPost()) ?>">Voir la suite </a>
+        <div class="row card">
+            <div class="card-body">
+                <h2 class="col-12 card-title">
+                    <?= htmlspecialchars($post->getTitle()); ?>
+                </h2>
+                <h4 class="col-12 card-title">
+                    <?= $post->getChapo(); ?>
+                </h4>
+                <p class="col-12 card-text">
+                    <?= htmlspecialchars(substr($post->getContent(), 0, 250));
+                    ?>
+                    ...<br>
+                    <a class="btn btn-articles"
+                       href="/index.php?action=post&id=<?= htmlspecialchars($post->getIdPost()) ?>">Voir la suite </a>
 
-            </p>
-            <p class="col-12">
+                </p>
+            </div>
+            <div class="col-12 card-footer">
                 <?php
                 if ($post->getDateLastUpdate() === null) {
                     ?>
@@ -43,31 +46,34 @@ $title = 'Les articles';
                     <?php
                 }
                 ?>
-            </p>
-            <?php if (isset($userType) && $userType == 2) { ?>
-                <a class="btn btn-primary"
-                   href="/index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
-                    Modifier
-                </a>
-
-                <a class="btn btn-danger"
-                   href="/index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
-                    Supprimer
-                </a>
                 <p class="offset-8">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
-            <?php } ?>
+
+            </div>
+            <div class="row">
+                <?php if (isset($userType) && $userType == 2) { ?>
+                    <a class="btn btn-primary btn_comment offset-3 col-2"
+                       href="/index.php?action=updatePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+                        Modifier
+                    </a>
+
+                    <a class="btn btn-danger btn_comment offset-2 col-2"
+                       href="/index.php?action=deletePost&id=<?= htmlspecialchars($post->getIdPost()) ?>">
+                        Supprimer
+                    </a>
+                <?php } ?>
+            </div>
         </div>
         <hr>
     <?php endforeach;
     if ($countPost >= 5) {
         ?>
-        <ul class="pagination">page :
+        <ul class="row offset-4 col-4 pagination"><h6>Page :</h6>
             <?php
             for ($i = 0; $i <= $countPost; $i += 5) {
                 $numberPage = ($i / 5) + 1; ?>
-
-                <li><a class="btn btn-success "
-                       href="/index.php?action=posts&page=<?= $numberPage ?>"><?= $numberPage ?></a></li>
+                <li class="col-1 offset-1"><a class=" btn btn-pagination"
+                                              href="/index.php?action=posts&page=<?= $numberPage ?>"><?= $numberPage ?></a>
+                </li>
             <?php } ?>
         </ul>
     <?php } ?>

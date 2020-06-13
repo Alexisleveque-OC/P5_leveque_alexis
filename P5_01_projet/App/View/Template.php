@@ -13,7 +13,6 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/bootstrap/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -79,7 +78,7 @@
 <div class="starter-template" style="padding-top: 100px">
     <?= $content; ?>
 </div>
-<footer class="row">
+<footer class="row ">
     <div class="col-12">
         <div class="row">
             <h5 class="col-1">Moi</h5>
@@ -110,24 +109,24 @@
             <h5 class="col-1">Plan du site</h5>
             <ul class=" col-2 list list-unstyled">
                 <li class="col-12">
-                    <a href="index.html">
+                    <a class="nav-link" href="/index.html">
                         Accueil
                     </a>
                 </li>
                 <li class="col-12">
-                    <a href="films.html">
-                        Liste des films
+                    <a class="nav-link" href="/index.php?action=posts">
+                        Les articles
                     </a>
                 </li>
-                <li class="col-12">
-                    <a href="actualites.html">
-                        Actualités
-                    </a>
-                </li>
-                <li class="col-12">
-                    <a href="contact.html">
-                        Contact
-                    </a>
+                <?php if (!isset($_SESSION['user_name'])) { ?>
+
+                    <li class="col-12">
+                        <a class="nav-link" href="/index.php?action=connection">Connexion</a>
+                    </li>
+                    <li class="col-12">
+                        <a class="nav-link" href="/index.php?action=subscribe">Inscription</a>
+                    </li>
+                <?php } ?>
                 </li>
             </ul>
         </div>

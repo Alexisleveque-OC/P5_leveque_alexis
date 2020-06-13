@@ -4,8 +4,8 @@ if (isset($userType) && $userType == 2) {
     ?>
     <main class="container">
         <div class="row">
-            <div class="col-lg-8 mb-4">
-                <h3>Inscription</h3>
+            <div class="offset-2 col-8">
+                <h3>Modification d'un article</h3>
                 <form name="addPost" method="POST">
                     <div class="control-group form-group">
                         <div class="controls">

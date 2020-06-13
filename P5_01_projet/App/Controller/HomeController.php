@@ -42,7 +42,7 @@ class HomeController extends Controller
         $message = strip_tags(htmlspecialchars($message));
 
         $email_subject = "Envoyer depuis le blog du projet_5 par:  $name";
-        $email_body = "Vous avez reçu un nouvelle e-mail.\n\n" . "De:\n\n $name\n\nAdresse e-mail de l'éxpediteur: $email_address\n\nNuméro de téléphone: $phone\n\nMessage:\n$message";
+        $email_body = "Vous venez de recevoir un nouvel e-mail.\n\n" . "De:\n\n $name\n\nAdresse e-mail de l'expediteur: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
         $headers = "de : noreply@gmail.com\n";
         $headers .= "Reply-To: $email_address";
         mail(MAIL_TO, $email_subject, $email_body, $headers);
