@@ -9,17 +9,17 @@ use App\Service\ViewLoader;
 
 class DeletePostController extends Controller
 {
-    public function deletePost($id)
+    public function deletePost($idPost)
     {
         $infos = self::refactorSupervariable($_POST);
         $manager = new PostsManager();
-        $post = $manager->listOnce($id);
+        $post = $manager->listOnce($idPost);
         ViewLoader::render("Delete", [
             'post' => $post
         ]);
         if (isset($infos['yes'])) {
             $manager = new PostsManager();
-            $deletedPost = $manager->deletePost($id);
+            $deletedPost = $manager->deletePost($idPost);
             $this->redirect('posts');
         } elseif (isset($infos['no'])) {
             $this->redirect('posts');

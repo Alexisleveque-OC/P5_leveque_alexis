@@ -5,7 +5,6 @@ namespace App\Manager;
 
 use App\Entity\User;
 use \PDO;
-use \Exception;
 
 
 class UserManager extends Manager
@@ -69,11 +68,11 @@ class UserManager extends Manager
         return $userType;
     }
 
-    public  function listInfoUser($id)
+    public  function listInfoUser($idUser)
     {
         $db = self::dbConnect();
         $req = $db->prepare('SELECT * , date_creation as user_date FROM user WHERE id_user = :id_user ') ;
-        $req->execute(['id_user' => $id]);
+        $req->execute(['id_user' => $idUser]);
         $data = $req->fetch( PDO::FETCH_ASSOC);
         $user = $this->arrayDataToUser($data);
         return $user;

@@ -5,7 +5,6 @@ namespace App\Controller;
 
 
 use App\Manager\PostsManager;
-use App\Manager\UserManager;
 use App\Service\ViewLoader;
 
 class HomeController extends Controller

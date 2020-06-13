@@ -13,6 +13,7 @@ class CreatePostController extends Controller
     {
         if (count($_POST) !== 0) {
             $infos = self::refactorSupervariable($_POST);
+            $infosSession = self::refactorSupervariable($_SESSION);
             $post = new Post();
             $post->setTitle($infos['title']);
             $post->setChapo($infos['chapo']);
@@ -25,10 +26,10 @@ class CreatePostController extends Controller
             }
             $manager = new PostsManager();
             $manager->addPost(
-                $_POST['title'],
-                $_POST['chapo'],
-                $_POST['content'],
-                $_SESSION['id_user']
+                $infos['title'],
+                $infos['chapo'],
+                $infos['content'],
+                $infosSession['id_user']
             );
             $this->redirect('posts');
         }

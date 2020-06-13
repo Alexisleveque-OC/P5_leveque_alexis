@@ -9,10 +9,11 @@ use App\Manager\CommentManager;
 
 class AddCommentController extends Controller
 {
-    public function addComment($id)
+    public function addComment($idPost)
     {
         if (count($_POST) === 1) {
             $infos = self::refactorSupervariable($_POST);
+            $infosSession = self::refactorSupervariable($_SESSION);
             $comment = new Comment();
             $comment->setContent($infos['content']);
 
@@ -25,11 +26,11 @@ class AddCommentController extends Controller
 
             $manager = new CommentManager();
             $manager->addComment(
-                $_POST['content'],
-                $_SESSION['id_user'],
-                $id
+                $infos['content'],
+                $infosSession['id_user'],
+                $idPost
             );
-            $this->redirect("post", ["id" => $id]);
+            $this->redirect("post", ["id" => $idPost]);
         }
         throw new \Exception('Tous les champ ne sont pas remplis');
 

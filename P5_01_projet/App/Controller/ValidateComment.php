@@ -8,10 +8,10 @@ use App\Manager\CommentManager;
 
 class ValidateComment extends Controller
 {
-    public function validateComment($id)
+    public function validateComment($idComment)
     {
         $manager = new CommentManager();
-        $manager->validateComment($id);
+        $manager->validateComment($idComment);
         $this->redirect('listCommentUnvalidate');
     }
 }

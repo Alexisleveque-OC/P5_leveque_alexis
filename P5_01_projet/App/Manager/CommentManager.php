@@ -31,13 +31,13 @@ class CommentManager extends Manager
         return $result;
     }
 
-    public function countCommentPost($id)
+    public function countCommentPost($idPost)
     {
         $db = self::dbConnect();
         $req = $db->prepare('SELECT count(*) FROM comment WHERE validation = :validation AND post_id = :post_id');
         $req->execute([
             'validation' => 1,
-            'post_id' => $id
+            'post_id' => $idPost
             ]);
         $result = $req->fetchColumn();
 
@@ -45,7 +45,7 @@ class CommentManager extends Manager
     }
 
 
-    public function listComments($id, $limit, $pageNb)
+    public function listComments($idPost, $limit, $pageNb)
     {
         $comments = [];
         $db = self::dbConnect();
@@ -57,7 +57,7 @@ FROM comment c
 INNER JOIN user u ON c.user_id = u.id_user
         WHERE post_id = :post_id AND validation = :validation ORDER BY id_comment DESC LIMIT '.$firstEntry.','. $limit);
         $req->execute([
-            'post_id' => $id,
+            'post_id' => $idPost,
             'validation' => 1
         ]);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -69,13 +69,13 @@ INNER JOIN user u ON c.user_id = u.id_user
         return $comments;
     }
 
-    public function deleteComment($id)
+    public function deleteComment($idcomment)
     {
 
         $db = self::dbConnect();
 
         $req = $db->prepare('DELETE FROM comment WHERE id_comment = :id');
-        $req->execute(['id' => $id]);
+        $req->execute(['id' => $idcomment]);
 
     }
 
@@ -97,7 +97,7 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
         return $comments;
     }
 
-    public function validateComment($id)
+    public function validateComment($idComment)
     {
         $db = self::dbConnect();
         $req = $db->prepare('UPDATE comment 
@@ -105,7 +105,7 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
                                     WHERE id_comment = :id_comment');
         $req->execute([
             'validation' => 1,
-            'id_comment' => $id
+            'id_comment' => $idComment
         ]);
     }
 

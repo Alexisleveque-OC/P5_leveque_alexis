@@ -2,9 +2,6 @@
 
 namespace App\Entity;
 
-
-
-
 class User extends Entity implements CheckValidityInterface
 {
     protected $id_user;

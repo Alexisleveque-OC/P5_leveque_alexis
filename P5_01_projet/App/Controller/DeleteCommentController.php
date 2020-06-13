@@ -8,10 +8,10 @@ use App\Manager\CommentManager;
 
 class DeleteCommentController extends Controller
 {
-    public function deleteComment($id)
+    public function deleteComment($idComment)
     {
         $manager = new CommentManager();
-        $manager->deleteComment($id);
+        $manager->deleteComment($idComment);
         $this->redirect('listCommentUnvalidate');
     }
 

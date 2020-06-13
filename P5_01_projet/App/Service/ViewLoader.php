@@ -9,7 +9,6 @@ use App\Manager\UserManager;
 class ViewLoader
 {
 
-
     static public function render($path, $params = null)
     {
 

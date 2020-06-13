@@ -32,7 +32,7 @@ class PostsManager extends Manager
         ]);
     }
 
-    public function listOnce($id)
+    public function listOnce($idPost)
     {
         $db = self::dbConnect();
 
@@ -42,7 +42,7 @@ u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date
 FROM post AS p 
 INNER JOIN user AS u ON p.user_id = u.id_user
 WHERE id_post = :id');
-        $req->execute(['id' => $id]);
+        $req->execute(['id' => $idPost]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $post = PostsManager::arrayDataToPost($data);
         return $post;
@@ -69,7 +69,7 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         return $posts;
     }
 
-    public function updatePost($id, $title, $chapo, $content, $user_id)
+    public function updatePost($idPost, $title, $chapo, $content, $user_id)
     {
         $db = self::dbConnect();
 
@@ -77,7 +77,7 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
                                     SET title = :title ,chapo = :chapo , content = :content , date_last_update = NOW(),user_id = :user_id 
                                     WHERE id_post = :id');
         $req->execute([
-            'id' => $id,
+            'id' => $idPost,
             'title' => $title,
             'chapo' => $chapo,
             'content' => $content,
@@ -85,14 +85,14 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         ]);
     }
 
-    public function deletePost($id)
+    public function deletePost($idPost)
     {
         $db = self::dbConnect();
 
         $req = $db->prepare('DELETE FROM comment WHERE post_id = :id');
-        $req->execute(['id' => $id]);
+        $req->execute(['id' => $idPost]);
         $req = $db->prepare('DELETE FROM post WHERE id_post = :id');
-        $req->execute(['id' => $id]);
+        $req->execute(['id' => $idPost]);
     }
 
     public static function arrayDataToPost($data)

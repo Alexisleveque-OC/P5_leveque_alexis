@@ -9,11 +9,13 @@ use App\Service\ViewLoader;
 
 class UpdatePostController extends Controller
 {
-    public function updatePost($id)
+    public function updatePost($idPost)
     {
         $infos = self::refactorSupervariable($_POST);
+        $infosSession = self::refactorSupervariable($_SESSION);
+
         $manager = new PostsManager();
-        $post = $manager->listOnce($id);
+        $post = $manager->listOnce($idPost);
         if (count($_POST) !== 0 && is_int($_GET['id'])) {
             $manager = new PostsManager();
             $manager->updatePost(
@@ -21,7 +23,7 @@ class UpdatePostController extends Controller
                 $infos['title'],
                 $infos['chapo'],
                 $infos['content'],
-                $_SESSION['id_user']
+                $infosSession['id_user']
             );
             $this->redirect('post&id='.$_GET['id']);
         }

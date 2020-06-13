@@ -14,6 +14,7 @@ class SubscribeController extends  Controller
     {
         if (count($_POST) !== 0) {
             $infos = self::refactorSupervariable($_POST);
+
             $user = new User();
             $user->setUserName($infos['user_name']);
             $user->setPassword($infos['password']);
@@ -26,13 +27,13 @@ class SubscribeController extends  Controller
             }
 
             $manager = new UserManager();
-            if ($_POST['password'] === $_POST['password_confirmation']) {
-                $manager->verifUser($_POST['user_name']);
+            if ($infos['password'] === $infos['password_confirmation']) {
+                $manager->verifUser($infos['user_name']);
 
                 $data = $manager->addUser(
-                    $_POST['user_name'],
-                    $_POST['password'],
-                    $_POST['email'],
+                    $infos['user_name'],
+                    $infos['password'],
+                    $infos['email'],
                     1
                 );
                 $_SESSION['user_name'] = $data['user_name'];
