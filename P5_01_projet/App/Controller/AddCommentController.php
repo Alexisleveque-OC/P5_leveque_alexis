@@ -4,7 +4,6 @@
 namespace App\Controller;
 
 
-use App\Entity\CheckValidityInterface;
 use App\Entity\Comment;
 use App\Manager\CommentManager;
 
@@ -30,8 +29,8 @@ class AddCommentController extends Controller
                 $id
             );
             $this->redirect("post", ["id" => $id]);
-        } else {
-            throw new \Exception('Tous les champ ne sont pas remplis');
         }
+        throw new \Exception('Tous les champ ne sont pas remplis');
+
     }
 }
