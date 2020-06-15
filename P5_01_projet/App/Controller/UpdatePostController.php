@@ -12,7 +12,7 @@ class UpdatePostController extends Controller
     public function updatePost($idPost)
     {
         $infos = self::refactorSupervariable($_POST);
-        $infosSession = self::refactorSupervariable($_SESSION);
+//        $infosSession = self::refactorSupervariable($_SESSION);
 
         $manager = new PostsManager();
         $post = $manager->listOnce($idPost);
@@ -23,7 +23,7 @@ class UpdatePostController extends Controller
                 $infos['title'],
                 $infos['chapo'],
                 $infos['content'],
-                $infosSession['id_user']
+                $_SESSION['id_user']
             );
             $this->redirect('post&id='.$_GET['id']);
         }

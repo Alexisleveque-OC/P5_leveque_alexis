@@ -3,7 +3,7 @@ $title = 'Subscribe';
 ?>
 <main class="container">
     <div class="row">
-        <div class="offset-2 col-8 ">
+        <div class="offset-lg-2 col-lg-8 col-sm-12 ">
             <h3>Inscription</h3>
             <form name="addUser" id="userForm" method="POST">
                 <div class="control-group form-group">

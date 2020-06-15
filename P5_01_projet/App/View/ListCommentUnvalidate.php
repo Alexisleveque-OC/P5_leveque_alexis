@@ -29,11 +29,11 @@ $title = 'liste des commentaires à valider';
                                 class="col-2"><?= strip_tags(htmlspecialchars($comment->getDateCreation()->format('H:m:s'))) ?></strong>
                     </p>
                     <div class="row ">
-                        <a class="btn btn-danger btn_comment offset-3 col-2"
+                        <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"
                            href='/index.php?action=deleteComment&id=<?= strip_tags(htmlspecialchars($comment->getIdComment())) ?>'>
                         Supprimer
                         </a>
-                        <a class="btn btn-primary btn_comment offset-2 col-2"
+                        <a class="btn btn-primary btn_comment offset-md-3 col-md-2 col-sm-6"
                            href='/index.php?action=validateComment&id=<?= strip_tags(htmlspecialchars($comment->getIdComment())) ?>'>
                         Valider
                         </a>

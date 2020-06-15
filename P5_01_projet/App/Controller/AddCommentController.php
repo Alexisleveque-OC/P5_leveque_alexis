@@ -13,7 +13,7 @@ class AddCommentController extends Controller
     {
         if (count($_POST) === 1) {
             $infos = self::refactorSupervariable($_POST);
-            $infosSession = self::refactorSupervariable($_SESSION);
+//            $infosSession = self::refactorSupervariable($_SESSION);
             $comment = new Comment();
             $comment->setContent($infos['content']);
 
@@ -27,7 +27,7 @@ class AddCommentController extends Controller
             $manager = new CommentManager();
             $manager->addComment(
                 $infos['content'],
-                $infosSession['id_user'],
+                $_SESSION['id_user'],
                 $idPost
             );
             $this->redirect("post", ["id" => $idPost]);

@@ -40,26 +40,26 @@ $title = 'PostView';
     </div>
     <hr>
     <div class="offset-1">
-    <h2 class="title-box">Commentaires</h2>
-    <?php if (isset($userType) && $userType >= 1) { ?>
+        <h2 class="title-box">Commentaires</h2>
+        <?php if (isset($userType) && $userType >= 1) { ?>
         <form action="/index.php?action=addComment&id=<?= $post->getIdPost() ?>" method="post">
 
             <label for="comment">Ajouter un commentaire</label><br/>
-            <textarea class="form-control col-6" rows="5" id="comment" name="content"></textarea>
+            <textarea class="form-control col-md-6 col-sm-12" rows="5" id="comment" name="content"></textarea>
 
             <input class="btn btn-primary" id="submit-comment" type="submit"/>
 
         </form>
     </div>
     <hr>
-        <?php
+    <?php
     }
     foreach ($comments as $comment) :
 
         ?>
 
         <div class="row comment">
-            <h5 class="col-2 user">
+            <h5 class="col-md-2 col-sm-12 user">
                 <?= strip_tags(htmlspecialchars($comment->getUser()->getUsername())); ?>
             </h5>
             <div class="col-10">

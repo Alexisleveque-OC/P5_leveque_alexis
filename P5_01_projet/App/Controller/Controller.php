@@ -24,6 +24,11 @@ abstract class Controller
                 $value = $_POST[$key];
             }
         }
+//        if (isset($_SESSION)) {
+//            foreach ($infos as $key => $value) {
+//                $value = $_SESSION[$key];
+//            }
+//        }
         return $infos;
     }
 

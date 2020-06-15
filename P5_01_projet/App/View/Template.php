@@ -91,8 +91,8 @@
             </div>
             <h5 class="col-1">Contact</h5>
             <ul class="col-3 list list-unstyled">
-                <li>E-mail : alexisblog@blog-p5.alexis-leveque.fr</li>
-                <li>La Jarrie 17220</li>
+                <li>- E-mail : alexisblog@blog-p5.alexis-leveque.fr</li>
+                <li>- La Jarrie 17220</li>
                 <ul>
                     <li class="list-inline-item">
                         <a href="https://www.facebook.com/alexis.leveque.585">

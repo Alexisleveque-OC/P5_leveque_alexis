@@ -51,12 +51,12 @@ $title = 'Les articles';
             </div>
             <div class="row">
                 <?php if (isset($userType) && $userType == 2) { ?>
-                    <a class="btn btn-primary btn_comment offset-3 col-2"
+                    <a class="btn btn-primary btn_comment offset-md-3 col-md-2 col-sm-6"
                        href="/index.php?action=updatePost&id=<?= strip_tags(htmlspecialchars($post->getIdPost())) ?>">
                         Modifier
                     </a>
 
-                    <a class="btn btn-danger btn_comment offset-2 col-2"
+                    <a class="btn btn-danger btn_comment offset-md-2 col-md-2 col-sm-6"
                        href="/index.php?action=deletePost&id=<?= strip_tags(htmlspecialchars($post->getIdPost())) ?>">
                         Supprimer
                     </a>
@@ -67,7 +67,7 @@ $title = 'Les articles';
     <?php endforeach;
     if ($countPost >= 5) {
         ?>
-        <ul class="row offset-4 col-4 pagination"><h6>Page :</h6>
+        <ul class="row offset-lg-4 col-lg-4 col-md-12 pagination"><h6>Page :</h6>
             <?php
             for ($i = 0; $i <= $countPost; $i += 5) {
                 $numberPage = ($i / 5) + 1; ?>

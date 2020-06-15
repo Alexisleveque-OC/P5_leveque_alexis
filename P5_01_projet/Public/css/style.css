@@ -138,3 +138,9 @@ form {
 .one_post {
   border: 0;
 }
+
+@media (max-width : 768px){
+  footer{
+    visibility: hidden;
+  }
+}

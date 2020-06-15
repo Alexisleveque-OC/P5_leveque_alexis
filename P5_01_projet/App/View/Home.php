@@ -10,10 +10,10 @@ $title = 'Accueil';
 </header>
 <main class="container home">
     <div class="row">
-        <h2 class="col-4 who">
+        <h2 class="col-md-4 col-xs-12 who">
             Qui suis-je?
         </h2>
-        <p class="col-8">
+        <p class="col-md-8 col-xs-12">
             Et harum quidem rerum facilis est et expedita distinctio. Non numquam eius modi tempora incidunt ut
             labore et dolore magnam aliquam quaerat voluptatem. Nam libero tempore, cum soluta nobis est eligendi
             optio cumque nihil impedit quo minus id quod maxime placeat.
@@ -27,7 +27,7 @@ $title = 'Accueil';
     <div class="row">
         <?php foreach ($posts as $post): ?>
 
-            <div class="card col-4">
+            <div class="card col-lg-4 col-sm-12">
                 <div class="card-body">
                     <div class="card-title">
                         <h2 class="col-12">
@@ -80,7 +80,7 @@ $title = 'Accueil';
     </div>
     <hr>
     <div class="row">
-        <div class="offset-2 col-lg-8 mb-4">
+        <div class="offset-lg-2 col-md-8 ">
             <h3 class="title-box">Contact</h3>
             <form name="sendMail" id="contactForm" method="POST">
                 <div class="control-group form-group">
