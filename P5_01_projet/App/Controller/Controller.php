@@ -19,8 +19,10 @@ abstract class Controller
 
     protected static function refactorSupervariable($infos)
     {
-        foreach ($infos as $key => $value) {
-            $value = $_POST[$key];
+        if (isset($_POST)) {
+            foreach ($infos as $key => $value) {
+                $value = $_POST[$key];
+            }
         }
         return $infos;
     }
@@ -39,7 +41,6 @@ abstract class Controller
 
     public function needLoad($file)
     {
-        $userType = $this->userManager->searchTypeUser($_SESSION['user_name']);
         $commentCount = $this->commentManager->countCommentUnvalidate();
         return (__DIR__ . '/../View/' . $file . '.php');
     }
