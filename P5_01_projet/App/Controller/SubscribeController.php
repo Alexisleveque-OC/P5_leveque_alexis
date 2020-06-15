@@ -39,9 +39,8 @@ class SubscribeController extends  Controller
                 $_SESSION['user_name'] = $data['user_name'];
                 $_SESSION['id_user'] = $data['id_user'];
                 $this->redirect('home');
-            } else {
-                throw new \Exception('Les mots de passes ne sont pas identiques.');
             }
+            throw new \Exception('Les mots de passes ne sont pas identiques.');
         }
 
         ViewLoader::render("Subscribe");

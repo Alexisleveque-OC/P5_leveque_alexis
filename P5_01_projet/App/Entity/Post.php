@@ -17,7 +17,7 @@ class Post extends Entity implements CheckValidityInterface
     /** @var User|null */
     protected $user;
 
-    protected $counterCommentComment;
+    protected $counterComment;
 
     public function __construct()
     {

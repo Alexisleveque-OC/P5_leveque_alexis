@@ -49,10 +49,8 @@ try {
             if (!isset($_GET['id'])) {
                 throw  new Exception('Erreur 404 ');
             }
-            if (is_int($_GET['id'])) {
-                $controller = new PostController();
-                $controller->listOnce($_GET['id']);
-            }
+            $controller = new PostController();
+            $controller->listOnce($_GET['id']);
             break;
         case 'deletePost':
             if (!isset($_GET['id'])) {
@@ -80,7 +78,7 @@ try {
             $controller->addComment($_GET['id']);
             break;
         case 'deleteComment':
-            if (!isset($_GET['id'])) {
+            if (!isset($_GET['id'] )) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeleteCommentController();
@@ -97,8 +95,7 @@ try {
             $controller = new ValidateComment();
             $controller->validateComment($_GET['id']);
             break;
-        case 'mailSend':
-        {
+        case 'mailSend':{
             (new MailSendController())();
             break;
         }
