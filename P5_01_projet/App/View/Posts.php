@@ -9,15 +9,15 @@ $title = 'Les articles';
 
     <?php }
     foreach ($posts as $post): ?>
-        <div class="row card">
+        <div class="card">
             <div class="card-body">
-                <h2 class="col-12 card-title">
+                <h2 class="card-title">
                     <?= strip_tags(htmlspecialchars($post->getTitle())); ?>
                 </h2>
-                <h4 class="col-12 card-title">
+                <h4 class="card-title">
                     <?= $post->getChapo(); ?>
                 </h4>
-                <p class="col-12 card-text">
+                <p class="card-text">
                     <?= strip_tags(htmlspecialchars(substr($post->getContent(), 0, 250)));
                     ?>
                     ...<br>
@@ -26,7 +26,7 @@ $title = 'Les articles';
 
                 </p>
             </div>
-            <div class="col-12 card-footer">
+            <div class="card-footer">
                 <?php
                 if ($post->getDateLastUpdate() === null) {
                     ?>

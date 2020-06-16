@@ -3,18 +3,20 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Manager\UserManager;
-use App\Service\ViewLoader;
 
 class ConnectionController extends Controller
 {
     public function connection()
     {
         if (count($_POST) !== 0) {
-            $infos = self::refactorSupervariable($_POST);
+            $user = new User();
+            $user->setUserName(filter_input(INPUT_POST,'user_name'));
+            $user->setPassword(filter_input(INPUT_POST,'password'));
 
             $manager = new UserManager();
-            $user = $manager->verifPass($infos['user_name'], $infos['password']);
+            $user = $manager->verifPass($user->getUserName(), $user->getPassword());
             $this->connectUser($user);
 
             $this->redirect('home');

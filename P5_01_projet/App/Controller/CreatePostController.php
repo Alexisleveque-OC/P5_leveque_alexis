@@ -5,19 +5,19 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Manager\PostsManager;
-use App\Service\ViewLoader;
 
 class CreatePostController extends Controller
 {
     public function addPost()
     {
         if (count($_POST) !== 0) {
-            $infos = self::refactorSupervariable($_POST);
-            $infosSession = self::refactorSupervariable($_SESSION);
+//            $infos = self::refactorSupervariable($_POST);
+//            $infosSession = self::refactorSupervariable($_SESSION);
             $post = new Post();
-            $post->setTitle($infos['title']);
-            $post->setChapo($infos['chapo']);
-            $post->setContent($infos['content']);
+            $post->setTitle(filter_input(INPUT_POST,'title'));
+            $post->setChapo(filter_input(INPUT_POST,'chapo'));
+            $post->setContent(filter_input(INPUT_POST,'content'));
+            $post->setUserId($_SESSION['id_user']);
 
             $post->getErrors();
             $errors = $post->getErrors();
@@ -26,11 +26,9 @@ class CreatePostController extends Controller
             }
             $manager = new PostsManager();
             $manager->addPost(
-                $infos['title'],
-                $infos['chapo'],
-                $infos['content'],
-                $infosSession['id_user']
+                $post
             );
+            $this->addMessageFlash("L'article à bien été enregistré", self::TYPE_FLASH_SUCCESS);
             $this->redirect('posts');
         }
         $this->render("PostCreation");

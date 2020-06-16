@@ -13,16 +13,16 @@ $title = 'liste des commentaires à valider';
             foreach ($comments as $comment) {
                 ?>
 
-                <div class="row comment card">
+                <div class="comment card">
                     <div class="card-body">
-                        <h2 class="col-10 card-title">
+                        <h2 class="card-title">
                             <?= strip_tags(htmlspecialchars($comment->getUser()->getUserName())); ?>
                         </h2>
-                        <p class="col-12 card-text">
+                        <p class="card-text">
                             <?= strip_tags(htmlspecialchars($comment->getContent())); ?>
                         </p>
                     </div>
-                    <p class="col-12 card-footer">
+                    <p class="card-footer">
                         Ecrit le <strong
                                 class="col-2"><?= strip_tags(htmlspecialchars($comment->getDateCreation()->format('d-m-Y'))) ?></strong>
                         à <strong

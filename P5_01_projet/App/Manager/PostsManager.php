@@ -17,18 +17,17 @@ class PostsManager extends Manager
         return $data;
     }
 
-    public function addPost($title, $chapo, $content, $user_id)
+    public function addPost(Post $post)
     {
         $db = self::dbConnect();
-
         $req = $db->prepare('INSERT INTO post(title,chapo,content,date_creation,date_last_update,user_id) 
-                                      VALUE (:title,:chapo,:content,NOW(),:date_last_update,:user_id)');
+                                      VALUE (:title,:chapo,:content,NOW(), :date_last_update,:user_id)');
         $req->execute([
-            'title' => $title,
-            'chapo' => $chapo,
-            'content' => $content,
+            'title' => $post->getTitle(),
+            'chapo' => $post->getChapo(),
+            'content' => $post->getContent(),
             'date_last_update' => null,
-            'user_id' => $user_id
+            'user_id' => $post->getUserId()
         ]);
     }
 
@@ -69,7 +68,7 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         return $posts;
     }
 
-    public function updatePost($idPost, $title, $chapo, $content, $user_id)
+    public function updatePost(Post $post)
     {
         $db = self::dbConnect();
 
@@ -77,11 +76,11 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
                                     SET title = :title ,chapo = :chapo , content = :content , date_last_update = NOW(),user_id = :user_id 
                                     WHERE id_post = :id');
         $req->execute([
-            'id' => $idPost,
-            'title' => $title,
-            'chapo' => $chapo,
-            'content' => $content,
-            'user_id' => $user_id
+            'id' => $post->getIdPost(),
+            'title' => $post->getTitle(),
+            'chapo' => $post->getChapo(),
+            'content' => $post->getContent(),
+            'user_id' => $post->getUserId()
         ]);
     }
 

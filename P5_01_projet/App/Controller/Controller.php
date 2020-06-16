@@ -14,6 +14,7 @@ abstract class Controller
 {
     const TYPE_FLASH_SUCCESS = 'success';
     const TYPE_FLASH_ERROR = 'danger';
+    const TYPE_FLASH_INFO = 'info';
 
 
     public function __construct()
@@ -45,7 +46,6 @@ abstract class Controller
             'type' => $type
         ];
     }
-
 
     public function connectUser(User $user)
     {
@@ -91,6 +91,7 @@ abstract class Controller
     {
         $baseUrl = "/index.php?action=" . $action;
         $queryParams = "";
+//        $params += ['flash' => $this->getAndCleanMessageFlash()];
         if ($params !== null) {
             foreach ($params as $key => $value) {
                 $queryParams .= "&" . $key . "=" . $value;

@@ -17,15 +17,11 @@ class AddCommentController extends Controller
     {
         $this->checkIfUserIsConnected();
 
-
         if (count($_POST) === 1) {
-//            $infos = self::refactorSupervariable($_POST);
-//            $infosSession = self::refactorSupervariable($_SESSION);
             $comment = new Comment();
             $comment->setContent(filter_input(INPUT_POST,'content'));
             $comment->setUserId($this->getUserConnected()->getIdUser());
             $comment->setPostId($idPost);
-            $comment->getErrors();
             $errors = $comment->getErrors();
 
             if (count($errors)) {
@@ -36,9 +32,9 @@ class AddCommentController extends Controller
             $manager->addComment(
                 $comment
             );
-            $this->redirect("post", ["id" => $idPost]);
-        }
-        throw new \Exception('Tous les champ ne sont pas remplis');
 
+            $this->addMessageFlash("Commentaire envoyé. En attente de validation.",self::TYPE_FLASH_INFO);
+            $this->redirect("post", ["id" => $comment->getPostId()]);
+        }
     }
 }

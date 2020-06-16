@@ -12,6 +12,8 @@ class DeleteCommentController extends Controller
     {
         $manager = new CommentManager();
         $manager->deleteComment($idComment);
+
+        $this->addMessageFlash("Commentaire suprimé.", self::TYPE_FLASH_ERROR);
         $this->redirect('listCommentUnvalidate');
     }
 
