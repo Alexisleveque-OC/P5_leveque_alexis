@@ -19,7 +19,7 @@ class HomeController extends Controller
         $manager = new PostsManager();
         $posts = $manager->listAllPosts(3);
 
-        ViewLoader::render("Home", [
+        $this->render("Home", [
             'posts' => $posts,
         ]);
 

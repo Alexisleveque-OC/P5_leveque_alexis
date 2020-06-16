@@ -14,7 +14,7 @@ class PostsController extends Controller
         $manager = new PostsManager();
         $posts = $manager->listAllPosts(5, $_GET['page'] ?? 1);
 
-        ViewLoader::render("Posts", [
+        $this->render("Posts", [
             'countPost' => $manager->countPost(),
             'posts' => $posts
         ]);

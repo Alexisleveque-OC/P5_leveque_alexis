@@ -15,11 +15,11 @@ class ConnectionController extends Controller
 
             $manager = new UserManager();
             $user = $manager->verifPass($infos['user_name'], $infos['password']);
-            $_SESSION['user_name'] = $user->getUserName();
-            $_SESSION['id_user'] = $user->getIdUser();
+            $this->connectUser($user);
 
             $this->redirect('home');
         }
-        ViewLoader::render("Connection");
+        $this->render("Connection");
     }
+
 }

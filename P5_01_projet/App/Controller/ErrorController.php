@@ -10,7 +10,7 @@ class ErrorController extends Controller
 {
     public function displayError($errorMessage)
     {
-        ViewLoader::render("Error" ,[
+        $this->render("Error" ,[
             'errorMessage' => $errorMessage
         ]);
     }

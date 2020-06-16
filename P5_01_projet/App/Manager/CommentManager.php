@@ -8,17 +8,17 @@ use PDO;
 
 class CommentManager extends Manager
 {
-    public function addComment($content, $user_id, $post_id)
+    public function addComment(Comment $comment)
     {
         $db = self::dbConnect();
 
         $req = $db->prepare('INSERT INTO comment(content,date_creation,validation,user_id,post_id) 
                                       VALUE (:content,NOW(),:validation,:user_id, :post_id)');
         $req->execute([
-            'content' => $content,
-            'validation' => 0,
-            'user_id' => $user_id,
-            'post_id' => $post_id
+            'content' => $comment->getContent(),
+            'validation' => $comment->getValidation(),
+            'user_id' => $comment->getUserId(),
+            'post_id' => $comment->getPostId()
         ]);
     }
 

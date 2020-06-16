@@ -9,12 +9,16 @@ use App\Manager\UserManager;
 class ViewLoader
 {
 
+
+
     static public function render($path, $params = null)
     {
 
         if ($params !== null) {
             extract($params);
         }
+
+
 
         $nbCommentUnvalidate = (new CommentManager())->countCommentUnvalidate();
         if (isset ($_SESSION['user_name'])) {

@@ -33,6 +33,6 @@ class CreatePostController extends Controller
             );
             $this->redirect('posts');
         }
-        ViewLoader::render("PostCreation");
+        $this->render("PostCreation");
     }
 }

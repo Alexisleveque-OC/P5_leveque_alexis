@@ -9,7 +9,7 @@ class Comment extends Entity implements CheckValidityInterface
     protected $id_comment;
     protected $content;
     protected $date_creation;
-    protected $validation;
+    protected $validation = 0;
     protected $user_id;
     protected $post_id;
 

@@ -39,6 +39,12 @@ class UserManager extends Manager
         }
     }
 
+    /**
+     * @param $name
+     * @param $password
+     * @return User
+     * @throws \Exception
+     */
     public function verifPass($name,$password)
     {
         $user = $this->searchInfoUser($name);

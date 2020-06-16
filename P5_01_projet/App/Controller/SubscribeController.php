@@ -43,6 +43,6 @@ class SubscribeController extends  Controller
             throw new \Exception('Les mots de passes ne sont pas identiques.');
         }
 
-        ViewLoader::render("Subscribe");
+        $this->render("Subscribe");
     }
 }

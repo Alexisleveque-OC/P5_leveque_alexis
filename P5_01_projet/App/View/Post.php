@@ -7,13 +7,13 @@ $title = 'PostView';
     <div class="card one_post">
         <div class="card-body">
             <h2 class="card-title">
-                <?= strip_tags(htmlspecialchars($post->getTitle())); ?>
+                <?= (htmlspecialchars($post->getTitle())); ?>
             </h2>
             <h4 class="card-title">
-                <?= strip_tags(htmlspecialchars($post->getChapo())); ?>
+                <?= (htmlspecialchars($post->getChapo())); ?>
             </h4>
             <p class="card-text">
-                <?= strip_tags(htmlspecialchars($post->getContent())); ?>
+                <?= (htmlspecialchars($post->getContent())); ?>
             </p>
         </div>
         <div class="card-footer">
@@ -21,18 +21,18 @@ $title = 'PostView';
             if ($post->getDateLastUpdate() === null) {
                 ?>
                 Ecrit le <strong
-                        class="col-2"><?= strip_tags(htmlspecialchars($post->getDateCreation()->format('d-m-Y'))) ?></strong>
+                        class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
                 à <strong
-                        class="col-2"><?= strip_tags(htmlspecialchars($post->getDateCreation()->format('H:m:s'))) ?></strong>
-                par <strong class="col-2"><?= strip_tags(htmlspecialchars($post->getUser()->getUserName())); ?></strong>
+                        class="col-2"><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
+                par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
                 <?php
             } else {
                 ?>
                 Dernière modification : <strong
-                        class="col-2"><?= strip_tags(htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y'))) ?></strong>
+                        class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                 à <strong
-                        class="col-2"><?= strip_tags(htmlspecialchars($post->getDateLastUpdate()->format('H:m:s'))) ?></strong>
-                par <strong class="col-2"><?= strip_tags(htmlspecialchars($post->getUser()->getUserName())); ?></strong>
+                        class="col-2"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                par <strong class="col-2"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
                 <?php
             }
             ?>
@@ -60,18 +60,18 @@ $title = 'PostView';
 
         <div class="row comment">
             <h5 class="col-md-2 col-sm-12 user">
-                <?= strip_tags(htmlspecialchars($comment->getUser()->getUsername())); ?>
+                <?= (htmlspecialchars($comment->getUser()->getUsername())); ?>
             </h5>
             <div class="col-10">
 
                 <p class="col-12">
-                    <?= strip_tags(htmlspecialchars($comment->getContent())); ?>
+                    <?= (htmlspecialchars($comment->getContent())); ?>
                 </p>
                 <p class="col-12 card-footer">
                     Ecrit le <strong
-                            class="col-2"><?= strip_tags(htmlspecialchars($comment->getDateCreation()->format('d-m-Y'))) ?></strong>
+                            class="col-2"><?= (htmlspecialchars($comment->getDateCreation()->format('d-m-Y'))) ?></strong>
                     à <strong
-                            class="col-2"><?= strip_tags(htmlspecialchars($comment->getDateCreation()->format('H:m:s'))) ?></strong>
+                            class="col-2"><?= (htmlspecialchars($comment->getDateCreation()->format('H:m:s'))) ?></strong>
                 </p>
             </div>
         </div>

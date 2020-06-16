@@ -9,14 +9,22 @@ use App\Manager\CommentManager;
 
 class AddCommentController extends Controller
 {
+    /**
+     * @param $idPost
+     * @throws \Exception
+     */
     public function addComment($idPost)
     {
+        $this->checkIfUserIsConnected();
+
+
         if (count($_POST) === 1) {
-            $infos = self::refactorSupervariable($_POST);
+//            $infos = self::refactorSupervariable($_POST);
 //            $infosSession = self::refactorSupervariable($_SESSION);
             $comment = new Comment();
-            $comment->setContent($infos['content']);
-
+            $comment->setContent(filter_input(INPUT_POST,'content'));
+            $comment->setUserId($this->getUserConnected()->getIdUser());
+            $comment->setPostId($idPost);
             $comment->getErrors();
             $errors = $comment->getErrors();
 
@@ -26,9 +34,7 @@ class AddCommentController extends Controller
 
             $manager = new CommentManager();
             $manager->addComment(
-                $infos['content'],
-                $_SESSION['id_user'],
-                $idPost
+                $comment
             );
             $this->redirect("post", ["id" => $idPost]);
         }

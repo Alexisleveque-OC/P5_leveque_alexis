@@ -11,6 +11,6 @@ class MailSendController extends Controller
 
     public function __invoke()
     {
-        ViewLoader::render("MailSend");
+        $this->render("MailSend");
     }
 }

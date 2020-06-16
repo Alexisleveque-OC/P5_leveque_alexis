@@ -12,6 +12,9 @@ class ValidateComment extends Controller
     {
         $manager = new CommentManager();
         $manager->validateComment($idComment);
+
+
+        $this->addMessageFlash("Commentaire validé", self::TYPE_FLASH_ERROR);
         $this->redirect('listCommentUnvalidate');
     }
 }

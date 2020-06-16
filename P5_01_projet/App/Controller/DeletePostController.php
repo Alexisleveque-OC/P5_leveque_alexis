@@ -14,7 +14,7 @@ class DeletePostController extends Controller
         $infos = self::refactorSupervariable($_POST);
         $manager = new PostsManager();
         $post = $manager->listOnce($idPost);
-        ViewLoader::render("Delete", [
+        $this->render("Delete", [
             'post' => $post
         ]);
         if (isset($infos['yes'])) {

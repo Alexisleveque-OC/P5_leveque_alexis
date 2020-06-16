@@ -5,7 +5,6 @@ namespace App\Controller;
 
 
 use App\Manager\CommentManager;
-use App\Service\ViewLoader;
 
 class ListCommentController extends Controller
 {
@@ -13,7 +12,7 @@ class ListCommentController extends Controller
     {
         $manager = new CommentManager();
         $comments = $manager->listCommentsUnvalidate();
-        ViewLoader::render("ListCommentUnvalidate", [
+        $this->render("ListCommentUnvalidate", [
             'comments' => $comments
         ]);
     }

@@ -76,6 +76,13 @@
 
 
 <div class="starter-template" style="padding-top: 100px">
+    <?php if ($flash): ?>
+        <div class="alert alert-<?= $flash['type'] ?>">
+            <?= $flash['message'] ?>
+        </div>
+    <?php endif; ?>
+
+
     <?= $content; ?>
 </div>
 <footer class="row ">
