@@ -53,7 +53,7 @@ class User extends Entity implements CheckValidityInterface
     /**
      * @param mixed $user_type
      */
-    public function setUserType($user_type)
+    public function setUserType($user_type )
     {
         $this->user_type = $user_type;
     }
@@ -90,12 +90,10 @@ class User extends Entity implements CheckValidityInterface
         return $this->email;
     }
 
-
-
     /**
      * @return mixed
      */
-    public function getUserType()
+    public function getUserTypeId()
     {
         return $this->user_type;
     }

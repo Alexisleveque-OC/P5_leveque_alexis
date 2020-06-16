@@ -6,38 +6,30 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Manager\UserManager;
-use App\Service\ViewLoader;
 
 class SubscribeController extends  Controller
 {
     public function subscribe()
     {
         if (count($_POST) !== 0) {
-            $infos = self::refactorSupervariable($_POST);
 
             $user = new User();
-            $user->setUserName($infos['user_name']);
-            $user->setPassword($infos['password']);
-            $user->setEmail($infos['email']);
+            $user->setUserName(filter_input(INPUT_POST,'user_name'));
+            $user->setPassword(filter_input(INPUT_POST,'password'));
+            $user->setEmail(filter_input(INPUT_POST,'email'));
+            $passwwordConfirmation = $_POST['password_confirmation'];
 
             $user->getErrors();
             $errors = $user->getErrors();
             if (count($errors)) {
                 throw new \Exception(implode($errors, " "));
             }
-
             $manager = new UserManager();
-            if ($infos['password'] === $infos['password_confirmation']) {
-                $manager->verifUser($infos['user_name']);
+            if ($user->getPassword() === $passwwordConfirmation) {
+                $manager->verifUser($user);
 
-                $data = $manager->addUser(
-                    $infos['user_name'],
-                    $infos['password'],
-                    $infos['email'],
-                    1
-                );
-                $_SESSION['user_name'] = $data['user_name'];
-                $_SESSION['id_user'] = $data['id_user'];
+                $data = $manager->addUser($user);
+                $this->connectUser($user);
                 $this->redirect('home');
             }
             throw new \Exception('Les mots de passes ne sont pas identiques.');

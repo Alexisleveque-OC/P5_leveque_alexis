@@ -11,8 +11,6 @@ class CreatePostController extends Controller
     public function addPost()
     {
         if (count($_POST) !== 0) {
-//            $infos = self::refactorSupervariable($_POST);
-//            $infosSession = self::refactorSupervariable($_SESSION);
             $post = new Post();
             $post->setTitle(filter_input(INPUT_POST,'title'));
             $post->setChapo(filter_input(INPUT_POST,'chapo'));

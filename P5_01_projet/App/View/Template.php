@@ -37,16 +37,16 @@
                     <a class="nav-link" href="/index.php?action=posts">Les articles</a>
                 </li>
                 <?php
-                if (isset($_SESSION['user_name'])) {
+                if (isset($userConnected)) {
                     ?>
                     <li class="nav-item">
-                        <h4>Bonjour <?= strip_tags(htmlspecialchars($_SESSION['user_name'])) ?></h4>
+                        <h4>Bonjour <?= htmlspecialchars($userConnected->getUserName()) ?></h4>
                     </li>
                     <li class="nav-item">
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
                     </li>
                     <?php
-                    if ($nbCommentUnvalidate >= 1 && $userType == 2) {
+                    if ($nbCommentUnvalidate >= 1 && $userConnected->getUserTypeId() == 2) {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/index.php?action=listCommentUnvalidate">
@@ -125,7 +125,7 @@
                         Les articles
                     </a>
                 </li>
-                <?php if (!isset($_SESSION['user_name'])) { ?>
+                <?php if (!isset($userConnected)) { ?>
 
                     <li class="col-12">
                         <a class="nav-link" href="/index.php?action=connection">Connexion</a>

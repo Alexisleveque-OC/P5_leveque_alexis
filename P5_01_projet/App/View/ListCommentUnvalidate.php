@@ -3,7 +3,7 @@ $title = 'liste des commentaires à valider';
 ?>
 <main class="container">
     <?php
-    if (isset($userType) && $userType == 2) {
+    if (isset($userConnected) && $userConnected->getUserTypeId() == 2) {
 
         if ($comments == null) {
             ?>
@@ -16,25 +16,25 @@ $title = 'liste des commentaires à valider';
                 <div class="comment card">
                     <div class="card-body">
                         <h2 class="card-title">
-                            <?= strip_tags(htmlspecialchars($comment->getUser()->getUserName())); ?>
+                            <?= htmlspecialchars($comment->getUser()->getUserName()); ?>
                         </h2>
                         <p class="card-text">
-                            <?= strip_tags(htmlspecialchars($comment->getContent())); ?>
+                            <?= htmlspecialchars($comment->getContent()); ?>
                         </p>
                     </div>
                     <p class="card-footer">
                         Ecrit le <strong
-                                class="col-2"><?= strip_tags(htmlspecialchars($comment->getDateCreation()->format('d-m-Y'))) ?></strong>
+                                class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('d-m-Y')) ?></strong>
                         à <strong
-                                class="col-2"><?= strip_tags(htmlspecialchars($comment->getDateCreation()->format('H:m:s'))) ?></strong>
+                                class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('H:m:s')) ?></strong>
                     </p>
                     <div class="row ">
                         <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"
-                           href='/index.php?action=deleteComment&id=<?= strip_tags(htmlspecialchars($comment->getIdComment())) ?>'>
+                           href='/index.php?action=deleteComment&id=<?= htmlspecialchars($comment->getIdComment()) ?>'>
                         Supprimer
                         </a>
                         <a class="btn btn-primary btn_comment offset-md-3 col-md-2 col-sm-6"
-                           href='/index.php?action=validateComment&id=<?= strip_tags(htmlspecialchars($comment->getIdComment())) ?>'>
+                           href='/index.php?action=validateComment&id=<?= htmlspecialchars($comment->getIdComment()) ?>'>
                         Valider
                         </a>
                     </div>

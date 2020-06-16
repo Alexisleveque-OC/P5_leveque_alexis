@@ -41,7 +41,7 @@ $title = 'PostView';
     <hr>
     <div class="offset-1">
         <h2 class="title-box">Commentaires</h2>
-        <?php if (isset($userType) && $userType >= 1) { ?>
+        <?php if (isset($userConnected) && $userConnected->getUserTypeId >= 1) { ?>
         <form action="/index.php?action=addComment&id=<?= $post->getIdPost() ?>" method="post">
 
             <label for="comment">Ajouter un commentaire</label><br/>

@@ -1,7 +1,7 @@
 <?php
 $title = 'Création de Post';
 
-if (isset($userType) && $userType == 2){
+if (isset($userConnected) && $userConnected->getUserTypeId() == 2){
 
 ?>
 <main class="container ">

@@ -10,31 +10,29 @@ use \PDO;
 class UserManager extends Manager
 {
 
-    public function addUser($name, $plainPassword, $email, $user_type_id)
+    public function addUser(User $user)
     {
 
-        $hash = $this->encodePassword($plainPassword);
+        $hash = $this->encodePassword($user->getPassword());
 
         $db = self::dbConnect();
-
 
         $req = $db->prepare('INSERT INTO user(user_name,email,password,user_type_id,date_creation) 
                                     VALUE (:name,:email,:pass,:type,NOW())');
         $req->execute([
-            'name' => $name,
-            'email' => $email,
+            'name' => $user->getUserName(),
+            'email' => $user->getEmail(),
             'pass' => $hash,
-            'type' => $user_type_id
+            'type' => 1
         ]);
-        $data = $this->searchInfoUser($name);
+        $data = $this->searchInfoUser($user->getUserName());
         return $data;
     }
 
-    public function verifUser($name)
+    public function verifUser(User $user)
     {
-        $data = $this->searchInfoUser($name);
-
-        if ($data !== false) {
+        $data = $this->searchInfoUser($user->getUserName());
+        if ($data === false) {
             throw new \Exception('Le nom que vous avez choisis existe déjà.');
         }
     }
@@ -53,6 +51,7 @@ class UserManager extends Manager
         if($verif === false){
             throw new \Exception('Le mot de passe entré n\'est pas valide');
         }
+
         return $user;
     }
 
@@ -62,16 +61,8 @@ class UserManager extends Manager
         $req = $db->prepare('SELECT *, date_creation as user_date FROM user WHERE user_name = :name ') ;
         $req->execute(['name' => $name]);
         $data = $req->fetch( PDO::FETCH_ASSOC);
-        $infoUser = $this->arrayDataToUser($data);
-        return $infoUser;
-    }
-    public  function searchUserType($name)
-    {
-        $db = self::dbConnect();
-        $req = $db->prepare('SELECT user_type_id FROM user WHERE user_name = :name ') ;
-        $req->execute(['name' => $name]);
-        $userType = $req->fetchColumn();
-        return $userType;
+        $user = $this->arrayDataToUser($data);
+        return $user;
     }
 
     public  function listInfoUser($idUser)
@@ -91,7 +82,7 @@ class UserManager extends Manager
         $user->setUserName($data['user_name'] ?? "");
         $user->setEmail($data['email'] ?? "");
         $user->setPassword($data['password'] ?? "");
-        $user->setUserType($data['user_type'] ?? '');
+        $user->setUserType($data['user_type_id'] ?? '');
         $user->setDateCreation(new \DateTime($data['user_date'] ?? ''));
 
         return $user;
