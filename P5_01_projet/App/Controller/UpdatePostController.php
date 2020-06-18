@@ -32,7 +32,7 @@ class UpdatePostController extends Controller
             $manager = new PostsManager();
             $manager->updatePost($post);
             $this->addMessageFlash("L'article a bien été modifié",self::TYPE_FLASH_INFO);
-            $this->redirect('post&id='.$_GET['id']);
+            $this->redirect("post", ["id" => $post->getIdPost()]);
         }
         $this->render("PostUpdate", [
                 'post' => $post
