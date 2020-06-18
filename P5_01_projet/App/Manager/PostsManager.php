@@ -12,16 +12,16 @@ class PostsManager extends Manager
 {
     public function countPost()
     {
-        $db = self::dbConnect();
-        $req = $db->query('SELECT count(*)  FROM post');
+        $database = self::dbConnect();
+        $req = $database->query('SELECT count(*)  FROM post');
         $data = $req->fetchColumn();
         return $data;
     }
 
     public function addPost(Post $post)
     {
-        $db = self::dbConnect();
-        $req = $db->prepare('INSERT INTO post(title,chapo,content,date_creation,date_last_update,user_id) 
+        $database = self::dbConnect();
+        $req = $database->prepare('INSERT INTO post(title,chapo,content,date_creation,date_last_update,user_id) 
                                       VALUE (:title,:chapo,:content,NOW(), :date_last_update,:user_id)');
         $req->execute([
             'title' => $post->getTitle(),
@@ -34,9 +34,9 @@ class PostsManager extends Manager
 
     public function listOnce($idPost)
     {
-        $db = self::dbConnect();
+        $database = self::dbConnect();
 
-        $req = $db->prepare('
+        $req = $database->prepare('
 SELECT p.id_post,p.title,p.chapo,p.content as post_content, p.date_creation as post_date,p.date_last_update,p.user_id ,
 u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date
 FROM post AS p 
@@ -51,9 +51,9 @@ WHERE id_post = :id');
     public function listAllPosts($limit, $pageNb = 1)
     {
         $posts = [];
-        $db = self::dbConnect();
+        $database = self::dbConnect();
         $firstEntry = ($pageNb - 1) * 5;
-        $req = $db->query('
+        $req = $database->query('
 SELECT p.id_post , p.title, p.chapo, p.content as post_content,p.date_creation as post_date, p.date_last_update,p.user_id,
 u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date, COUNT(c.id_comment) as counterComment
 FROM post  p
@@ -71,9 +71,9 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
 
     public function updatePost(Post $post)
     {
-        $db = self::dbConnect();
+        $database = self::dbConnect();
 
-        $req = $db->prepare('UPDATE post 
+        $req = $database->prepare('UPDATE post 
                                     SET title = :title ,chapo = :chapo , content = :content , date_last_update = NOW(),user_id = :user_id 
                                     WHERE id_post = :id');
         $req->execute([
@@ -87,11 +87,11 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
 
     public function deletePost($idPost)
     {
-        $db = self::dbConnect();
+        $database = self::dbConnect();
 
-        $req = $db->prepare('DELETE FROM comment WHERE post_id = :id');
+        $req = $database->prepare('DELETE FROM comment WHERE post_id = :id');
         $req->execute(['id' => $idPost]);
-        $req = $db->prepare('DELETE FROM post WHERE id_post = :id');
+        $req = $database->prepare('DELETE FROM post WHERE id_post = :id');
         $req->execute(['id' => $idPost]);
     }
 

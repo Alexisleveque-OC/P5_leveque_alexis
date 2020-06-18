@@ -27,7 +27,7 @@ abstract class Controller
     /**
      * @var mixed
      */
-    private $session;
+    private $_SESSION;
 
 
     public function __construct()
@@ -51,8 +51,8 @@ abstract class Controller
 
     public function getAndCleanMessageFlash()
     {
-        if (isset($session['flash'])) {
-            $flash = $session['flash'];
+        if (isset($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
             unset($_SESSION['flash']);
             return $flash;
         }

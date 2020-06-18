@@ -53,14 +53,14 @@ try {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new PostController();
-            $controller->listOnce(filter_input(INPUT_GET, 'id'));
+            $controller->listOnce($idGet);
             break;
         case 'deletePost':
             if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeletePostController();
-            $controller->deletePost(filter_input(INPUT_GET, 'id'));
+            $controller->deletePost($idGet);
             break;
         case 'createPost':
             $controller = new CreatePostController ();
@@ -71,21 +71,21 @@ try {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new UpdatePostController();
-            $controller->updatePost(filter_input(INPUT_GET, 'id'));
+            $controller->updatePost($idGet);
             break;
         case 'addComment':
             if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new AddCommentcontroller();
-            $controller->addComment(filter_input(INPUT_GET, 'id'));
+            $controller->addComment($idGet);
             break;
         case 'deleteComment':
             if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeleteCommentController();
-            $controller->deleteComment(filter_input(INPUT_GET, 'id'));
+            $controller->deleteComment($idGet);
             break;
         case 'listCommentUnvalidate':
             $controller = new ListCommentController();
@@ -96,7 +96,7 @@ try {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new ValidateComment();
-            $controller->validateComment(filter_input(INPUT_GET, 'id'));
+            $controller->validateComment($idGet);
             break;
         case 'mailSend':
         {
