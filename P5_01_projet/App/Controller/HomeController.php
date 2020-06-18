@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Mail;
 use App\Manager\PostsManager;
 
 class HomeController extends Controller
@@ -12,8 +13,16 @@ class HomeController extends Controller
     {
         $infoPost = $this->countInfoPost();
         if ($infoPost !== 0) {
-            $infos = self::refactorSupervariable($_POST);
-            self::sendMail($infos['name'], $infos['email'], $infos['phone'], $infos['message']);
+            $mail = new Mail();
+            $mail->setName(filter_input(INPUT_POST,'name'));
+            $mail->setEmail(filter_input(INPUT_POST,'email'));
+            $mail->setPhone(filter_input(INPUT_POST,'phone'));
+            $mail->setMessage(filter_input(INPUT_POST,'message'));
+            $errors = $mail->getErrors();
+            if (count($errors)) {
+                throw new \Exception(implode($errors, " "));
+            }
+            self::sendMail($mail);
             $this->redirect('mailSend');
         }
         $manager = new PostsManager();
@@ -25,21 +34,13 @@ class HomeController extends Controller
 
     }
 
-    private static function sendMail($name,$email,$phone,$message)
+    private static function sendMail($mail)
     {
-        if (empty($name) ||
-            empty($email) ||
-            empty($phone) ||
-            empty($message) ||
-            !filter_var($email, FILTER_VALIDATE_EMAIL))
-        {
-            Throw new \Exception("Tous les champs n'ont pas été remplis");
-        }
-
-        $name = strip_tags(htmlspecialchars($name));
-        $email_address = strip_tags(htmlspecialchars($email));
-        $phone = strip_tags(htmlspecialchars($phone));
-        $message = strip_tags(htmlspecialchars($message));
+        
+        $name = htmlspecialchars($mail->getName());
+        $email_address =htmlspecialchars($mail->getEmail());
+        $phone = htmlspecialchars($mail->getPhone());
+        $message = htmlspecialchars($mail->getMessage());
 
         $email_subject = "Envoyer depuis le blog du projet_5 par:  $name";
         $email_body = "Vous venez de recevoir un nouvel e-mail.\n\n" . "De:\n\n $name\n\nAdresse e-mail de l'expediteur: $email_address\n\nPhone: $phone\n\nMessage:\n$message";

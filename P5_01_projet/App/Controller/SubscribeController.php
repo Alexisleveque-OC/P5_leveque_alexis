@@ -29,7 +29,7 @@ class SubscribeController extends  Controller
             if ($user->getPassword() === $passwwordConfirmation) {
                 $manager->verifUser($user);
 
-                $data = $manager->addUser($user);
+                $manager->addUser($user);
                 $this->connectUser($user);
                 $this->redirect('home');
             }

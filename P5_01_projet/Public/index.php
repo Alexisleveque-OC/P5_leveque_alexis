@@ -23,7 +23,10 @@ use App\Controller\UserController;
 use App\Controller\ValidateComment;
 
 
-$action = filter_input(INPUT_GET,'action') ?? 'home';
+$action = filter_input(INPUT_GET, 'action') ?? 'home';
+if (isset($_GET['id'])) {
+    $idGet = filter_input(INPUT_GET, 'id');
+}
 
 try {
     switch ($action) {
@@ -46,56 +49,57 @@ try {
             (new PostsController())();
             break;
         case 'post':
-            if (!isset($_GET['id'])) {
+            if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new PostController();
-            $controller->listOnce(filter_input(INPUT_GET,'id'));
+            $controller->listOnce(filter_input(INPUT_GET, 'id'));
             break;
         case 'deletePost':
-            if (!isset($_GET['id'])) {
+            if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeletePostController();
-            $controller->deletePost(filter_input(INPUT_GET,'id'));
+            $controller->deletePost(filter_input(INPUT_GET, 'id'));
             break;
         case 'createPost':
             $controller = new CreatePostController ();
             $controller->addPost();
             break;
         case 'updatePost':
-            if (!isset($_GET['id'])) {
+            if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new UpdatePostController();
-            $controller->updatePost(filter_input(INPUT_GET,'id'));
+            $controller->updatePost(filter_input(INPUT_GET, 'id'));
             break;
         case 'addComment':
-            if (!isset($_GET['id'])) {
+            if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new AddCommentcontroller();
-            $controller->addComment(filter_input(INPUT_GET,'id'));
+            $controller->addComment(filter_input(INPUT_GET, 'id'));
             break;
         case 'deleteComment':
-            if (!isset($_GET['id'] )) {
+            if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeleteCommentController();
-            $controller->deleteComment(filter_input(INPUT_GET,'id'));
+            $controller->deleteComment(filter_input(INPUT_GET, 'id'));
             break;
         case 'listCommentUnvalidate':
             $controller = new ListCommentController();
             $controller->listCommentsUnvalidate();
             break;
         case 'validateComment':
-            if (!isset($_GET['id'])) {
+            if (!isset($idGet)) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new ValidateComment();
-            $controller->validateComment(filter_input(INPUT_GET,'id'));
+            $controller->validateComment(filter_input(INPUT_GET, 'id'));
             break;
-        case 'mailSend':{
+        case 'mailSend':
+        {
             (new MailSendController())();
             break;
         }
