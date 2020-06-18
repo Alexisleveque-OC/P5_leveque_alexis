@@ -10,7 +10,8 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        if (count($_POST) !== 0) {
+        $infoPost = $this->countInfoPost();
+        if ($infoPost !== 0) {
             $infos = self::refactorSupervariable($_POST);
             self::sendMail($infos['name'], $infos['email'], $infos['phone'], $infos['message']);
             $this->redirect('mailSend');

@@ -9,7 +9,8 @@ class DeletePostController extends Controller
 {
     public function deletePost($idPost)
     {
-        if (count($_POST) === 1) {
+        $infoPost = $this->countInfoPost();
+        if ($infoPost === 1) {
             $answer = filter_input(INPUT_POST, 'answer');
             switch ($answer) {
                 case 'yes':

@@ -17,7 +17,8 @@ class AddCommentController extends Controller
     {
         $this->checkIfUserIsConnected();
 
-        if (count($_POST) === 1) {
+        $infoPost = $this->countInfoPost();
+        if ($infoPost === 1) {
             $comment = new Comment();
             $comment->setContent(filter_input(INPUT_POST,'content'));
             $comment->setUserId($this->getUserConnected()->getIdUser());

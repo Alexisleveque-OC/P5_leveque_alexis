@@ -29,6 +29,11 @@ abstract class Controller
         ViewLoader::render($path,$params);
     }
 
+    public function countInfoPost()
+    {
+        $infoPost = count($_POST);
+        return $infoPost;
+    }
 
     public function getAndCleanMessageFlash(){
         if(isset($_SESSION['flash'])){

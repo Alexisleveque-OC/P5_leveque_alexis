@@ -11,7 +11,8 @@ class SubscribeController extends  Controller
 {
     public function subscribe()
     {
-        if (count($_POST) !== 0) {
+        $infoPost = $this->countInfoPost();
+        if ($infoPost !== 0) {
 
             $user = new User();
             $user->setUserName(filter_input(INPUT_POST,'user_name'));

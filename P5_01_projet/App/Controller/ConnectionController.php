@@ -10,7 +10,8 @@ class ConnectionController extends Controller
 {
     public function connection()
     {
-        if (count($_POST) !== 0) {
+        $infoPost = $this->countInfoPost();
+        if ($infoPost !== 0) {
             $user = new User();
             $user->setUserName(filter_input(INPUT_POST,'user_name'));
             $user->setPassword(filter_input(INPUT_POST,'password'));

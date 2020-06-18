@@ -10,7 +10,8 @@ class CreatePostController extends Controller
 {
     public function addPost()
     {
-        if (count($_POST) !== 0) {
+        $infoPost = $this->countInfoPost();
+        if ($infoPost !== 0) {
             $post = new Post();
             $post->setTitle(filter_input(INPUT_POST,'title'));
             $post->setChapo(filter_input(INPUT_POST,'chapo'));
