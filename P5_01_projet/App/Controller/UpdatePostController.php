@@ -16,7 +16,7 @@ class UpdatePostController extends Controller
         $post = $manager->listOnce($idPost);
 
         $infoPost = $this->countInfoPost();
-        if ($infoPost !== 0) {
+        if ($infoPost !== 0 && isset($_GET['id'])) {
             $post = new Post();
             $post->setIdPost(filter_input(INPUT_GET,'id'));
             $post->setTitle(filter_input(INPUT_POST,'title'));
