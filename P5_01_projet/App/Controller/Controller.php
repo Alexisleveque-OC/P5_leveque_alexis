@@ -24,11 +24,6 @@ abstract class Controller
      * @var UserManager
      */
     private $userManager;
-    /**
-     * @var mixed
-     */
-    private $_SESSION;
-
 
     public function __construct()
     {
