@@ -18,7 +18,7 @@ class SubscribeController extends  Controller
             $user->setUserName(filter_input(INPUT_POST,'user_name'));
             $user->setPassword(filter_input(INPUT_POST,'password'));
             $user->setEmail(filter_input(INPUT_POST,'email'));
-            $passwordConfirmation = $_POST['password_confirmation'];
+            $passwordConfirmation = filter_input(INPUT_POST,'password_confirmation');
 
             $user->getErrors();
             $errors = $user->getErrors();

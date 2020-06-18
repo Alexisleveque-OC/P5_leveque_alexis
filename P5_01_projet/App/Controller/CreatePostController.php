@@ -11,6 +11,8 @@ class CreatePostController extends Controller
 {
     public function addPost()
     {
+        $this->checkIfUserIsAdmin();
+
         $infoPost = $this->countInfoPost();
         if ($infoPost !== 0) {
             $post = new Post();

@@ -10,6 +10,8 @@ class ListCommentController extends Controller
 {
     public function listCommentsUnvalidate()
     {
+        $this->checkIfUserIsAdmin();
+
         $manager = new CommentManager();
         $comments = $manager->listCommentsUnvalidate();
         $this->render("ListCommentUnvalidate", [

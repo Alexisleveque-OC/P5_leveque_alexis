@@ -10,6 +10,8 @@ class ValidateComment extends Controller
 {
     public function validateComment($idComment)
     {
+        $this->checkIfUserIsAdmin();
+
         $manager = new CommentManager();
         $manager->validateComment($idComment);
 

@@ -10,6 +10,8 @@ class DeleteCommentController extends Controller
 {
     public function deleteComment($idComment)
     {
+        $this->checkIfUserIsAdmin();
+
         $manager = new CommentManager();
         $manager->deleteComment($idComment);
 

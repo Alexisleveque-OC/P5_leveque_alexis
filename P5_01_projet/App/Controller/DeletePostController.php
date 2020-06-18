@@ -9,6 +9,8 @@ class DeletePostController extends Controller
 {
     public function deletePost($idPost)
     {
+        $this->checkIfUserIsAdmin();
+
         $infoPost = $this->countInfoPost();
         if ($infoPost === 1) {
             $answer = filter_input(INPUT_POST, 'answer');

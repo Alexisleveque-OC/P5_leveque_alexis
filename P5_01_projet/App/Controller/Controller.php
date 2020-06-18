@@ -16,6 +16,18 @@ abstract class Controller
     const TYPE_FLASH_SUCCESS = 'success';
     const TYPE_FLASH_ERROR = 'danger';
     const TYPE_FLASH_INFO = 'info';
+    /**
+     * @var CommentManager
+     */
+    private $commentManager;
+    /**
+     * @var UserManager
+     */
+    private $userManager;
+    /**
+     * @var mixed
+     */
+    private $session;
 
 
     public function __construct()
@@ -24,10 +36,11 @@ abstract class Controller
         $this->userManager = new UserManager();
     }
 
-    public function render($path, $params = []){
+    public function render($path, $params = [])
+    {
         $params += ['flash' => $this->getAndCleanMessageFlash()];
 
-        ViewLoader::render($path,$params);
+        ViewLoader::render($path, $params);
     }
 
     public function countInfoPost()
@@ -36,9 +49,10 @@ abstract class Controller
         return $infoPost;
     }
 
-    public function getAndCleanMessageFlash(){
-        if(isset($_SESSION['flash'])){
-            $flash = $_SESSION['flash'];
+    public function getAndCleanMessageFlash()
+    {
+        if (isset($session['flash'])) {
+            $flash = $session['flash'];
             unset($_SESSION['flash']);
             return $flash;
         }
@@ -46,7 +60,8 @@ abstract class Controller
         return null;
     }
 
-    public function addMessageFlash($message, $type){
+    public function addMessageFlash($message, $type)
+    {
         $_SESSION['flash'] = [
             'message' => $message,
             'type' => $type
@@ -69,12 +84,25 @@ abstract class Controller
         $user = new User();
         $user->setIdUser($_SESSION['id_user']);
         $user->setUserName($_SESSION['user_name']);
+
         return $user;
     }
 
-    public function checkIfUserIsConnected(){
-        if(! $this->getUserConnected()){
-            throw new Exception("Vous devez-vous connecter");
+    public function checkIfUserIsConnected()
+    {
+        if (!$this->getUserConnected()) {
+            throw new Exception("Vous devez-vous connecter.");
+        }
+    }
+
+    public function checkIfUserIsAdmin()
+    {
+        $userForVerif = $this->getUserConnected();
+        $this->checkIfUserIsConnected();
+        $manager = new UserManager();
+        $user = $manager->searchInfoUser($userForVerif->getUserName());
+        if ($user->getUserTypeId() != 2) {
+            throw new Exception("Vous n'êtes pas administrateur.");
         }
     }
 
