@@ -18,7 +18,7 @@ class SubscribeController extends  Controller
             $user->setUserName(filter_input(INPUT_POST,'user_name'));
             $user->setPassword(filter_input(INPUT_POST,'password'));
             $user->setEmail(filter_input(INPUT_POST,'email'));
-            $passwwordConfirmation = $_POST['password_confirmation'];
+            $passwordConfirmation = $_POST['password_confirmation'];
 
             $user->getErrors();
             $errors = $user->getErrors();
@@ -26,7 +26,7 @@ class SubscribeController extends  Controller
                 throw new \Exception(implode($errors, " "));
             }
             $manager = new UserManager();
-            if ($user->getPassword() === $passwwordConfirmation) {
+            if ($user->getPassword() === $passwordConfirmation) {
                 $manager->verifUser($user);
 
                 $manager->addUser($user);

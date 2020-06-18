@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Manager\PostsManager;
+use Exception;
 
 class CreatePostController extends Controller
 {
@@ -21,7 +22,7 @@ class CreatePostController extends Controller
             $post->getErrors();
             $errors = $post->getErrors();
             if (count($errors)) {
-                throw new \Exception(implode($errors, " "));
+                throw new Exception(implode($errors, " "));
             }
             $manager = new PostsManager();
             $manager->addPost(

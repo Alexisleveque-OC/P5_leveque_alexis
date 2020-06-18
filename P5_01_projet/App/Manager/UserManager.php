@@ -4,6 +4,8 @@
 namespace App\Manager;
 
 use App\Entity\User;
+use DateTime;
+use Exception;
 use \PDO;
 
 
@@ -33,7 +35,7 @@ class UserManager extends Manager
     {
         $data = $this->searchInfoUser($user->getUserName());
         if ($data === false) {
-            throw new \Exception('Le nom que vous avez choisis existe déjà.');
+            throw new Exception('Le nom que vous avez choisis existe déjà.');
         }
     }
 
@@ -41,7 +43,7 @@ class UserManager extends Manager
      * @param $name
      * @param $password
      * @return User
-     * @throws \Exception
+     * @throws Exception
      */
     public function verifPass($name,$password)
     {
@@ -49,7 +51,7 @@ class UserManager extends Manager
         $verif = password_verify($password, $user->getPassword());
 
         if($verif === false){
-            throw new \Exception('Le mot de passe entré n\'est pas valide');
+            throw new Exception('Le mot de passe entré n\'est pas valide');
         }
 
         return $user;
@@ -65,16 +67,6 @@ class UserManager extends Manager
         return $user;
     }
 
-    public  function listInfoUser($idUser)
-    {
-        $db = self::dbConnect();
-        $req = $db->prepare('SELECT * , date_creation as user_date FROM user WHERE id_user = :id_user ') ;
-        $req->execute(['id_user' => $idUser]);
-        $data = $req->fetch( PDO::FETCH_ASSOC);
-        $user = $this->arrayDataToUser($data);
-        return $user;
-    }
-
     public static function arrayDataToUser($data)
     {
         $user = new User();
@@ -83,7 +75,7 @@ class UserManager extends Manager
         $user->setEmail($data['email'] ?? "");
         $user->setPassword($data['password'] ?? "");
         $user->setUserType($data['user_type_id'] ?? '');
-        $user->setDateCreation(new \DateTime($data['user_date'] ?? ''));
+        $user->setDateCreation(new DateTime($data['user_date'] ?? ''));
 
         return $user;
     }

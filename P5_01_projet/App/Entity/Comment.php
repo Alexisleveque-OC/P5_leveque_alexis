@@ -4,7 +4,9 @@
 namespace App\Entity;
 
 
-class Comment extends Entity implements CheckValidityInterface
+use DateTime;
+
+class Comment implements CheckValidityInterface
 {
     protected $id_comment;
     protected $content;
@@ -15,9 +17,6 @@ class Comment extends Entity implements CheckValidityInterface
 
     protected $user;
 
-    public function __construct()
-    {
-    }
 
     /**
      * @return mixed
@@ -38,7 +37,7 @@ class Comment extends Entity implements CheckValidityInterface
     /**
      * @return mixed
      */
-    public function getDateCreation(): ?\DateTime
+    public function getDateCreation(): ?DateTime
     {
         return $this->date_creation;
     }
@@ -84,9 +83,9 @@ class Comment extends Entity implements CheckValidityInterface
     }
 
     /**
-     * @param mixed $date
+     * @param DateTime $date_creation
      */
-    public function setDateCreation( \DateTime $date_creation)
+    public function setDateCreation( DateTime $date_creation)
     {
         $this->date_creation = $date_creation;
     }

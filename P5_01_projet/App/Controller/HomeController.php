@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Mail;
 use App\Manager\PostsManager;
+use Exception;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,7 @@ class HomeController extends Controller
             $mail->setMessage(filter_input(INPUT_POST,'message'));
             $errors = $mail->getErrors();
             if (count($errors)) {
-                throw new \Exception(implode($errors, " "));
+                throw new Exception(implode($errors, " "));
             }
             self::sendMail($mail);
             $this->redirect('mailSend');

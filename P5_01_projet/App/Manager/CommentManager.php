@@ -4,6 +4,7 @@
 namespace App\Manager;
 
 use App\Entity\Comment;
+use DateTime;
 use PDO;
 
 class CommentManager extends Manager
@@ -114,7 +115,7 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
         $comment = new Comment();
         $comment->setIdComment($data['id_comment'] ?? "");
         $comment->setContent($data['comment_content'] ?? "");
-        $comment->setDateCreation(new \DateTime($data['comment_date'] ?? ''));
+        $comment->setDateCreation(new DateTime($data['comment_date'] ?? ''));
         $comment->setValidation($data['validation'] ?? "");
         $comment->setUserId($data['user_id'] ?? "");
         $comment->setPostId($data['post_id'] ?? "");

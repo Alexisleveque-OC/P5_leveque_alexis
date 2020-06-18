@@ -4,7 +4,7 @@
 namespace App\Entity;
 
 
-class Post extends Entity implements CheckValidityInterface
+class Post implements CheckValidityInterface
 {
     protected $id_post;
     protected $title;
@@ -18,11 +18,6 @@ class Post extends Entity implements CheckValidityInterface
     protected $user;
 
     protected $counterComment;
-
-    public function __construct()
-    {
-
-    }
 
 
     /**

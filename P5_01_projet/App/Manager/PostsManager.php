@@ -5,6 +5,7 @@ namespace App\Manager;
 
 
 use App\Entity\Post;
+use DateTime;
 use \PDO;
 
 class PostsManager extends Manager
@@ -43,7 +44,7 @@ INNER JOIN user AS u ON p.user_id = u.id_user
 WHERE id_post = :id');
         $req->execute(['id' => $idPost]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
-        $post = PostsManager::arrayDataToPost($data);
+        $post = $this->arrayDataToPost($data);
         return $post;
     }
 
@@ -63,7 +64,7 @@ GROUP BY p.id_post
 ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
-            $posts[] = self::arrayDataToPost($row);
+            $posts[] = $this->arrayDataToPost($row);
         }
         return $posts;
     }
@@ -94,18 +95,18 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $req->execute(['id' => $idPost]);
     }
 
-    public static function arrayDataToPost($data)
+    public function arrayDataToPost($data)
     {
         $post = new Post();
         $post->setIdPost($data['id_post'] ?? "");
         $post->setTitle($data['title'] ?? "");
         $post->setChapo($data['chapo'] ?? "");
         $post->setContent($data['post_content'] ?? "");
-        $post->setDateCreation(new \DateTime($data['post_date'] ?? ''));
+        $post->setDateCreation(new DateTime($data['post_date'] ?? ''));
         $post->setcounterComment($data['counterComment'] ?? 0);
 
         if ($data['date_last_update'] !== null) {
-            $post->setDateLastUpdate(new \DateTime($data['date_last_update'] ?? ''));
+            $post->setDateLastUpdate(new DateTime($data['date_last_update'] ?? ''));
         }
         $post->setUserId($data['user_id'] ?? "");
 

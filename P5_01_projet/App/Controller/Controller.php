@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Manager\CommentManager;
 use App\Manager\UserManager;
 use App\Service\ViewLoader;
+use Exception;
 
 
 abstract class Controller
@@ -73,7 +74,7 @@ abstract class Controller
 
     public function checkIfUserIsConnected(){
         if(! $this->getUserConnected()){
-            throw new \Exception("Vous devez-vous connecter");
+            throw new Exception("Vous devez-vous connecter");
         }
     }
 

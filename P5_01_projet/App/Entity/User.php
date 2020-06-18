@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class User extends Entity implements CheckValidityInterface
+class User implements CheckValidityInterface
 {
     protected $id_user;
     protected $user_name;
@@ -10,11 +10,6 @@ class User extends Entity implements CheckValidityInterface
     protected $password;
     protected $user_type;
     protected $date_creation;
-
-    public function __construct()
-    {
-
-    }
 
     /**
      * @param mixed $id_user

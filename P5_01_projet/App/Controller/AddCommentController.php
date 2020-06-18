@@ -6,12 +6,13 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Manager\CommentManager;
+use Exception;
 
 class AddCommentController extends Controller
 {
     /**
      * @param $idPost
-     * @throws \Exception
+     * @throws Exception
      */
     public function addComment($idPost)
     {
@@ -26,7 +27,7 @@ class AddCommentController extends Controller
             $errors = $comment->getErrors();
 
             if (count($errors)) {
-                throw new \Exception(implode($errors, " "));
+                throw new Exception(implode($errors, " "));
             }
 
             $manager = new CommentManager();
