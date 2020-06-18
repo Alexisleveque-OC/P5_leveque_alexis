@@ -31,18 +31,17 @@ $title = 'Accueil';
                 <div class="card-body">
                     <div class="card-title">
                         <h2 class="col-12">
-                            <?= htmlspecialchars($post->getTitle()); ?>
+                            <?= $this->clean($post->getTitle()); ?>
                         </h2>
                         <h4 class="col-12">
-                            <?= htmlspecialchars($post->getChapo()); ?>
+                            <?= $this->clean($post->getChapo()); ?>
                         </h4>
                     </div>
                     <p class="card-text">
-                        <?= htmlspecialchars(substr($post->getContent(), 0, 250));
-                        ?>
+                        <?= $this->clean(substr($post->getContent(), 0, 250)); ?>
                         ...<br>
                         <a class="btn btn-articles"
-                           href="/index.php?action=post&id=<?= htmlspecialchars(($post->getIdPost())) ?>">Voir la suite
+                           href="/index.php?action=post&id=<?= $this->clean(($post->getIdPost())) ?>">Voir la suite
                         </a>
                     </p>
                 </div>
@@ -51,22 +50,22 @@ $title = 'Accueil';
                     if ($post->getDateLastUpdate() === null) {
                         ?>
                         <div class="col-6">
-                        Ecrit le <strong><?= htmlspecialchars($post->getDateCreation()->format('d-m-Y')) ?></strong>
+                        Ecrit le <strong><?= $this->clean($post->getDateCreation()->format('d-m-Y')) ?></strong>
                         </div>
                         <div class="col-6">
-                            à <strong><?= htmlspecialchars($post->getDateCreation()->format('H:m:s')) ?></strong>
+                            à <strong><?= $this->clean($post->getDateCreation()->format('H:m:s')) ?></strong>
                         </div>
                         <div class="col-12">
-                            par <strong><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                            par <strong><?= $this->clean($post->getUser()->getUserName()); ?></strong>
                         </div>
                         <?php
                     } else {
                         ?>
                         Dernière modification : <strong
-                                class="col-6"><?= htmlspecialchars($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                                class="col-6"><?= $this->clean($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                         à <strong
-                                class="col-6"><?= htmlspecialchars($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
-                        par <strong class="col-12"><?= htmlspecialchars($post->getUser()->getUserName()); ?></strong>
+                                class="col-6"><?= $this->clean($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                        par <strong class="col-12"><?= $this->clean($post->getUser()->getUserName()); ?></strong>
                         <?php
                     }
                     ?>

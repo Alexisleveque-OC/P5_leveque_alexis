@@ -16,25 +16,25 @@ $title = 'liste des commentaires à valider';
                 <div class="comment card">
                     <div class="card-body">
                         <h2 class="card-title">
-                            <?= htmlspecialchars($comment->getUser()->getUserName()); ?>
+                            <?= $this->clean($comment->getUser()->getUserName()); ?>
                         </h2>
                         <p class="card-text">
-                            <?= htmlspecialchars($comment->getContent()); ?>
+                            <?= $this->clean($comment->getContent()); ?>
                         </p>
                     </div>
                     <p class="card-footer">
                         Ecrit le <strong
-                                class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('d-m-Y')) ?></strong>
+                                class="col-2"><?= $this->clean($comment->getDateCreation()->format('d-m-Y')) ?></strong>
                         à <strong
-                                class="col-2"><?= htmlspecialchars($comment->getDateCreation()->format('H:m:s')) ?></strong>
+                                class="col-2"><?= $this->clean($comment->getDateCreation()->format('H:m:s')) ?></strong>
                     </p>
                     <div class="row ">
                         <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"
-                           href='/index.php?action=deleteComment&id=<?= htmlspecialchars($comment->getIdComment()) ?>'>
+                           href='/index.php?action=deleteComment&id=<?= $this->clean($comment->getIdComment()) ?>'>
                         Supprimer
                         </a>
                         <a class="btn btn-primary btn_comment offset-md-3 col-md-2 col-sm-6"
-                           href='/index.php?action=validateComment&id=<?= htmlspecialchars($comment->getIdComment()) ?>'>
+                           href='/index.php?action=validateComment&id=<?= $this->clean($comment->getIdComment()) ?>'>
                         Valider
                         </a>
                     </div>

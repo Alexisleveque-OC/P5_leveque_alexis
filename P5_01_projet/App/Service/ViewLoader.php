@@ -11,7 +11,11 @@ class ViewLoader
 {
 
 
-
+    public function clean($html)
+    {
+        $html = htmlspecialchars($html);
+        return $html;
+    }
     static public function render($path, $params = null)
     {
 
