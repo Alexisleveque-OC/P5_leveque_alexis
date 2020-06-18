@@ -16,25 +16,25 @@ $title = 'liste des commentaires à valider';
                 <div class="comment card">
                     <div class="card-body">
                         <h2 class="card-title">
-                            <?= $this->clean($comment->getUser()->getUserName()); ?>
+                            <?= self::escape($comment->getUser()->getUserName()); ?>
                         </h2>
                         <p class="card-text">
-                            <?= $this->clean($comment->getContent()); ?>
+                            <?= self::escape($comment->getContent()); ?>
                         </p>
                     </div>
                     <p class="card-footer">
                         Ecrit le <strong
-                                class="col-2"><?= $this->clean($comment->getDateCreation()->format('d-m-Y')) ?></strong>
+                                class="col-2"><?= self::escape($comment->getDateCreation()->format('d-m-Y')) ?></strong>
                         à <strong
-                                class="col-2"><?= $this->clean($comment->getDateCreation()->format('H:m:s')) ?></strong>
+                                class="col-2"><?= self::escape($comment->getDateCreation()->format('H:m:s')) ?></strong>
                     </p>
                     <div class="row ">
                         <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"
-                           href='/index.php?action=deleteComment&id=<?= $this->clean($comment->getIdComment()) ?>'>
+                           href='/index.php?action=deleteComment&id=<?= self::escape($comment->getIdComment()) ?>'>
                         Supprimer
                         </a>
                         <a class="btn btn-primary btn_comment offset-md-3 col-md-2 col-sm-6"
-                           href='/index.php?action=validateComment&id=<?= $this->clean($comment->getIdComment()) ?>'>
+                           href='/index.php?action=validateComment&id=<?= self::escape($comment->getIdComment()) ?>'>
                         Valider
                         </a>
                     </div>

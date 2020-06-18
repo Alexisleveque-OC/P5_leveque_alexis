@@ -72,26 +72,10 @@ abstract class Controller
         }
     }
 
-    protected static function refactorSupervariable($infos)
-    {
-        if (isset($_POST)) {
-            foreach ($infos as $key => $value) {
-                $value = $_POST[$key];
-            }
-        }
-//        if (isset($_SESSION)) {
-//            foreach ($infos as $key => $value) {
-//                $value = $_SESSION[$key];
-//            }
-//        }
-        return $infos;
-    }
-
     public function redirect($action, array $params = null)
     {
         $baseUrl = "/index.php?action=" . $action;
         $queryParams = "";
-//        $params += ['flash' => $this->getAndCleanMessageFlash()];
         if ($params !== null) {
             foreach ($params as $key => $value) {
                 $queryParams .= "&" . $key . "=" . $value;

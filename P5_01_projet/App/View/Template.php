@@ -40,7 +40,7 @@
                 if (isset($userConnected)) {
                     ?>
                     <li class="nav-item">
-                        <h4>Bonjour <?= $this->clean($userConnected->getUserName()) ?></h4>
+                        <h4>Bonjour <?= self::escape($userConnected->getUserName()) ?></h4>
                     </li>
                     <li class="nav-item">
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>

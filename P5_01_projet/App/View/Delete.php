@@ -7,16 +7,16 @@ $title = 'Confirmation Suppression';
     <?php if ($userConnected->getUserTypeId() == 2) { ?>
         <div class="one_post card">
             <h2 class="card-title">
-                <?= $this->clean($post->getTitle()); ?>
+                <?= self::escape($post->getTitle()); ?>
             </h2>
             <h4 class="card-title">
-                <?= $this->clean($post->getChapo()); ?>
+                <?= self::escape($post->getChapo()); ?>
             </h4>
             <p class="card-text">
-                <?= $this->clean($post->getContent()); ?>
+                <?= self::escape($post->getContent()); ?>
             </p>
             <p class="card-footer">
-                <strong>Ecrit par :</strong><?= $this->clean($post->getUser()->getUserName()); ?>
+                <strong>Ecrit par :</strong><?= self::escape($post->getUser()->getUserName()); ?>
             </p>
         </div>
         <p>Êtes vous sur de vouloir supprimer cette article ?</p>

@@ -7,13 +7,13 @@ $title = 'PostView';
     <div class="card one_post">
         <div class="card-body">
             <h2 class="card-title">
-                <?= ($this->clean($post->getTitle())); ?>
+                <?= (self::escape($post->getTitle())); ?>
             </h2>
             <h4 class="card-title">
-                <?= ($this->clean($post->getChapo())); ?>
+                <?= (self::escape($post->getChapo())); ?>
             </h4>
             <p class="card-text">
-                <?= ($this->clean($post->getContent())); ?>
+                <?= (self::escape($post->getContent())); ?>
             </p>
         </div>
         <div class="card-footer">
@@ -21,18 +21,18 @@ $title = 'PostView';
             if ($post->getDateLastUpdate() === null) {
                 ?>
                 Ecrit le <strong
-                        class="col-2"><?= $this->clean($post->getDateCreation()->format('d-m-Y')) ?></strong>
+                        class="col-2"><?= self::escape($post->getDateCreation()->format('d-m-Y')) ?></strong>
                 à <strong
-                        class="col-2"><?= $this->clean($post->getDateCreation()->format('H:m:s')) ?></strong>
-                par <strong class="col-2"><?= $this->clean($post->getUser()->getUserName()); ?></strong>
+                        class="col-2"><?= self::escape($post->getDateCreation()->format('H:m:s')) ?></strong>
+                par <strong class="col-2"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                 <?php
             } else {
                 ?>
                 Dernière modification : <strong
-                        class="col-2"><?= $this->clean($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                        class="col-2"><?= self::escape($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                 à <strong
-                        class="col-2"><?= $this->clean($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
-                par <strong class="col-2"><?= $this->clean($post->getUser()->getUserName()); ?></strong>
+                        class="col-2"><?= self::escape($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                par <strong class="col-2"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                 <?php
             }
             ?>
@@ -41,7 +41,7 @@ $title = 'PostView';
     <hr>
     <div class="offset-1">
         <h2 class="title-box">Commentaires</h2>
-        <?php if (isset($userConnected) && $userConnected->getUserTypeId >= 1) { ?>
+        <?php if (isset($userConnected) && $userConnected->getUserTypeId() >= 1) { ?>
         <form action="/index.php?action=addComment&id=<?= $post->getIdPost() ?>" method="post">
 
             <label for="comment">Ajouter un commentaire</label><br/>
@@ -60,18 +60,18 @@ $title = 'PostView';
 
         <div class="row comment">
             <h5 class="col-md-2 col-sm-12 user">
-                <?= ($this->clean($comment->getUser()->getUsername())); ?>
+                <?= (self::escape($comment->getUser()->getUsername())); ?>
             </h5>
             <div class="col-10">
 
                 <p class="col-12">
-                    <?= ($this->clean($comment->getContent())); ?>
+                    <?= (self::escape($comment->getContent())); ?>
                 </p>
                 <p class="col-12 card-footer">
                     Ecrit le <strong
-                            class="col-2"><?= ($this->clean($comment->getDateCreation()->format('d-m-Y'))) ?></strong>
+                            class="col-2"><?= (self::escape($comment->getDateCreation()->format('d-m-Y'))) ?></strong>
                     à <strong
-                            class="col-2"><?= ($this->clean($comment->getDateCreation()->format('H:m:s'))) ?></strong>
+                            class="col-2"><?= (self::escape($comment->getDateCreation()->format('H:m:s'))) ?></strong>
                 </p>
             </div>
         </div>

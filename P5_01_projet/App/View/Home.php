@@ -31,17 +31,17 @@ $title = 'Accueil';
                 <div class="card-body">
                     <div class="card-title">
                         <h2 class="col-12">
-                            <?= $this->clean($post->getTitle()); ?>
+                            <?= self::escape($post->getTitle()); ?>
                         </h2>
                         <h4 class="col-12">
-                            <?= $this->clean($post->getChapo()); ?>
+                            <?= self::escape($post->getChapo()); ?>
                         </h4>
                     </div>
                     <p class="card-text">
-                        <?= $this->clean(substr($post->getContent(), 0, 250)); ?>
+                        <?= self::escape(substr($post->getContent(), 0, 250)); ?>
                         ...<br>
                         <a class="btn btn-articles"
-                           href="/index.php?action=post&id=<?= $this->clean(($post->getIdPost())) ?>">Voir la suite
+                           href="/index.php?action=post&id=<?= self::escape(($post->getIdPost())) ?>">Voir la suite
                         </a>
                     </p>
                 </div>
@@ -50,22 +50,22 @@ $title = 'Accueil';
                     if ($post->getDateLastUpdate() === null) {
                         ?>
                         <div class="col-6">
-                        Ecrit le <strong><?= $this->clean($post->getDateCreation()->format('d-m-Y')) ?></strong>
+                        Ecrit le <strong><?= self::escape($post->getDateCreation()->format('d-m-Y')) ?></strong>
                         </div>
                         <div class="col-6">
-                            à <strong><?= $this->clean($post->getDateCreation()->format('H:m:s')) ?></strong>
+                            à <strong><?= self::escape($post->getDateCreation()->format('H:m:s')) ?></strong>
                         </div>
                         <div class="col-12">
-                            par <strong><?= $this->clean($post->getUser()->getUserName()); ?></strong>
+                            par <strong><?= self::escape($post->getUser()->getUserName()); ?></strong>
                         </div>
                         <?php
                     } else {
                         ?>
                         Dernière modification : <strong
-                                class="col-6"><?= $this->clean($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
+                                class="col-6"><?= self::escape($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                         à <strong
-                                class="col-6"><?= $this->clean($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
-                        par <strong class="col-12"><?= $this->clean($post->getUser()->getUserName()); ?></strong>
+                                class="col-6"><?= self::escape($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                        par <strong class="col-12"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                         <?php
                     }
                     ?>

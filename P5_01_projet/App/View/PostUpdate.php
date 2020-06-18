@@ -11,21 +11,21 @@ if (isset($userConnected) && $userConnected->getUserTypeId() == 2) {
                         <div class="controls">
                             <label>Titre :</label>
                             <input name="title" type="text" class="form-control"
-                                   value="<?= $this->clean($post->getTitle()) ?>">
+                                   value="<?= self::escape($post->getTitle()) ?>">
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Chapô :</label>
                             <input name="chapo" type="text" class="form-control"
-                                   value="<?= $this->clean($post->getChapo()) ?>">
+                                   value="<?= self::escape($post->getChapo()) ?>">
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Contenu : </label>
                             <textarea name="content" rows="10" cols="100" class="form-control"
-                                      style="resize:none"><?= $this->clean($post->getContent()) ?>
+                                      style="resize:none"><?= self::escape($post->getContent()) ?>
                             </textarea>
                         </div>
                     </div>

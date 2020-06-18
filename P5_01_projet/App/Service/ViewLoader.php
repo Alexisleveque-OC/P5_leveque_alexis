@@ -11,11 +11,12 @@ class ViewLoader
 {
 
 
-    public function clean($html)
+    public static function escape($htmlForEscape)
     {
-        $html = htmlspecialchars($html);
+        $html = htmlspecialchars($htmlForEscape);
         return $html;
     }
+
     static public function render($path, $params = null)
     {
 
@@ -26,10 +27,10 @@ class ViewLoader
         $nbCommentUnvalidate = (new CommentManager())->countCommentUnvalidate();
 
         if (isset ($_SESSION['user_name'])) {
-            $userConnecte = new User();
-            $userConnecte->setUserName($_SESSION['user_name']);
-            $userConnecte->setIdUser($_SESSION['user_name']);
-            $userConnected = (new UserManager())-> searchInfoUser($userConnecte->getUserName());
+            $userConnection = new User();
+            $userConnection->setUserName($_SESSION['user_name']);
+            $userConnection->setIdUser($_SESSION['user_name']);
+            $userConnected = (new UserManager())-> searchInfoUser($userConnection->getUserName());
         }
         ob_start();
         require __DIR__ . "/../View/" . $path . ".php";

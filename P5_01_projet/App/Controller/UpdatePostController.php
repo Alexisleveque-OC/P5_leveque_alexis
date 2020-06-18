@@ -11,8 +11,6 @@ class UpdatePostController extends Controller
 {
     public function updatePost($idPost)
     {
-//        $infos = self::refactorSupervariable($_POST);
-
 
         $manager = new PostsManager();
         $post = $manager->listOnce($idPost);
