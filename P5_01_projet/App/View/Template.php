@@ -38,24 +38,20 @@
                 </li>
                 <?php
                 if (isset($userConnected)) {
-                    ?>
-                    <li class="nav-item">
-                        <h4>Bonjour <?= self::escape($userConnected->getUserName()) ?></h4>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
-                    </li>
-                    <?php
-                    if ($nbCommentUnvalidate >= 1 && $userConnected->getUserTypeId() == 2) {
+                    if ($nbCommentUnvalidate >= 1 && $userConnected->getUserTypeId() == 2) :
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/index.php?action=listCommentUnvalidate">
                                 Commentaires <span class="badge badge-danger"><?= $nbCommentUnvalidate ?></span>
                             </a>
                         </li>
-                        <?php
-                    }
-                    ?>
+                    <?php endif; ?>
+                    <li class="nav-item">
+                        <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <h5 class="userConnected" >Bonjour <?= self::escape($userConnected->getUserName()) ?></h5>
+                    </li>
 
                     <?php
                 } else {

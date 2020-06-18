@@ -39,6 +39,12 @@ hr {
   padding-bottom: 5%;
 }
 
+.userConnected{
+  color : aliceblue;
+  line-height: 0;
+  margin-top: 14%;
+}
+
 footer {
   padding: 3%;
   background-color: #222;
@@ -138,5 +144,8 @@ form {
 @media (max-width : 768px){
   footer{
     visibility: hidden;
+  }
+  .container{
+    box-shadow: none;
   }
 }

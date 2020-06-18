@@ -16,7 +16,7 @@ class UpdatePostController extends Controller
         $post = $manager->listOnce($idPost);
 
         $infoPost = $this->countInfoPost();
-        if ($infoPost !== 0 && isset($_GET['id'])) {
+        if ($infoPost !== 0 ) {
             $post = new Post();
             $post->setIdPost(filter_input(INPUT_GET,'id'));
             $post->setTitle(filter_input(INPUT_POST,'title'));
@@ -30,9 +30,7 @@ class UpdatePostController extends Controller
             }
 
             $manager = new PostsManager();
-            $manager->updatePost(
-                $post
-            );
+            $manager->updatePost($post);
             $this->addMessageFlash("L'article a bien été modifié",self::TYPE_FLASH_INFO);
             $this->redirect('post&id='.$_GET['id']);
         }

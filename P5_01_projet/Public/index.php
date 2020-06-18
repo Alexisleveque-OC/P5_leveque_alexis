@@ -23,7 +23,7 @@ use App\Controller\UserController;
 use App\Controller\ValidateComment;
 
 
-$action = $_GET['action'] ?? 'home';
+$action = filter_input(INPUT_GET,'action') ?? 'home';
 
 try {
     switch ($action) {
@@ -50,14 +50,14 @@ try {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new PostController();
-            $controller->listOnce($_GET['id']);
+            $controller->listOnce(filter_input(INPUT_GET,'id'));
             break;
         case 'deletePost':
             if (!isset($_GET['id'])) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeletePostController();
-            $controller->deletePost($_GET['id']);
+            $controller->deletePost(filter_input(INPUT_GET,'id'));
             break;
         case 'createPost':
             $controller = new CreatePostController ();
@@ -68,21 +68,21 @@ try {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new UpdatePostController();
-            $controller->updatePost($_GET['id']);
+            $controller->updatePost(filter_input(INPUT_GET,'id'));
             break;
         case 'addComment':
             if (!isset($_GET['id'])) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new AddCommentcontroller();
-            $controller->addComment($_GET['id']);
+            $controller->addComment(filter_input(INPUT_GET,'id'));
             break;
         case 'deleteComment':
             if (!isset($_GET['id'] )) {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeleteCommentController();
-            $controller->deleteComment($_GET['id']);
+            $controller->deleteComment(filter_input(INPUT_GET,'id'));
             break;
         case 'listCommentUnvalidate':
             $controller = new ListCommentController();
@@ -93,7 +93,7 @@ try {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new ValidateComment();
-            $controller->validateComment($_GET['id']);
+            $controller->validateComment(filter_input(INPUT_GET,'id'));
             break;
         case 'mailSend':{
             (new MailSendController())();
