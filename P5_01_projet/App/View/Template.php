@@ -50,7 +50,7 @@
                         <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
                     </li>
                     <li class="nav-item">
-                        <h5 class="userConnected" >Bonjour <?= self::escape($userConnected->getUserName()) ?></h5>
+                        <h5 class="userConnected">Bonjour <?= self::escape($userConnected->getUserName()) ?></h5>
                     </li>
 
                     <?php
@@ -82,58 +82,54 @@
     <?= $content; ?>
 </div>
 <footer class="row ">
-    <div class="col-12">
-        <div class="row">
-            <h5 class="col-1">Moi</h5>
-            <div class="col-3">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="/CV/CV_Alexis_Leveque.pdf">Mon CV</a>
+    <h5 class="col-1">Moi</h5>
+    <div class="col-3">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <a href="/CV/CV_Alexis_Leveque.pdf">Mon CV</a>
 
-            </div>
-            <h5 class="col-1">Contact</h5>
-            <ul class="col-3 list list-unstyled">
-                <li>- E-mail : alexisblog@blog-p5.alexis-leveque.fr</li>
-                <li>- La Jarrie 17220</li>
-                <ul>
-                    <li class="list-inline-item">
-                        <a href="https://www.facebook.com/alexis.leveque.585">
-                            <img class="social_network" src="/Image/facebook_logo.jpg" alt="Facebook logo">
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://github.com/Alexisleveque-OC" class="btn btn-github">
-                            <img class="social_network" src="/Image/github_logo.png" alt="github logo">
-                        </a>
-                    </li>
-                </ul>
-            </ul>
-            <h5 class="col-1">Plan du site</h5>
-            <ul class=" col-2 list list-unstyled">
-                <li class="col-12">
-                    <a class="nav-link" href="/index.html">
-                        Accueil
-                    </a>
-                </li>
-                <li class="col-12">
-                    <a class="nav-link" href="/index.php?action=posts">
-                        Les articles
-                    </a>
-                </li>
-                <?php if (!isset($userConnected)) { ?>
-
-                    <li class="col-12">
-                        <a class="nav-link" href="/index.php?action=connection">Connexion</a>
-                    </li>
-                    <li class="col-12">
-                        <a class="nav-link" href="/index.php?action=subscribe">Inscription</a>
-                    </li>
-                <?php } ?>
-                </li>
-            </ul>
-        </div>
     </div>
+    <h5 class="col-1">Contact</h5>
+    <ul class="col-3 list list-unstyled">
+        <li>- E-mail : alexisblog@blog-p5.alexis-leveque.fr</li>
+        <li>- La Jarrie 17220</li>
+        <ul>
+            <li class="list-inline-item">
+                <a href="https://www.facebook.com/alexis.leveque.585">
+                    <img class="social_network" src="/Image/facebook_logo.jpg" alt="Facebook logo">
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://github.com/Alexisleveque-OC" class="btn btn-github">
+                    <img class="social_network" src="/Image/github_logo.png" alt="github logo">
+                </a>
+            </li>
+        </ul>
+    </ul>
+    <h5 class="col-1">Plan du site</h5>
+    <ul class=" col-2 list list-unstyled">
+        <li class="col-12">
+            <a class="nav-link" href="/index.html">
+                Accueil
+            </a>
+        </li>
+        <li class="col-12">
+            <a class="nav-link" href="/index.php?action=posts">
+                Les articles
+            </a>
+        </li>
+        <?php if (!isset($userConnected)) { ?>
+
+            <li class="col-12">
+                <a class="nav-link" href="/index.php?action=connection">Connexion</a>
+            </li>
+            <li class="col-12">
+                <a class="nav-link" href="/index.php?action=subscribe">Inscription</a>
+            </li>
+        <?php } ?>
+        </li>
+    </ul>
 </footer>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
