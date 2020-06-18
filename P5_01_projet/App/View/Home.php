@@ -16,7 +16,7 @@ $title = 'Accueil';
         <p class="col-md-8 col-xs-12">
             Et harum quidem rerum facilis est et expedita distinctio. Non numquam eius modi tempora incidunt ut
             labore et dolore magnam aliquam quaerat voluptatem. Nam libero tempore, cum soluta nobis est eligendi
-            optio cumque nihil impedit quo minus id quod maxime placeat.
+            optio cumque nihil impedit quo minus coucou id quod maxime placeat.
 
             Animi, id est laborum et dolorum fuga. Nihil molestiae consequatur, vel illum qui dolorem eum. Et harum
             quidem rerum facilis est et expedita distinctio. Laboris nisi ut aliquip ex ea commodo consequat.
