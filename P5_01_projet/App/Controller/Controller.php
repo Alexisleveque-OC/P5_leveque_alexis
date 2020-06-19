@@ -25,7 +25,7 @@ abstract class Controller
      */
     private $userManager;
 
-    public function __construct()
+        public function __construct()
     {
         $this->commentManager = new CommentManager();
         $this->userManager = new UserManager();

@@ -111,7 +111,8 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         $post->setUserId($data['user_id'] ?? "");
 
         if ($data['user_name'] ?? false) {
-            $user = UserManager::arrayDataToUser($data);
+            $manager = new UserManager();
+            $user = $manager->arrayDataToUser($data);
             $post->setUser($user);
         }
 

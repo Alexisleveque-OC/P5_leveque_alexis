@@ -66,7 +66,6 @@ INNER JOIN user u ON c.user_id = u.id_user
             $comments[] = $this->arrayDataToComment($row);
 
         }
-
         return $comments;
     }
 
@@ -121,7 +120,8 @@ WHERE validation = :validation ORDER BY id_comment DESC ');
         $comment->setPostId($data['post_id'] ?? "");
 
         if ($data['user_name'] ?? false) {
-            $user = UserManager::arrayDataToUser($data);
+            $manager = new UserManager();
+            $user =$manager->arrayDataToUser($data);
             $comment->setUser($user);
         }
 

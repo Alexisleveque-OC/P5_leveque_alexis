@@ -119,7 +119,21 @@
                 Les articles
             </a>
         </li>
-        <?php if (!isset($userConnected)) { ?>
+        <?php
+        if (isset($userConnected)) :
+            if ($nbCommentUnvalidate >= 1 && $userConnected->getUserTypeId() == 2) :
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.php?action=listCommentUnvalidate">
+                        Commentaires <span class="badge badge-danger"><?= $nbCommentUnvalidate ?></span>
+                    </a>
+                </li>
+            <?php endif; ?>
+            <li class="nav-item">
+                <a href="/index.php?action=logout" class="nav-link">Déconnexion</a>
+            </li>
+        <?php endif;
+        if (!isset($userConnected)) : ?>
 
             <li class="col-12">
                 <a class="nav-link" href="/index.php?action=connection">Connexion</a>
@@ -127,7 +141,7 @@
             <li class="col-12">
                 <a class="nav-link" href="/index.php?action=subscribe">Inscription</a>
             </li>
-        <?php } ?>
+        <?php endif; ?>
         </li>
     </ul>
 </footer>
