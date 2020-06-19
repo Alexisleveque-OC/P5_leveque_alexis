@@ -32,15 +32,15 @@ If you want a dataset, you can import Dataset.sql . This files was in project ro
 ### Step 4 :
 Create a virtualhost, for this :
 - Go to your localhost
-- In tool tabs, click on Create a Virtual Host
+- In tool tabs, click on "Create a Virtual Host"
 - set fields with your information (ex : "blog.local" and "absolute path"/your_directory(create in the beginning)/p5_01_projet/public )
 
 ### Step 5 :
 In your terminal, go to your directory of project and submit :
-- composer init (for init composer)
-- composer require --dev symfony var-dumper
-- composer update
-- composer dump-autoload
+- "composer init" (for init composer)
+- "composer require --dev symfony var-dumper"
+- "composer update"
+- "composer dump-autoload"
 
 ### Step 6 : 
 Configure file "config.php" (in directory App) whit your information and rename this one "config.local.php".
