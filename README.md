@@ -8,7 +8,7 @@ This is  README.md file of my repository fot Project 5 of the application develo
 
 - Include all UML diagrams.
 - Create all issues. 
-- Develope applications.
+- Development of applications.
 - Write README.
 - Presentation of project to a mentor.
 
