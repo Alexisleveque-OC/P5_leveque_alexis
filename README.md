@@ -46,4 +46,6 @@ In your terminal, go to your directory of project and submit :
 Configure file "config.php" (in directory App) whit your information and rename this one "config.local.php".
 
 #### Note 
-If you want test mail, you must install maildev ang go to your localhost:1080 , send mail with contact form and that work !!!
+- If you want manage this blog, you must subscribe and in your SGBD change your user_type_id to 2.
+-- 'UPDATE user SET user_type_id = 2 WHERE user_name = "your_name"'
+- If you want test mail, you must install maildev( or other mail interceptor) ang go to your localhost:1080 , send mail with contact form and that work !!!
