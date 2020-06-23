@@ -26,7 +26,7 @@ $title = 'liste des commentaires à valider';
                         Ecrit le <strong
                                 class="col-2"><?= self::escape($comment->getDateCreation()->format('d-m-Y')) ?></strong>
                         à <strong
-                                class="col-2"><?= self::escape($comment->getDateCreation()->format('H:m:s')) ?></strong>
+                                class="col-2"><?= self::escape($comment->getDateCreation()->format('H:i:s')) ?></strong>
                     </p>
                     <div class="row ">
                         <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"

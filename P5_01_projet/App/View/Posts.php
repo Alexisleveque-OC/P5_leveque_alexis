@@ -33,7 +33,7 @@ $title = 'Les articles';
                     Ecrit le <strong
                             class="col-2"><?= self::escape($post->getDateCreation()->format('d-m-Y')) ?></strong>
                     à <strong
-                            class="col-2"><?= self::escape($post->getDateCreation()->format('H:m:s')) ?></strong>
+                            class="col-2"><?= self::escape($post->getDateCreation()->format('H:i:s')) ?></strong>
                     par <strong class="col-2"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                     <?php
                 } else {
@@ -41,7 +41,7 @@ $title = 'Les articles';
                     Dernière modification : <strong
                             class="col-2"><?= self::escape($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                     à <strong
-                            class="col-2"><?= self::escape($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                            class="col-2"><?= self::escape($post->getDateLastUpdate()->format('H:i:s')) ?></strong>
                     par <strong class="col-2"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                     <?php
                 }

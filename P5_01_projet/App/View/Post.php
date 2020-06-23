@@ -13,7 +13,7 @@ $title = 'PostView';
                 <?= (self::escape($post->getChapo())); ?>
             </h4>
             <p class="card-text">
-                <?= (self::escape($post->getContent())); ?>
+                <?= (nl2br(self::escape($post->getContent()))); ?>
             </p>
         </div>
         <div class="card-footer">
@@ -23,7 +23,7 @@ $title = 'PostView';
                 Ecrit le <strong
                         class="col-2"><?= self::escape($post->getDateCreation()->format('d-m-Y')) ?></strong>
                 à <strong
-                        class="col-2"><?= self::escape($post->getDateCreation()->format('H:m:s')) ?></strong>
+                        class="col-2"><?= self::escape($post->getDateCreation()->format('H:i:s')) ?></strong>
                 par <strong class="col-2"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                 <?php
             } else {
@@ -31,7 +31,7 @@ $title = 'PostView';
                 Dernière modification : <strong
                         class="col-2"><?= self::escape($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                 à <strong
-                        class="col-2"><?= self::escape($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                        class="col-2"><?= self::escape($post->getDateLastUpdate()->format('H:i:s')) ?></strong>
                 par <strong class="col-2"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                 <?php
             }
@@ -71,7 +71,7 @@ $title = 'PostView';
                     Ecrit le <strong
                             class="col-2"><?= (self::escape($comment->getDateCreation()->format('d-m-Y'))) ?></strong>
                     à <strong
-                            class="col-2"><?= (self::escape($comment->getDateCreation()->format('H:m:s'))) ?></strong>
+                            class="col-2"><?= (self::escape($comment->getDateCreation()->format('H:i:s'))) ?></strong>
                 </p>
                 <div class="row ">
                     <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"

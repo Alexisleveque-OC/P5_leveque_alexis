@@ -52,16 +52,18 @@ WHERE id_post = :id');
     {
         $posts = [];
         $database = self::dbConnect();
-        $firstEntry = ($pageNb - 1) * 5;
-        $req = $database->query('
+        $firstEntry = ($pageNb - 1) * $limit;
+        $req = $database->prepare('
 SELECT p.id_post , p.title, p.chapo, p.content as post_content,p.date_creation as post_date, p.date_last_update,p.user_id,
-u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date, COUNT(c.id_comment) as counterComment
+u.id_user, u.user_name,u.email,u.user_type_id, u.date_creation as user_date, SUM(c.validation) as counterComment
 FROM post  p
 INNER JOIN user as u ON p.user_id = u.id_user
 LEFT JOIN comment c ON c.post_id = p.id_post
-WHERE c.validation = 1
 GROUP BY p.id_post
-ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
+ORDER BY p.id_post DESC LIMIT :offset,:limit');
+        $req->bindValue(':limit', $limit, \PDO::PARAM_INT);
+        $req->bindValue(':offset', $firstEntry, \PDO::PARAM_INT);
+        $req->execute();
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row) {
             $posts[] = $this->arrayDataToPost($row);
