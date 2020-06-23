@@ -66,7 +66,6 @@ ORDER BY p.id_post DESC LIMIT ' . $firstEntry . ',' . $limit);
         foreach ($data as $row) {
             $posts[] = $this->arrayDataToPost($row);
         }
-        dd($posts);
         return $posts;
     }
 
