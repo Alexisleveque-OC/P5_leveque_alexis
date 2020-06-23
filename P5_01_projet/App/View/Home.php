@@ -53,7 +53,7 @@ $title = 'Accueil';
                         Ecrit le <strong><?= self::escape($post->getDateCreation()->format('d-m-Y')) ?></strong>
                         </div>
                         <div class="col-6">
-                            à <strong><?= self::escape($post->getDateCreation()->format('H:m:s')) ?></strong>
+                            à <strong><?= self::escape($post->getDateCreation()->format('H:i:s')) ?></strong>
                         </div>
                         <div class="col-12">
                             par <strong><?= self::escape($post->getUser()->getUserName()); ?></strong>
@@ -64,7 +64,7 @@ $title = 'Accueil';
                         Dernière modification : <strong
                                 class="col-6"><?= self::escape($post->getDateLastUpdate()->format('d-m-Y')) ?></strong>
                         à <strong
-                                class="col-6"><?= self::escape($post->getDateLastUpdate()->format('H:m:s')) ?></strong>
+                                class="col-6"><?= self::escape($post->getDateLastUpdate()->format('H:i:s')) ?></strong>
                         par <strong class="col-12"><?= self::escape($post->getUser()->getUserName()); ?></strong>
                         <?php
                     }

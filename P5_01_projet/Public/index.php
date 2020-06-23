@@ -27,6 +27,9 @@ $action = filter_input(INPUT_GET, 'action') ?? 'home';
 if (isset($_GET['id'])) {
     $idGet = filter_input(INPUT_GET, 'id');
 }
+if (isset($_GET['idPost'])) {
+    $idPostGet = filter_input(INPUT_GET, 'idPost');
+}
 
 try {
     switch ($action) {
@@ -85,7 +88,7 @@ try {
                 throw  new Exception('Erreur 404 ');
             }
             $controller = new DeleteCommentController();
-            $controller->deleteComment($idGet);
+            $controller->deleteComment($idGet, $idPostGet);
             break;
         case 'listCommentUnvalidate':
             $controller = new ListCommentController();
