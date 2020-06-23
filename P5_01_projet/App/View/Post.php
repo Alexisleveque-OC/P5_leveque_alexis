@@ -73,6 +73,12 @@ $title = 'PostView';
                     à <strong
                             class="col-2"><?= (self::escape($comment->getDateCreation()->format('H:m:s'))) ?></strong>
                 </p>
+                <div class="row ">
+                    <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"
+                       href='/index.php?action=deleteComment&id=<?= self::escape($comment->getIdComment()) ?>&idPost=<?= self::escape($comment->getPostId()) ?>'>
+                        Supprimer
+                    </a>
+                </div>
             </div>
         </div>
         <hr>

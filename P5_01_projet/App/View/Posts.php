@@ -46,7 +46,7 @@ $title = 'Les articles';
                     <?php
                 }
                 ?>
-                <p class="offset-md-8">Commentaires <span class="badge"></span><?= $post->getCounterComment() ?></p>
+                <p class="offset-md-8">Commentaires :<span class="badge"></span><?= $post->getCounterComment() ?></p>
 
             </div>
             <div class="row">
