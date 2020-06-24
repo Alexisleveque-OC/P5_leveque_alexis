@@ -41,6 +41,27 @@ In your terminal, go to your directory of project and submit :
 - "composer require --dev symfony var-dumper"
 - "composer update"
 - "composer dump-autoload"
+Check that these lines are there in vendor->composer.json
+ ````php
+    {
+        "name": "alexisleveque-oc/p5_leveque_alexis",
+        "authors": [
+            {
+                "name": "LEVEQUE",
+                "email": "alexis.leveque78@gmail.com"
+            }
+        ],
+        "autoload": {
+            "psr-4": {
+                "App\\": "App/"
+            }
+        },
+        "require-dev": {
+            "symfony/var-dumper": "^5.0"
+        }
+    }
+
+ ````
 
 ### Step 6 : 
 Configure file "config.php" (in directory App) whit your information and rename this one "config.local.php".
