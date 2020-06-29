@@ -17,7 +17,7 @@ class DeleteCommentController extends Controller
 
         $this->addMessageFlash("Commentaire supprimé.", self::TYPE_FLASH_ERROR);
 
-        if ($idPost !== null)
+        if (isset($idPost))
         {
             $this->redirect("post", ["id" => $idPost]);
         }

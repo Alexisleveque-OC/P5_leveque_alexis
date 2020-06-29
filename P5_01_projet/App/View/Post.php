@@ -65,7 +65,7 @@ $title = 'PostView';
             <div class="col-10">
 
                 <p class="col-12">
-                    <?= (self::escape($comment->getContent())); ?>
+                    <?= (nl2br(self::escape($comment->getContent()))); ?>
                 </p>
                 <p class="col-12 card-footer">
                     Ecrit le <strong
@@ -73,12 +73,14 @@ $title = 'PostView';
                     à <strong
                             class="col-2"><?= (self::escape($comment->getDateCreation()->format('H:i:s'))) ?></strong>
                 </p>
+                <?php if (isset($userConnected) && $userConnected->getUserTypeId() >= 1) : ?>
                 <div class="row ">
                     <a class="btn btn-danger btn_comment offset-md-3 col-md-2 col-sm-6"
                        href='/index.php?action=deleteComment&id=<?= self::escape($comment->getIdComment()) ?>&idPost=<?= self::escape($comment->getPostId()) ?>'>
                         Supprimer
                     </a>
                 </div>
+                <?php endif;?>
             </div>
         </div>
         <hr>
